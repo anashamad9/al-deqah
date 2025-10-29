@@ -96,7 +96,7 @@ const FOOTER_COPY: Record<
     },
   },
   ar: {
-    brandLabel: "الدقة تك",
+    brandLabel: "شركة الدقة",
     brandTagline: "تقنيات بصرية متقدمة وأنظمة ذكية",
     description:
       "نمزج الحوسبة المكانية، والأتمتة الذكية، والتصميم الغامر لمساعدة المؤسسات على بناء تجارب تحويلية ونتائج قابلة للقياس.",
@@ -105,7 +105,7 @@ const FOOTER_COPY: Record<
     ctaButton: "ابدأ مشروعاً",
     contactCard: {
       label: "المقر الرئيسي",
-      address: "الدقة تك، عمّان - الأردن",
+      address: "شركة الدقة، عمّان - الأردن",
       details: "info@aldeqah-tech.com · ‎+962 79 200 7354",
     },
     navTitles: {
@@ -116,7 +116,7 @@ const FOOTER_COPY: Record<
     companyLinks: {
       about: "من نحن",
       contact: "تواصل معنا",
-      deqahAI: "ديقاه AI",
+      deqahAI: "الدقة AI",
       insights: "رؤى صناعية",
     },
     contactItems: {
@@ -125,7 +125,7 @@ const FOOTER_COPY: Record<
       location: "عمّان، الأردن",
     },
     legal: {
-      rights: "الدقة تك. جميع الحقوق محفوظة.",
+      rights: "شركة الدقة. جميع الحقوق محفوظة.",
       terms: "الشروط",
       privacy: "الخصوصية",
       cookies: "الكوكيز",
@@ -161,8 +161,8 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-[#0c0805] text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1d140d] to-black opacity-90" />
-        <div className="absolute left-1/2 top-[-35%] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#d4af37]/25 blur-3xl opacity-70" />
-        <div className="absolute bottom-[-45%] right-[-10%] h-[420px] w-[420px] rounded-full bg-[#8b7355]/25 blur-3xl opacity-60" />
+        <div className="absolute left-1/2 top-[-35%] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#863730]/25 blur-3xl opacity-70" />
+        <div className="absolute bottom-[-45%] right-[-10%] h-[420px] w-[420px] rounded-full bg-[#863730]/25 blur-3xl opacity-60" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-8 py-20 lg:py-24">
@@ -174,7 +174,7 @@ export default function Footer() {
                   <Image src="/logo-2.png" alt="Al-Deqah logo" width={52} height={68} className="h-10 w-auto" />
                 </div>
                 <div className={isArabic ? "text-right arabic" : ""}>
-                  <p className={`text-xs uppercase tracking-[0.35em] text-[#d4af37] ${isArabic ? "arabic" : ""}`}>
+                  <p className={`text-xs uppercase tracking-[0.35em] text-[#863730] ${isArabic ? "arabic" : ""}`}>
                     {copy.brandLabel}
                   </p>
                   <p className={`text-sm font-light text-white/70 ${isArabic ? "arabic" : ""}`}>{copy.brandTagline}</p>
@@ -186,7 +186,7 @@ export default function Footer() {
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_25px_65px_-55px_rgba(255,255,255,0.65)] backdrop-blur">
-              <p className={`text-xs uppercase tracking-[0.3em] text-[#d4af37] ${isArabic ? "arabic text-right" : ""}`}>
+              <p className={`text-xs uppercase tracking-[0.3em] text-[#863730] ${isArabic ? "arabic text-right" : ""}`}>
                 {copy.ctaLabel}
               </p>
               <h3 className={`mt-3 text-lg font-medium text-white ${isArabic ? "arabic text-right" : ""}`}>
@@ -203,9 +203,9 @@ export default function Footer() {
               </Link>
             </div>
 
-            <div className="rounded-2xl border border-[#d4af37]/30 bg-white/5 p-6 text-xs font-light text-white/70 shadow-[0_25px_60px_-55px_rgba(255,255,255,0.45)]">
+            <div className="rounded-2xl border border-[#863730]/30 bg-white/5 p-6 text-xs font-light text-white/70 shadow-[0_25px_60px_-55px_rgba(255,255,255,0.45)]">
               <p
-                className={`uppercase tracking-[0.3em] text-[#d4af37] ${isArabic ? "arabic text-right" : ""}`}
+                className={`uppercase tracking-[0.3em] text-[#863730] ${isArabic ? "arabic text-right" : ""}`}
               >
                 {copy.contactCard.label}
               </p>
@@ -223,7 +223,7 @@ export default function Footer() {
                       isArabic ? "flex-row-reverse text-right arabic" : ""
                     }`}
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[#d4af37]">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[#863730]">
                       <Icon className="h-4 w-4" />
                     </span>
                     <span>{label}</span>
@@ -270,7 +270,7 @@ export default function Footer() {
                     const content = (
                       <>
                         <span className={isArabic ? "arabic" : ""}>{link.label}</span>
-                        <ArrowUpRight className="h-3 w-3 text-[#d4af37]/70" />
+                        <ArrowUpRight className="h-3 w-3 text-[#863730]/70" />
                       </>
                     )
 
@@ -321,7 +321,7 @@ export default function Footer() {
                     <a
                       key={social.label}
                       href={social.href}
-                      className={`inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#d4af37]/60 hover:text-white ${
+                      className={`inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#863730]/60 hover:text-white ${
                         isArabic ? "flex-row-reverse arabic" : ""
                       }`}
                     >

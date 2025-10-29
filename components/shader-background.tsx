@@ -69,7 +69,7 @@ export default function ShaderBackground({ children }: ShaderBackgroundProps) {
   const accentSpeed = isActive ? 0.22 : 0.12
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white relative overflow-hidden">
+    <div ref={containerRef} className="relative min-h-screen overflow-x-hidden bg-white">
       {/* SVG Filters */}
       <svg className="absolute inset-0 w-0 h-0">
         <defs>

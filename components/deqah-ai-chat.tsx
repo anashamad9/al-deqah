@@ -46,16 +46,16 @@ const CHAT_COPY: Record<Language, ChatCopy> = {
   },
   ar: {
     introMessage:
-      "مرحباً! أنا ديقاه AI. أساعدك في استكشاف حلول الثورة الصناعية الرابعة، تحديد نطاق المشاريع، أو إبراز دراسات حالة ذات صلة. كيف يمكنني مساعدتك اليوم؟",
+      "مرحباً! أنا الدقة AI. أساعدك في استكشاف حلول الثورة الصناعية الرابعة، تحديد نطاق المشاريع، أو إبراز دراسات حالة ذات صلة. كيف يمكنني مساعدتك اليوم؟",
     quickPromptsLabel: "اقتراحات سريعة:",
     conversationLabel: "المحادثة",
-    placeholder: "اطرح أي سؤال على ديقاه AI…",
+    placeholder: "اطرح أي سؤال على الدقة AI…",
     sendLabel: "إرسال",
     thinkingLabel: "جارٍ التفكير…",
-    errorMessage: "حدث خطأ في الوصول إلى ديقاه AI. يرجى المحاولة بعد لحظات.",
+    errorMessage: "حدث خطأ في الوصول إلى الدقة AI. يرجى المحاولة بعد لحظات.",
     disclaimer:
-      "ديقاه AI مساعد أولي. للمشروعات الحساسة أو الخاضعة للضوابط، تواصل مباشرة مع فريقنا التنفيذي.",
-    typingLabel: "ديقاه AI يكتب",
+      "الدقة AI مساعد أولي. للمشروعات الحساسة أو الخاضعة للضوابط، تواصل مباشرة مع فريقنا التنفيذي.",
+    typingLabel: "الدقة AI يكتب",
   },
 }
 
@@ -158,7 +158,7 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
               type="button"
               onClick={() => sendMessage(prompt)}
               disabled={isLoading}
-              className={`rounded-full border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-medium text-gray-600 transition-colors duration-200 hover:border-[#d4af37]/60 hover:bg-[#fdfaf3] hover:text-gray-900 disabled:pointer-events-none disabled:opacity-50 ${
+              className={`rounded-full border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-medium text-gray-600 transition-colors duration-200 hover:border-[#863730]/60 hover:bg-[#fdfaf3] hover:text-gray-900 disabled:pointer-events-none disabled:opacity-50 ${
                 isArabic ? "arabic" : ""
               }`}
             >
@@ -202,7 +202,7 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
               value={input}
               onChange={(event) => setInput(event.target.value)}
               disabled={isLoading}
-              className={`max-h-40 flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#d4af37]/60 focus:ring-0 disabled:opacity-60 ${
+              className={`max-h-40 flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 disabled:opacity-60 ${
                 isArabic ? "arabic text-right" : ""
               }`}
             />

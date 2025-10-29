@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
@@ -62,9 +62,34 @@ export default function NavBar({
 }: NavBarProps) {
   const { language } = useLanguage()
   const { open } = useDeqahAI()
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 12)
+    }
+
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const navLabels = useMemo(() => NAV_LABELS[language], [language])
 
+  const glassyClasses =
+    variant === "dark"
+      ? "bg-[#0c0805]/35 backdrop-saturate-150"
+      : "bg-white/15 backdrop-saturate-150"
+  const solidClasses =
+    variant === "dark"
+      ? "border border-white/10 bg-[#0c0805]/95 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.7)] backdrop-saturate-100"
+      : "border border-neutral-200/80 bg-white shadow-[0_12px_32px_-22px_rgba(0,0,0,0.24)] backdrop-saturate-100"
+  const backgroundClasses = isScrolled ? solidClasses : glassyClasses
   const linkClasses =
     variant === "dark"
       ? "text-white/80 hover:text-white hover:bg-white/10"
@@ -79,11 +104,17 @@ export default function NavBar({
       : "bg-black text-white group-hover:bg-black/80"
 
   return (
-    <header className={cn("relative z-20 flex items-center justify-between p-6", className)}>
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 flex w-full items-center justify-between px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
+        backgroundClasses,
+        className
+      )}
+    >
       {showLogo ? (
-        <div className="flex items-center">
-          <Image src="/logo-2.png" alt="Al-Deqah logo" width={60} height={78} priority className="h-12 w-auto" />
-        </div>
+        <Link href="/" className="flex items-center" aria-label="Al-Deqah home">
+          <Image src="/logo-2.png" alt="Al-Deqah logo" width={60} height={78} priority className="h-10 w-auto" />
+        </Link>
       ) : (
         <span />
       )}

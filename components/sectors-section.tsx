@@ -49,12 +49,12 @@ export function SectorsSection() {
         <div className="grid gap-16 lg:grid-cols-[minmax(0,340px)_1fr]">
           <div className="space-y-10">
             <div className={`space-y-6 ${isArabic ? "text-right arabic" : ""}`}>
-              <span className="uppercase tracking-[0.35em] text-xs text-[#d4af37]">
+              <span className="uppercase tracking-[0.35em] text-xs text-[#863730]">
                 {tString(data.label, language)}
               </span>
               <h2 className="text-4xl font-light text-gray-900 md:text-5xl">
                 {tString(data.headingPrefix, language)}{" "}
-                <span className="font-medium italic text-[#d4af37]">
+                <span className="font-medium italic text-[#863730]">
                   {tString(data.highlightAccent, language)}
                 </span>
               </h2>
@@ -67,10 +67,10 @@ export function SectorsSection() {
               {highlights.map((item) => (
                 <div
                   key={item.label}
-                  className="group relative overflow-hidden rounded-3xl border border-[#d4af37]/20 bg-white/80 p-6 shadow-[0_35px_80px_-65px_rgba(0,0,0,0.65)] backdrop-blur transition-transform duration-300 hover:-translate-y-1 hover:border-[#d4af37]/35"
+                  className="group relative overflow-hidden rounded-3xl border border-[#863730]/20 bg-white/80 p-6 shadow-[0_35px_80px_-65px_rgba(0,0,0,0.65)] backdrop-blur transition-transform duration-300 hover:-translate-y-1 hover:border-[#863730]/35"
                 >
                   <span
-                    className={`absolute top-0 h-full w-1 bg-gradient-to-b from-[#d4af37] via-[#d4af37]/60 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${
+                    className={`absolute top-0 h-full w-1 bg-gradient-to-b from-[#863730] via-[#863730]/60 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${
                       isArabic ? "right-0" : "left-0"
                     }`}
                   />
@@ -78,8 +78,8 @@ export function SectorsSection() {
                     <p
                       className={
                         isArabic
-                          ? "arabic text-[11px] font-medium text-[#8b7355]"
-                          : "text-[11px] uppercase tracking-[0.35em] text-[#8b7355]"
+                          ? "arabic text-[11px] font-medium text-[#863730]"
+                          : "text-[11px] uppercase tracking-[0.35em] text-[#863730]"
                       }
                     >
                       {item.label}
@@ -99,9 +99,9 @@ export function SectorsSection() {
               return (
                 <div
                   key={`${sector.title}-${index}`}
-                  className="group relative overflow-hidden rounded-3xl border border-[#d4af37]/25 bg-white/70 p-px shadow-[0_35px_80px_-60px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#d4af37]/40"
+                  className="group relative overflow-hidden rounded-3xl border border-[#863730]/25 bg-white/70 p-px shadow-[0_35px_80px_-60px_rgba(0,0,0,0.65)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#863730]/40"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/15 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#863730]/15 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div
                     className={`relative h-full rounded-[calc(1.5rem-1px)] bg-white/90 p-8 backdrop-blur ${
                       isArabic ? "text-right arabic" : ""
@@ -112,7 +112,7 @@ export function SectorsSection() {
                         isArabic ? "flex-row-reverse" : ""
                       }`}
                     >
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#d4af37]/12 text-[#d4af37] transition-transform duration-300 group-hover:scale-105">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#863730]/12 text-[#863730] transition-transform duration-300 group-hover:scale-105">
                         <Icon className="h-6 w-6" />
                       </div>
                       <span
@@ -127,7 +127,7 @@ export function SectorsSection() {
                     </div>
                     <h3 className="mt-6 text-lg font-medium text-gray-900">{sector.title}</h3>
                     <p className="mt-3 text-sm font-light leading-relaxed text-gray-600">{sector.description}</p>
-                    <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
+                    <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-[#863730]/50 to-transparent" />
                   </div>
                 </div>
               )

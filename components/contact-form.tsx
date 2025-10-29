@@ -134,13 +134,20 @@ export default function ContactForm() {
         </div>
 
         <div className={`flex flex-col gap-1.5 ${isArabic ? "text-right" : ""}`}>
-          <label className={`text-xs uppercase tracking-[0.3em] text-gray-500 ${isArabic ? "arabic" : ""}`} htmlFor="inquiry">
+          <label
+            className={
+              isArabic
+                ? "text-sm font-medium text-gray-600 arabic tracking-normal"
+                : "text-xs uppercase tracking-[0.3em] text-gray-500"
+            }
+            htmlFor="inquiry"
+          >
             {copy.inquiryLabel}
           </label>
           <select
             id="inquiry"
             name="inquiry"
-            className={`rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#d4af37]/60 focus:ring-0 ${
+            className={`rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 ${
               isArabic ? "arabic text-right" : ""
             }`}
             defaultValue={copy.inquiryTypes[0]}
@@ -154,7 +161,14 @@ export default function ContactForm() {
         </div>
 
         <div className={`flex flex-col gap-1.5 ${isArabic ? "text-right" : ""}`}>
-          <label className={`text-xs uppercase tracking-[0.3em] text-gray-500 ${isArabic ? "arabic" : ""}`} htmlFor="message">
+          <label
+            className={
+              isArabic
+                ? "text-sm font-medium text-gray-600 arabic tracking-normal"
+                : "text-xs uppercase tracking-[0.3em] text-gray-500"
+            }
+            htmlFor="message"
+          >
             {copy.messageLabel}
           </label>
           <textarea
@@ -163,7 +177,7 @@ export default function ContactForm() {
             rows={5}
             required
             placeholder={copy.messagePlaceholder}
-            className={`rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#d4af37]/60 focus:ring-0 ${
+            className={`rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 ${
               isArabic ? "arabic text-right" : ""
             }`}
           />
@@ -215,7 +229,14 @@ type InputFieldProps = {
 function InputField({ id, name, label, placeholder, type = "text", required, isArabic }: InputFieldProps) {
   return (
     <div className={`flex flex-col gap-1.5 ${isArabic ? "text-right" : ""}`}>
-      <label className={`text-xs uppercase tracking-[0.3em] text-gray-500 ${isArabic ? "arabic" : ""}`} htmlFor={id}>
+      <label
+        className={
+          isArabic
+            ? "text-sm font-medium text-gray-600 arabic tracking-normal"
+            : "text-xs uppercase tracking-[0.3em] text-gray-500"
+        }
+        htmlFor={id}
+      >
         {label}
       </label>
       <input
@@ -224,7 +245,7 @@ function InputField({ id, name, label, placeholder, type = "text", required, isA
         placeholder={placeholder}
         type={type}
         required={required}
-        className={`rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#d4af37]/60 focus:ring-0 ${
+        className={`rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 ${
           isArabic ? "arabic text-right" : ""
         }`}
       />

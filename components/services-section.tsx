@@ -32,12 +32,12 @@ export default function ServicesSection() {
             {language === "ar" ? (
               <>
                 {tString(data.sectionLabel, language)}{" "}
-                <span className="font-medium italic text-[#d4af37]">{tString(data.sectionAccent, language)}</span>
+                <span className="font-medium italic text-[#863730]">{tString(data.sectionAccent, language)}</span>
               </>
             ) : (
               <>
                 {tString(data.sectionLabel, language)}{" "}
-                <span className="font-medium italic text-[#d4af37]">{tString(data.sectionAccent, language)}</span>
+                <span className="font-medium italic text-[#863730]">{tString(data.sectionAccent, language)}</span>
               </>
             )}
           </h2>
@@ -77,10 +77,10 @@ function ServiceCard({ title, description, href, language, exploreLabel }: Servi
 
   const cardContent = (
     <>
-      <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
+      <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-[#863730]/30 to-transparent" />
       <div className={`mb-3 flex items-start gap-3 ${isArabic ? "flex-row-reverse text-right arabic" : ""}`}>
-        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-[#d4af37]/30 bg-gradient-to-br from-[#d4af37]/20 to-[#d4af37]/5">
-          <div className="h-2 w-2 rounded-full bg-[#d4af37]" />
+        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-[#863730]/30 bg-gradient-to-br from-[#863730]/20 to-[#863730]/5">
+          <div className="h-2 w-2 rounded-full bg-[#863730]" />
         </div>
         <h3 className={`text-base font-normal leading-tight text-gray-900 pt-1 ${isArabic ? "arabic" : ""}`}>{title}</h3>
       </div>
@@ -89,7 +89,7 @@ function ServiceCard({ title, description, href, language, exploreLabel }: Servi
       </p>
       {href ? (
         <span
-          className={`mt-4 inline-flex items-center gap-2 ${paddingClass} ${exploreTextClass} text-[#d4af37] transition-transform duration-200 ${labelLayout}`}
+          className={`mt-4 inline-flex items-center gap-2 ${paddingClass} ${exploreTextClass} text-[#863730] transition-transform duration-200 ${labelLayout}`}
         >
           {exploreLabel}
           <svg className="h-3 w-3" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
@@ -102,7 +102,7 @@ function ServiceCard({ title, description, href, language, exploreLabel }: Servi
   )
 
   const className =
-    "group relative flex h-full flex-col justify-between rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-all duration-300 hover:border-[#d4af37]/40 hover:bg-white hover:shadow-lg"
+    "group relative flex h-full flex-col justify-between rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-all duration-300 hover:border-[#863730]/40 hover:bg-white hover:shadow-lg"
 
   if (href) {
     return (

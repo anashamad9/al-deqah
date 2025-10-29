@@ -134,7 +134,7 @@ const ABOUT_COPY: Record<
   },
   ar: {
     hero: {
-      label: "عن الدقة تك",
+      label: "عن شركة الدقة",
       heading: "نصمم مستقبلًا غامرًا وذكيًا ومتصلاً عبر الشرق الأوسط",
       description:
         "مقرنا في عمّان مع فرق منتشرة في المنطقة، نتعاون مع الحكومات والصناعة والمبتكرين لتفعيل خارطة طريق الثورة الصناعية الرابعة — من التدريب الطبي بالواقع الافتراضي إلى البنية التحتية الذكية ومراكز اتخاذ القرار المدعومة بالذكاء الاصطناعي.",
@@ -168,8 +168,8 @@ const ABOUT_COPY: Record<
       description:
         "يجمع فريق القيادة خبرة من مبادرات المدن الذكية والبرامج الوطنية ومشاريع التقنيات الناشئة لقيادة ابتكار مستدام.",
       quote:
-        "“ينجح التحول الرقمي عندما تسير الاستراتيجية والتصميم والهندسة معًا. في الدقة تك نبقى قريبين من الأشخاص الذين يشغلون هذه التجارب يوميًا.”",
-      quoteLabel: "ميثاق قيادة الدقة تك",
+        "“ينجح التحول الرقمي عندما تسير الاستراتيجية والتصميم والهندسة معًا. في شركة الدقة نبقى قريبين من الأشخاص الذين يشغلون هذه التجارب يوميًا.”",
+      quoteLabel: "ميثاق قيادة شركة الدقة",
       members: [
         {
           name: "Layla Al-Harthy",
@@ -233,7 +233,7 @@ export default function AboutPageContent() {
         <section className="relative overflow-hidden bg-[#0c0805] py-28 text-white">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1c130d] to-black opacity-90" />
-            <div className="absolute left-1/2 top-[-40%] h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-[#d4af37]/20 blur-3xl opacity-60" />
+            <div className="absolute left-1/2 top-[-40%] h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-[#863730]/20 blur-3xl opacity-60" />
           </div>
           <div
             className={`relative mx-auto flex max-w-5xl flex-col gap-6 px-6 md:px-8 ${
@@ -241,7 +241,7 @@ export default function AboutPageContent() {
             }`}
           >
             <span
-              className={`text-xs uppercase tracking-[0.35em] text-[#d4af37] ${
+              className={`text-xs uppercase tracking-[0.35em] text-[#863730] ${
                 isArabic ? "arabic self-end" : "self-center"
               }`}
             >
@@ -265,8 +265,8 @@ export default function AboutPageContent() {
               <p className={`text-sm font-light leading-relaxed text-gray-600 ${isArabic ? "arabic text-right" : ""}`}>
                 {copy.mission.description}
               </p>
-              <div className="rounded-3xl border border-[#d4af37]/25 bg-[#fdfaf3] p-6 text-sm font-light text-gray-700 shadow-[0_25px_65px_-55px_rgba(0,0,0,0.12)]">
-                <p className={`text-xs uppercase tracking-[0.3em] text-[#8b7355] ${isArabic ? "arabic text-right" : ""}`}>
+              <div className="rounded-3xl border border-[#863730]/25 bg-[#fdfaf3] p-6 text-sm font-light text-gray-700 shadow-[0_25px_65px_-55px_rgba(0,0,0,0.12)]">
+                <p className={`text-xs uppercase tracking-[0.3em] text-[#863730] ${isArabic ? "arabic text-right" : ""}`}>
                   {copy.mission.cardLabel}
                 </p>
                 <p className={`mt-3 leading-relaxed ${isArabic ? "arabic text-right" : ""}`}>{copy.mission.cardBody}</p>
@@ -277,11 +277,11 @@ export default function AboutPageContent() {
               {copy.mission.pillars.map((pillar) => (
                 <div
                   key={pillar.title}
-                  className={`rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_25px_60px_-55px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#d4af37]/40 ${
+                  className={`rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_25px_60px_-55px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#863730]/40 ${
                     isArabic ? "text-right arabic" : ""
                   }`}
                 >
-                  <p className="text-[11px] uppercase tracking-[0.3em] text-[#8b7355]">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-[#863730]">
                     {language === "ar" ? "ركيزة" : "Pillar"}
                   </p>
                   <h3 className="mt-3 text-lg font-medium text-gray-900">{pillar.title}</h3>
@@ -296,14 +296,14 @@ export default function AboutPageContent() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center">
               <div className={`space-y-4 ${isArabic ? "text-right arabic" : ""}`}>
-                <span className="text-xs uppercase tracking-[0.35em] text-[#d4af37]">{copy.leadership.label}</span>
+                <span className="text-xs uppercase tracking-[0.35em] text-[#863730]">{copy.leadership.label}</span>
                 <h2 className="text-3xl font-light text-gray-900 md:text-4xl">{copy.leadership.heading}</h2>
                 <p className="text-sm font-light leading-relaxed text-gray-600">{copy.leadership.description}</p>
               </div>
-              <div className="relative hidden h-full overflow-hidden rounded-3xl border border-[#d4af37]/25 bg-[#fdfaf3] p-8 shadow-[0_35px_80px_-60px_rgba(0,0,0,0.18)] lg:flex">
+              <div className="relative hidden h-full overflow-hidden rounded-3xl border border-[#863730]/25 bg-[#fdfaf3] p-8 shadow-[0_35px_80px_-60px_rgba(0,0,0,0.18)] lg:flex">
                 <div className={`space-y-3 text-sm font-light text-gray-700 ${isArabic ? "text-right arabic" : ""}`}>
                   <p>{copy.leadership.quote}</p>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#8b7355]">{copy.leadership.quoteLabel}</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#863730]">{copy.leadership.quoteLabel}</p>
                 </div>
               </div>
             </div>
@@ -312,15 +312,15 @@ export default function AboutPageContent() {
               {copy.leadership.members.map((member) => (
                 <div
                   key={member.name}
-                  className={`group relative flex flex-col rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_30px_70px_-60px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#d4af37]/40 ${
+                  className={`group relative flex flex-col rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_30px_70px_-60px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#863730]/40 ${
                     isArabic ? "text-right arabic" : ""
                   }`}
                 >
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#d4af37]/15 to-[#d4af37]/5 text-[#d4af37]">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#863730]/15 to-[#863730]/5 text-[#863730]">
                     <span className="text-lg font-medium">{member.name.charAt(0)}</span>
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">{member.name}</h3>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#8b7355]">{member.title}</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#863730]">{member.title}</p>
                   <p className="mt-4 text-sm font-light leading-relaxed text-gray-600">{member.bio}</p>
                 </div>
               ))}
@@ -332,7 +332,7 @@ export default function AboutPageContent() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:items-center">
               <div className={`space-y-4 ${isArabic ? "text-right arabic" : ""}`}>
-                <span className="text-xs uppercase tracking-[0.35em] text-[#d4af37]">{copy.capabilities.label}</span>
+                <span className="text-xs uppercase tracking-[0.35em] text-[#863730]">{copy.capabilities.label}</span>
                 <h2 className="text-3xl font-light text-gray-900 md:text-4xl">{copy.capabilities.heading}</h2>
                 <p className="text-sm font-light leading-relaxed text-gray-600">{copy.capabilities.description}</p>
               </div>

@@ -32,7 +32,7 @@ const QUICK_PROMPTS: Record<Language, string[]> = {
 
 const CLOSE_LABELS: Record<Language, string> = {
   en: "Close Deqah AI chat",
-  ar: "إغلاق محادثة ديقاه AI",
+  ar: "إغلاق محادثة الدقة AI",
 }
 
 export function DeqahAIProvider({ children }: { children: ReactNode }) {

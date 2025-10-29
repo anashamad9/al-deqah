@@ -31,7 +31,7 @@ export function WhyUsSection() {
         <div className={`mb-16 text-center ${isArabic ? "arabic" : ""}`}>
           <h2 className="text-4xl font-light text-gray-900 md:text-5xl">
             {tString(data.headingPrefix, language)}{" "}
-            <span className="font-medium italic text-[#d4af37]">{tString(data.accent, language)}</span>
+            <span className="font-medium italic text-[#863730]">{tString(data.accent, language)}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm font-light text-gray-600">
             {tString(data.description, language)}
@@ -44,13 +44,13 @@ export function WhyUsSection() {
             return (
               <div
                 key={`${reason.title}-${index}`}
-                className={`group relative rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#d4af37]/30 hover:shadow-xl ${
+                className={`group relative rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#863730]/30 hover:shadow-xl ${
                   isArabic ? "text-right arabic" : ""
                 }`}
               >
                 <div className={`mb-6 ${isArabic ? "flex justify-end" : ""}`}>
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#d4af37]/10 to-[#d4af37]/5 transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-7 w-7 text-[#d4af37]" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#863730]/10 to-[#863730]/5 transition-transform duration-300 group-hover:scale-110">
+                    <Icon className="h-7 w-7 text-[#863730]" />
                   </div>
                 </div>
                 <h3 className="mb-3 text-lg font-medium text-gray-900">{reason.title}</h3>
@@ -58,8 +58,8 @@ export function WhyUsSection() {
                 <div
                   className={`absolute bottom-0 h-1 w-full transform transition-transform duration-300 group-hover:scale-x-100 ${
                     isArabic
-                      ? "right-0 origin-right bg-gradient-to-l from-[#d4af37] to-[#8b7355]"
-                      : "left-0 origin-left bg-gradient-to-r from-[#d4af37] to-[#8b7355]"
+                      ? "right-0 origin-right bg-gradient-to-l from-[#863730] to-[#863730]"
+                      : "left-0 origin-left bg-gradient-to-r from-[#863730] to-[#863730]"
                   } scale-x-0 rounded-b-2xl`}
                 />
               </div>

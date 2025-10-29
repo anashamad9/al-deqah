@@ -18,7 +18,7 @@ export const homepageCopy = {
     } as LocalizedString,
     description: {
       en: "Al-Deqah delivers cutting-edge technology solutions across multiple domains",
-      ar: "تقدم الدقة تك حلولاً تقنية متقدمة عبر مجالات متعددة",
+      ar: "تقدم شركة الدقة حلولاً تقنية متقدمة عبر مجالات متعددة",
     } as LocalizedString,
     exploreLabel: {
       en: "Explore",

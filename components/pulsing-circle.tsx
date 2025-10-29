@@ -3,18 +3,26 @@
 import { PulsingBorder } from "@paper-design/shaders-react"
 import { motion } from "framer-motion"
 
+import { useDeqahAI } from "@/components/deqah-ai-widget"
 import { useLanguage } from "@/components/language-context"
 
 export default function PulsingCircle() {
   const { language } = useLanguage()
+  const { open } = useDeqahAI()
   const text =
     language === "ar"
-      ? "الدقة تك مذهلة • الدقة تك مذهلة • الدقة تك مذهلة • الدقة تك مذهلة •"
+      ? "شركة الدقة مذهلة • شركة الدقة مذهلة • شركة الدقة مذهلة • شركة الدقة مذهلة •"
       : "Al-Deqah is amazing • Al-Deqah is amazing • Al-Deqah is amazing • Al-Deqah is amazing •"
+  const ariaLabel = language === "ar" ? "افتح محادثة الدقة AI" : "Open Deqah AI chat"
 
   return (
-    <div className="absolute bottom-8 right-8 z-30">
-      <div className="relative w-20 h-20 flex items-center justify-center">
+    <div className={`absolute bottom-8 z-30 ${language === "ar" ? "left-8" : "right-8"}`}>
+      <button
+        type="button"
+        onClick={open}
+        aria-label={ariaLabel}
+        className="relative flex h-20 w-20 items-center justify-center rounded-full cursor-pointer transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BEECFF]/60"
+      >
         {/* Pulsing Border Circle */}
         <PulsingBorder
           colors={["#BEECFF", "#E77EDC", "#FF4C3E", "#00FF88", "#FFD700", "#FF6B35", "#8A2BE2"]}
@@ -36,12 +44,13 @@ export default function PulsingCircle() {
             width: "60px",
             height: "60px",
             borderRadius: "50%",
+            pointerEvents: "none",
           }}
         />
 
         {/* Rotating Text Around the Pulsing Border */}
         <motion.svg
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 h-full w-full"
           viewBox="0 0 100 100"
           animate={{ rotate: 360 }}
           transition={{
@@ -49,7 +58,7 @@ export default function PulsingCircle() {
             repeat: Number.POSITIVE_INFINITY,
             ease: "linear",
           }}
-          style={{ transform: "scale(1.6)" }}
+          style={{ transform: "scale(1.6)", pointerEvents: "none" }}
         >
           <defs>
             <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
@@ -60,7 +69,7 @@ export default function PulsingCircle() {
             </textPath>
           </text>
         </motion.svg>
-      </div>
+      </button>
     </div>
   )
 }
