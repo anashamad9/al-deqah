@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
@@ -69,14 +71,14 @@ export default function HeroContent() {
 
         {/* Buttons */}
         <div className="flex items-center gap-4 flex-wrap">
-          <a
-            href="mailto:info@aldeqah-tech.com"
+          <Link
+            href="/contact"
             className={`px-8 py-3 rounded-full bg-transparent border border-neutral-900/20 text-neutral-900 font-normal text-xs transition-all duration-200 hover:bg-neutral-900/5 hover:border-neutral-900/40 cursor-pointer ${
               isArabic ? "arabic" : ""
             }`}
           >
             {copy.bookMeeting}
-          </a>
+          </Link>
           <button
             type="button"
             onClick={open}

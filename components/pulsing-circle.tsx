@@ -3,7 +3,15 @@
 import { PulsingBorder } from "@paper-design/shaders-react"
 import { motion } from "framer-motion"
 
+import { useLanguage } from "@/components/language-context"
+
 export default function PulsingCircle() {
+  const { language } = useLanguage()
+  const text =
+    language === "ar"
+      ? "الدقة تك مذهلة • الدقة تك مذهلة • الدقة تك مذهلة • الدقة تك مذهلة •"
+      : "Al-Deqah is amazing • Al-Deqah is amazing • Al-Deqah is amazing • Al-Deqah is amazing •"
+
   return (
     <div className="absolute bottom-8 right-8 z-30">
       <div className="relative w-20 h-20 flex items-center justify-center">
@@ -46,9 +54,9 @@ export default function PulsingCircle() {
           <defs>
             <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
           </defs>
-          <text className="text-sm fill-neutral-800 instrument">
+          <text className={`text-sm fill-neutral-800 instrument ${language === "ar" ? "arabic" : ""}`}>
             <textPath href="#circle" startOffset="0%">
-              v0 is amazing • v0 is amazing • v0 is amazing • v0 is amazing •
+              {text}
             </textPath>
           </text>
         </motion.svg>

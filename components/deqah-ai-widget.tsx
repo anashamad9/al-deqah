@@ -3,6 +3,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 
 import DeqahAIChat from "@/components/deqah-ai-chat"
+import { useLanguage } from "@/components/language-context"
+import type { Language } from "@/lib/i18n"
 
 type DeqahAIContextValue = {
   isOpen: boolean
@@ -13,12 +15,25 @@ type DeqahAIContextValue = {
 
 const DeqahAIContext = createContext<DeqahAIContextValue | null>(null)
 
-const QUICK_PROMPTS = [
-  "Outline a Cybersecurity maturity roadmap",
-  "Compare XR training vs traditional onboarding",
-  "What tech stack powers your IoT deployments?",
-  "How can digital twins improve facilities management?",
-]
+const QUICK_PROMPTS: Record<Language, string[]> = {
+  en: [
+    "Outline a Cybersecurity maturity roadmap",
+    "Compare XR training vs traditional onboarding",
+    "What tech stack powers your IoT deployments?",
+    "How can digital twins improve facilities management?",
+  ],
+  ar: [
+    "ضع خارطة طريق لنضج الأمن السيبراني",
+    "قارن بين تدريب XR والتأهيل التقليدي",
+    "ما المكدس التقني الذي يدعم نشر إنترنت الأشياء لديكم؟",
+    "كيف تعزز التوائم الرقمية إدارة المرافق؟",
+  ],
+}
+
+const CLOSE_LABELS: Record<Language, string> = {
+  en: "Close Deqah AI chat",
+  ar: "إغلاق محادثة ديقاه AI",
+}
 
 export function DeqahAIProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -46,6 +61,7 @@ export function useDeqahAI() {
 }
 
 function DeqahAIPopup() {
+  const { language } = useLanguage()
   const { isOpen, close } = useDeqahAI()
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -84,13 +100,13 @@ function DeqahAIPopup() {
           type="button"
           onClick={close}
           className="absolute -right-2 -top-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:text-gray-900"
-          aria-label="Close Deqah AI chat"
+          aria-label={CLOSE_LABELS[language]}
         >
           <span className="text-lg leading-none">&times;</span>
         </button>
 
         <div className="flex max-h-[72vh] flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white p-4 shadow-[0_20px_55px_-35px_rgba(0,0,0,0.6)] sm:p-6">
-          <DeqahAIChat quickPrompts={QUICK_PROMPTS} variant="popup" />
+          <DeqahAIChat quickPrompts={QUICK_PROMPTS[language]} variant="popup" />
         </div>
       </div>
     </div>
