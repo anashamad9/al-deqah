@@ -59,7 +59,7 @@ const DETAIL_COPY: Record<
     techHeading: "مكدس التقنية وآلية التنفيذ",
     techIntro:
       "نختار أدوات قابلة للتشغيل البيني تتكامل مع استثماراتك الحالية وتُهيّئ المؤسسة للابتكار المستقبلي.",
-    stackLabel: "المكدس",
+    stackLabel: "النموذج",
     engagementHeading: "إيقاع التعاون",
     phaseLabel: "المرحلة",
   },
