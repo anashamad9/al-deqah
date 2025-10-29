@@ -12,7 +12,7 @@ export default function LanguageToggle() {
   ]
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-white/25 bg-white/10 p-1 backdrop-blur">
+    <div className="flex items-center gap-1 rounded-full border border-neutral-900/10 bg-neutral-900/5 p-1 backdrop-blur">
       {options.map((option) => {
         const active = option.value === language
         return (
@@ -22,8 +22,8 @@ export default function LanguageToggle() {
             onClick={() => setLanguage(option.value)}
             className={`rounded-full px-3 py-1 text-[11px] font-medium transition-all duration-200 ${
               active
-                ? "bg-white text-black shadow-[0_6px_20px_-12px_rgba(0,0,0,0.6)]"
-                : "text-white/70 hover:text-white"
+                ? "bg-black text-white shadow-[0_6px_20px_-12px_rgba(0,0,0,0.6)]"
+                : "text-neutral-700 hover:text-neutral-900"
             } ${option.className ?? ""}`}
           >
             {option.label}

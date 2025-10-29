@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 
+import { cn } from "@/lib/utils"
+
 type ChatRole = "assistant" | "user"
 
 type ChatMessage = {
@@ -11,9 +13,10 @@ type ChatMessage = {
 
 type DeqahAIChatProps = {
   quickPrompts?: string[]
+  variant?: "page" | "popup"
 }
 
-export default function DeqahAIChat({ quickPrompts = [] }: DeqahAIChatProps) {
+export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: DeqahAIChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -69,10 +72,17 @@ export default function DeqahAIChat({ quickPrompts = [] }: DeqahAIChatProps) {
     }
   }
 
+  const isPopup = variant === "popup"
+
   return (
-    <>
+    <div className={cn("flex flex-col", isPopup ? "h-full" : "flex-1")}>
       {quickPrompts.length > 0 ? (
-        <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-gray-200 bg-gray-50/60 p-3 text-xs text-gray-600 shadow-sm sm:px-4 sm:py-3">
+        <div
+          className={cn(
+            "flex flex-wrap items-center gap-2 rounded-2xl border border-gray-200 bg-gray-50/60 p-3 text-xs text-gray-600 shadow-sm sm:px-4 sm:py-3",
+            isPopup && "text-[11px]"
+          )}
+        >
           <span className="font-medium text-gray-400">Quick prompts:</span>
           {quickPrompts.map((prompt) => (
             <button
@@ -88,7 +98,12 @@ export default function DeqahAIChat({ quickPrompts = [] }: DeqahAIChatProps) {
         </div>
       ) : null}
 
-      <div className="mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_25px_60px_-55px_rgba(0,0,0,0.25)]">
+      <div
+        className={cn(
+          "mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_25px_60px_-55px_rgba(0,0,0,0.25)]",
+          isPopup && "max-h-full"
+        )}
+      >
         <div className="border-b border-gray-100 bg-gray-50/80 px-6 py-4 text-xs font-medium text-gray-500">
           Conversation
         </div>
@@ -124,10 +139,15 @@ export default function DeqahAIChat({ quickPrompts = [] }: DeqahAIChatProps) {
         </div>
       </div>
 
-      <p className="mt-6 text-center text-[11px] font-light text-gray-400">
+      <p
+        className={cn(
+          "mt-6 text-center text-[11px] font-light text-gray-400",
+          isPopup && "mt-4 text-[10px] text-gray-500"
+        )}
+      >
         Deqah AI is a prototype assistant. For sensitive or regulated projects, connect directly with our delivery team.
       </p>
-    </>
+    </div>
   )
 }
 

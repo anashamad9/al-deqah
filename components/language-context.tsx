@@ -28,11 +28,12 @@ function applyLanguage(language: Language) {
   const root = document.documentElement
   root.lang = language
   root.dir = language === "ar" ? "rtl" : "ltr"
+  root.dataset.language = language
 
   if (language === "ar") {
-    document.body.classList.add("arabic")
+    document.body?.classList.add("arabic")
   } else {
-    document.body.classList.remove("arabic")
+    document.body?.classList.remove("arabic")
   }
 }
 

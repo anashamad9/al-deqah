@@ -3,15 +3,29 @@
 import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
-import { MeshGradient } from "@paper-design/shaders-react"
+import dynamic from "next/dynamic"
 
 interface ShaderBackgroundProps {
   children: React.ReactNode
 }
 
+const MeshGradient = dynamic(
+  () => import("@paper-design/shaders-react").then((mod) => mod.MeshGradient),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,#f5e7c9_0%,#ffffff_60%,#ffffff_100%)]"
+      />
+    ),
+  }
+)
+
 export default function ShaderBackground({ children }: ShaderBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isActive, setIsActive] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
     const handleMouseEnter = () => setIsActive(true)
@@ -31,8 +45,31 @@ export default function ShaderBackground({ children }: ShaderBackgroundProps) {
     }
   }, [])
 
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const handleChange = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches)
+    setPrefersReducedMotion(media.matches)
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", handleChange)
+    } else {
+      media.addListener(handleChange)
+    }
+    return () => {
+      if (typeof media.removeEventListener === "function") {
+        media.removeEventListener("change", handleChange)
+      } else {
+        media.removeListener(handleChange)
+      }
+    }
+  }, [])
+
+  const shouldAnimate = !prefersReducedMotion
+  const baseSpeed = isActive ? 0.35 : 0.18
+  const accentSpeed = isActive ? 0.22 : 0.12
+
   return (
-    <div ref={containerRef} className="min-h-screen bg-black relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-white relative overflow-hidden">
       {/* SVG Filters */}
       <svg className="absolute inset-0 w-0 h-0">
         <defs>
@@ -62,19 +99,28 @@ export default function ShaderBackground({ children }: ShaderBackgroundProps) {
       </svg>
 
       {/* Background Shaders */}
-      <MeshGradient
-        className="absolute inset-0 w-full h-full"
-        colors={["#000000", "#d4af37", "#ffffff", "#1a1410", "#8b7355"]}
-        speed={0.3}
-        backgroundColor="#000000"
-      />
-      <MeshGradient
-        className="absolute inset-0 w-full h-full opacity-60"
-        colors={["#000000", "#ffffff", "#d4af37", "#000000"]}
-        speed={0.2}
-        wireframe="true"
-        backgroundColor="transparent"
-      />
+      {shouldAnimate ? (
+        <>
+          <MeshGradient
+            className="absolute inset-0 w-full h-full"
+            colors={["#ffffff", "#f7efe0", "#d4af37", "#f0e4cf", "#ffffff"]}
+            speed={baseSpeed}
+            backgroundColor="#ffffff"
+          />
+          <MeshGradient
+            className="absolute inset-0 w-full h-full opacity-60"
+            colors={["#ffffff", "#f5e7c9", "#d4af37", "#ffffff"]}
+            speed={accentSpeed}
+            wireframe="true"
+            backgroundColor="transparent"
+          />
+        </>
+      ) : (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,#f7efe0_0%,#ffffff_65%,#ffffff_100%)]"
+        />
+      )}
 
       {children}
     </div>

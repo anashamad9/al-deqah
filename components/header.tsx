@@ -6,6 +6,7 @@ import Link from "next/link"
 import LanguageToggle from "@/components/language-toggle"
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
+import { useDeqahAI } from "@/components/deqah-ai-widget"
 
 const NAV_LINKS = [
   { key: "solutions", href: "/solutions" },
@@ -37,6 +38,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
 
 export default function Header() {
   const { language } = useLanguage()
+  const { open } = useDeqahAI()
 
   return (
     <header className="relative z-20 flex items-center justify-between p-6">
@@ -51,7 +53,7 @@ export default function Header() {
           <Link
             key={item.key}
             href={item.href}
-            className={`rounded-full px-3 py-2 text-xs font-light text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white ${
+            className={`rounded-full px-3 py-2 text-xs font-light text-neutral-800 transition-all duration-200 hover:bg-neutral-900/5 hover:text-neutral-950 ${
               language === "ar" ? "arabic" : ""
             }`}
           >
@@ -62,21 +64,22 @@ export default function Header() {
 
       <div className="flex items-center gap-3">
         <LanguageToggle />
-        <Link
-          href="/deqah-ai"
+        <button
+          type="button"
+          onClick={open}
           id="gooey-btn"
           className="relative flex items-center group"
           style={{ filter: "url(#gooey-filter)" }}
         >
-          <span className="absolute right-0 flex h-8 w-8 items-center justify-center -translate-x-10 rounded-full bg-white text-black transition-all duration-300 group-hover:-translate-x-19">
+          <span className="absolute right-0 flex h-8 w-8 items-center justify-center -translate-x-10 rounded-full bg-black text-white transition-all duration-300 group-hover:-translate-x-19">
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
             </svg>
           </span>
-          <span className="z-10 flex h-8 items-center rounded-full bg-white px-6 py-2 text-xs font-normal text-black transition-all duration-300 group-hover:bg-white/90">
+          <span className="z-10 flex h-8 items-center rounded-full bg-black px-6 py-2 text-xs font-normal text-white transition-all duration-300 group-hover:bg-black/80">
             Talk to AI
           </span>
-        </Link>
+        </button>
       </div>
     </header>
   )

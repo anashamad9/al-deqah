@@ -41,7 +41,7 @@
   --font-instrument-serif: "Instrument Serif", serif; /* Instrument Serif font family configuration */
   /* Added Figtree as the primary font variable */
   --font-figtree: "Figtree", sans-serif; /* Figtree font family configuration */
-  --font-arabic: var(--font-ibm-plex-arabic); /* Arabic font family configuration */
+  --font-arabic: var(--font-ibm-plex-arabic), "IBM Plex Sans Arabic", system-ui, sans-serif; /* Arabic font family configuration */
 }
 
 .dark {
@@ -81,7 +81,7 @@
   --font-instrument-serif: "Instrument Serif", serif; /* Instrument Serif font family configuration */
   /* Added Figtree font variable for dark mode consistency */
   --font-figtree: "Figtree", sans-serif; /* Figtree font family configuration */
-  --font-arabic: var(--font-ibm-plex-arabic); /* Arabic font family configuration */
+  --font-arabic: var(--font-ibm-plex-arabic), "IBM Plex Sans Arabic", system-ui, sans-serif; /* Arabic font family configuration */
 }
 
 @theme inline {
@@ -134,11 +134,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-figtree);
+    font-family: var(--font-figtree), var(--font-ibm-plex-arabic), "IBM Plex Sans Arabic", system-ui, sans-serif;
+  }
+
+  html[data-language="ar"] body {
+    font-family: var(--font-ibm-plex-arabic), "IBM Plex Sans Arabic", var(--font-figtree), system-ui, sans-serif;
+    --font-sans: var(--font-ibm-plex-arabic);
   }
 
   body.arabic {
-    font-family: var(--font-ibm-plex-arabic);
+    font-family: var(--font-ibm-plex-arabic), "IBM Plex Sans Arabic", var(--font-figtree), system-ui, sans-serif;
     --font-sans: var(--font-ibm-plex-arabic);
   }
 }
@@ -148,5 +153,5 @@
 }
 
 .arabic {
-  font-family: var(--font-arabic);
+  font-family: var(--font-arabic), var(--font-figtree), "IBM Plex Sans Arabic", system-ui, sans-serif;
 }

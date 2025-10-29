@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Mail, MapPin, Phone, ArrowUpRight, Linkedin, Instagram, Twitter, Github } from "lucide-react"
 
 import { solutions } from "@/lib/solutions"
+import { useDeqahAI } from "@/components/deqah-ai-widget"
 
 const navigation = [
   {
@@ -50,6 +51,8 @@ const socials = [
 ]
 
 export default function Footer() {
+  const { open } = useDeqahAI()
+
   return (
     <footer className="relative overflow-hidden bg-[#0c0805] text-white">
       <div className="pointer-events-none absolute inset-0">
@@ -126,6 +129,16 @@ export default function Footer() {
 
                     const className =
                       "inline-flex items-center gap-2 transition-colors duration-200 hover:text-white"
+
+                    if (link.href === "/deqah-ai") {
+                      return (
+                        <li key={link.label}>
+                          <button type="button" onClick={open} className={className}>
+                            {content}
+                          </button>
+                        </li>
+                      )
+                    }
 
                     if (link.href.startsWith("/")) {
                       return (
