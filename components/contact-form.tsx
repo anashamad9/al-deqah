@@ -306,15 +306,14 @@ function PhoneField({ label, countryLabel, placeholder, isArabic }: PhoneFieldPr
         {label}
       </label>
       <div
-        className={`flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-3 py-2 transition-colors duration-200 focus-within:border-[#863730]/60 ${
-          isArabic ? "flex-row-reverse" : ""
-        }`}
+        className={`relative flex items-stretch overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-200 focus-within:border-[#863730]/60`}
       >
         <select
           name="countryCode"
           aria-label={countryLabel}
-          className={`min-w-[110px] rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 ${
-            isArabic ? "arabic" : ""
+          dir="ltr"
+          className={`w-[118px] shrink-0 appearance-none bg-transparent px-3 py-2 text-sm font-light text-gray-700 text-left outline-none transition-colors duration-200 focus:ring-0 ${
+            isArabic ? "order-2 border-l border-gray-200 pl-8 pr-3 arabic text-right" : "order-1 border-r border-gray-200 pr-8 pl-3"
           }`}
           defaultValue="+962"
         >
@@ -324,13 +323,23 @@ function PhoneField({ label, countryLabel, placeholder, isArabic }: PhoneFieldPr
             </option>
           ))}
         </select>
+        <span
+          className={`pointer-events-none absolute top-1/2 h-3 w-3 -translate-y-1/2 text-gray-400 ${
+            isArabic ? "left-3" : "right-3"
+          }`}
+        >
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
         <input
           id="phone-input"
           name="phone"
           type="tel"
           placeholder={placeholder}
-          className={`flex-1 rounded-xl border border-transparent bg-transparent px-3 py-2 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/50 ${
-            isArabic ? "arabic text-right" : ""
+          dir="ltr"
+          className={`order-2 flex-1 border-0 bg-transparent px-3 py-2 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:ring-0 ${
+            isArabic ? "order-1 arabic text-right" : ""
           }`}
           required
         />

@@ -9,7 +9,6 @@ import { useDeqahAI } from "@/components/deqah-ai-widget"
 const HERO_COPY: Record<
   Language,
   {
-    badge: string
     heading: string
     description: string
     bookMeeting: string
@@ -17,14 +16,12 @@ const HERO_COPY: Record<
   }
 > = {
   en: {
-    badge: "✨ New look to our website",
     heading: "Empowering the Future with Industry 4.0 Technologies",
     description: "Al-Deqah-Tech delivers cutting-edge solutions in Cybersecurity, AI, XR, IoT.",
     bookMeeting: "Book a meeting",
     talkToAI: "Talk to AI",
   },
   ar: {
-    badge: "✨ تجربة جديدة لموقعنا",
     heading: "تمكين المستقبل بتقنيات الثورة الصناعية الرابعة",
     description: "توفر شركة الدقة حلولاً متقدمة في الأمن السيبراني والذكاء الاصطناعي والواقع الممتد وإنترنت الأشياء.",
     bookMeeting: "احجز اجتماعاً",
@@ -43,18 +40,6 @@ export default function HeroContent() {
       className={`absolute bottom-8 z-20 max-w-lg ${isArabic ? "right-8 text-right" : "left-8 text-left"}`}
     >
       <div className={isArabic ? "text-right space-y-0" : "text-left"}>
-        <div
-          className="inline-flex items-center px-3 py-1 rounded-full bg-black/5 backdrop-blur-sm mb-4 relative"
-          style={{
-            filter: "url(#glass-effect)",
-          }}
-        >
-          <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent rounded-full" />
-          <span className={`text-neutral-800 text-xs font-light relative z-10 ${isArabic ? "arabic" : ""}`}>
-            {copy.badge}
-          </span>
-        </div>
-
         {/* Main Heading */}
         <h1
           className={`text-5xl md:text-6xl md:leading-16 tracking-tight font-light text-neutral-950 mb-4 ${
