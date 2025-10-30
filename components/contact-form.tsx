@@ -16,6 +16,7 @@ const FORM_COPY: Record<
       company: { label: string; placeholder: string }
       phone: { label: string; placeholder: string }
     }
+    countryCodeLabel: string
     inquiryLabel: string
     inquiryTypes: string[]
     messageLabel: string
@@ -34,8 +35,9 @@ const FORM_COPY: Record<
       name: { label: "Full name", placeholder: "Your name" },
       email: { label: "Email", placeholder: "you@company.com" },
       company: { label: "Company", placeholder: "Organization" },
-      phone: { label: "Phone", placeholder: "+962..." },
+      phone: { label: "Phone", placeholder: "7123 4567" },
     },
+    countryCodeLabel: "Country code",
     inquiryLabel: "Inquiry type",
     inquiryTypes: [
       "General inquiry",
@@ -60,8 +62,9 @@ const FORM_COPY: Record<
       name: { label: "الاسم الكامل", placeholder: "اسمك" },
       email: { label: "البريد الإلكتروني", placeholder: "you@company.com" },
       company: { label: "الشركة", placeholder: "المؤسسة" },
-      phone: { label: "رقم الهاتف", placeholder: "+962..." },
+      phone: { label: "رقم الهاتف", placeholder: "7123 4567" },
     },
+    countryCodeLabel: "مفتاح الدولة",
     inquiryLabel: "نوع الاستفسار",
     inquiryTypes: [
       "استفسار عام",
@@ -82,6 +85,36 @@ const FORM_COPY: Record<
     successMessage: "شكراً لك! سيتواصل معك فريقنا في أقرب وقت.",
   },
 }
+
+const COUNTRY_CODES = [
+  { value: "+962", label: "🇯🇴 +962" },
+  { value: "+971", label: "🇦🇪 +971" },
+  { value: "+966", label: "🇸🇦 +966" },
+  { value: "+974", label: "🇶🇦 +974" },
+  { value: "+965", label: "🇰🇼 +965" },
+  { value: "+973", label: "🇧🇭 +973" },
+  { value: "+968", label: "🇴🇲 +968" },
+  { value: "+20", label: "🇪🇬 +20" },
+  { value: "+961", label: "🇱🇧 +961" },
+  { value: "+963", label: "🇸🇾 +963" },
+  { value: "+964", label: "🇮🇶 +964" },
+  { value: "+970", label: "🇵🇸 +970" },
+  { value: "+212", label: "🇲🇦 +212" },
+  { value: "+213", label: "🇩🇿 +213" },
+  { value: "+216", label: "🇹🇳 +216" },
+  { value: "+249", label: "🇸🇩 +249" },
+  { value: "+27", label: "🇿🇦 +27" },
+  { value: "+44", label: "🇬🇧 +44" },
+  { value: "+1", label: "🇺🇸 +1" },
+  { value: "+33", label: "🇫🇷 +33" },
+  { value: "+39", label: "🇮🇹 +39" },
+  { value: "+49", label: "🇩🇪 +49" },
+  { value: "+34", label: "🇪🇸 +34" },
+  { value: "+81", label: "🇯🇵 +81" },
+  { value: "+82", label: "🇰🇷 +82" },
+  { value: "+86", label: "🇨🇳 +86" },
+  { value: "+91", label: "🇮🇳 +91" },
+]
 
 export default function ContactForm() {
   const { language } = useLanguage()
@@ -124,10 +157,9 @@ export default function ContactForm() {
             placeholder={copy.fields.company.placeholder}
             isArabic={isArabic}
           />
-          <InputField
-            id="phone"
-            name="phone"
+          <PhoneField
             label={copy.fields.phone.label}
+            countryLabel={copy.countryCodeLabel}
             placeholder={copy.fields.phone.placeholder}
             isArabic={isArabic}
           />
@@ -249,6 +281,60 @@ function InputField({ id, name, label, placeholder, type = "text", required, isA
           isArabic ? "arabic text-right" : ""
         }`}
       />
+    </div>
+  )
+}
+
+type PhoneFieldProps = {
+  label: string
+  countryLabel: string
+  placeholder?: string
+  isArabic: boolean
+}
+
+function PhoneField({ label, countryLabel, placeholder, isArabic }: PhoneFieldProps) {
+  return (
+    <div className={`flex flex-col gap-1.5 ${isArabic ? "text-right" : ""}`}>
+      <label
+        className={
+          isArabic
+            ? "text-sm font-medium text-gray-600 arabic tracking-normal"
+            : "text-xs uppercase tracking-[0.3em] text-gray-500"
+        }
+        htmlFor="phone-input"
+      >
+        {label}
+      </label>
+      <div
+        className={`flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-3 py-2 transition-colors duration-200 focus-within:border-[#863730]/60 ${
+          isArabic ? "flex-row-reverse" : ""
+        }`}
+      >
+        <select
+          name="countryCode"
+          aria-label={countryLabel}
+          className={`min-w-[110px] rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 ${
+            isArabic ? "arabic" : ""
+          }`}
+          defaultValue="+962"
+        >
+          {COUNTRY_CODES.map((code) => (
+            <option key={code.value} value={code.value}>
+              {code.label}
+            </option>
+          ))}
+        </select>
+        <input
+          id="phone-input"
+          name="phone"
+          type="tel"
+          placeholder={placeholder}
+          className={`flex-1 rounded-xl border border-transparent bg-transparent px-3 py-2 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/50 ${
+            isArabic ? "arabic text-right" : ""
+          }`}
+          required
+        />
+      </div>
     </div>
   )
 }

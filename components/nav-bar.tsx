@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
+import { Layers3, ShieldHalf, Info, BookOpen, Handshake, Newspaper } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
@@ -11,30 +12,27 @@ import type { Language } from "@/lib/i18n"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
 
 const NAV_LINKS = [
-  { key: "solutions", href: "/solutions" },
-  { key: "services", href: "/#services" },
-  { key: "sectors", href: "/#sectors" },
-  { key: "whyUs", href: "/#why-us" },
-  { key: "about", href: "/about" },
-  { key: "contact", href: "/contact" },
+  { key: "solutions", href: "/solutions", icon: Layers3 },
+  { key: "sectors", href: "/#sectors", icon: ShieldHalf },
+  { key: "about", href: "/about", icon: Info },
+  { key: "blog", href: "#", icon: Newspaper, soon: true },
+  { key: "partners", href: "#", icon: Handshake, soon: true },
 ] as const
 
 const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], string>> = {
   en: {
     solutions: "Solutions",
-    services: "Services",
     sectors: "Sectors",
-    whyUs: "Why Us",
-    about: "About",
-    contact: "Contact",
+    about: "About Us",
+    blog: "Blog",
+    partners: "Partners",
   },
   ar: {
     solutions: "الحلول",
-    services: "الخدمات",
     sectors: "القطاعات",
-    whyUs: "لماذا نحن",
     about: "من نحن",
-    contact: "تواصل معنا",
+    blog: "المدونة",
+    partners: "الشركاء",
   },
 }
 
@@ -83,12 +81,12 @@ export default function NavBar({
 
   const glassyClasses =
     variant === "dark"
-      ? "bg-[#0c0805]/35 backdrop-saturate-150"
-      : "bg-white/15 backdrop-saturate-150"
+      ? "border border-white/15 bg-[#0c0805]/70 shadow-[0_30px_80px_-60px_rgba(0,0,0,0.65)] backdrop-saturate-150"
+      : "border border-neutral-200/60 bg-white/65 shadow-[0_45px_100px_-70px_rgba(15,23,42,0.4)] backdrop-saturate-150"
   const solidClasses =
     variant === "dark"
-      ? "border border-white/10 bg-[#0c0805]/95 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.7)] backdrop-saturate-100"
-      : "border border-neutral-200/80 bg-white shadow-[0_12px_32px_-22px_rgba(0,0,0,0.24)] backdrop-saturate-100"
+      ? "border border-white/20 bg-[#0c0805]/90 shadow-[0_25px_70px_-40px_rgba(0,0,0,0.75)] backdrop-saturate-100"
+      : "border border-neutral-200/80 bg-white shadow-[0_50px_120px_-65px_rgba(15,23,42,0.45)] backdrop-saturate-100"
   const backgroundClasses = isScrolled ? solidClasses : glassyClasses
   const linkClasses =
     variant === "dark"
@@ -100,13 +98,13 @@ export default function NavBar({
       : "bg-black text-white"
   const ctaMainClasses =
     variant === "dark"
-      ? "bg-white text-[#0c0805] group-hover:bg-white/90"
-      : "bg-black text-white group-hover:bg-black/80"
+      ? "bg-white text-[#0c0805] hover:shadow-[0_12px_22px_-12px_rgba(255,255,255,0.65)]"
+      : "bg-black text-white hover:bg-[#23140e] hover:shadow-[0_15px_30px_-12px_rgba(134,55,48,0.45)]"
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 flex w-full items-center justify-between px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
+        "fixed left-1/2 top-6 z-50 flex w-[min(calc(100%-3rem),1100px)] -translate-x-1/2 items-center justify-between rounded-[32px] px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
         backgroundClasses,
         className
       )}
@@ -120,19 +118,48 @@ export default function NavBar({
       )}
 
       <nav className="hidden items-center gap-2 md:flex">
-        {NAV_LINKS.map((item) => (
-          <Link
-            key={item.key}
-            href={item.href}
-            className={cn(
-              "rounded-full px-3 py-2 text-xs font-light transition-all duration-200",
-              linkClasses,
-              language === "ar" && "arabic"
-            )}
-          >
-            {navLabels[item.key]}
-          </Link>
-        ))}
+        {NAV_LINKS.map((item) => {
+          const Icon = item.icon
+          const isSoon = Boolean((item as { soon?: boolean }).soon)
+          const label = navLabels[item.key as keyof typeof navLabels]
+          const content = (
+            <>
+              <Icon className="h-3.5 w-3.5 text-[#a05a3c]" strokeWidth={1.8} />
+              <span>{label}</span>
+              {isSoon ? (
+                <span className={`rounded-full border border-[#e6d3c8] bg-[#fdf7f3] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a05a3c] ${language === "ar" ? "arabic" : ""}`}>
+                  {language === "ar" ? "قريباً" : "Soon"}
+                </span>
+              ) : null}
+            </>
+          )
+
+          return (
+            <span key={item.key} className={cn("flex items-center", language === "ar" ? "flex-row-reverse" : "")}> 
+              {isSoon ? (
+                <span
+                  className={cn(
+                    "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-light text-neutral-400",
+                    language === "ar" && "arabic flex-row-reverse"
+                  )}
+                >
+                  {content}
+                </span>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-light transition-all duration-200",
+                    linkClasses,
+                    language === "ar" && "arabic flex-row-reverse"
+                  )}
+                >
+                  {content}
+                </Link>
+              )}
+            </span>
+          )
+        })}
       </nav>
 
       <div className="flex items-center gap-3">
@@ -142,7 +169,7 @@ export default function NavBar({
             type="button"
             onClick={open}
             id="gooey-btn"
-            className="group relative flex items-center"
+            className="group relative flex items-center transition-transform duration-200 hover:-translate-y-0.5"
             style={{ filter: "url(#gooey-filter)" }}
           >
             <span

@@ -2,74 +2,13 @@
 
 import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
-import dynamic from "next/dynamic"
-
 interface ShaderBackgroundProps {
   children: React.ReactNode
 }
 
-const MeshGradient = dynamic(
-  () => import("@paper-design/shaders-react").then((mod) => mod.MeshGradient),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,#f5e7c9_0%,#ffffff_60%,#ffffff_100%)]"
-      />
-    ),
-  }
-)
-
 export default function ShaderBackground({ children }: ShaderBackgroundProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isActive, setIsActive] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-  useEffect(() => {
-    const handleMouseEnter = () => setIsActive(true)
-    const handleMouseLeave = () => setIsActive(false)
-
-    const container = containerRef.current
-    if (container) {
-      container.addEventListener("mouseenter", handleMouseEnter)
-      container.addEventListener("mouseleave", handleMouseLeave)
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener("mouseenter", handleMouseEnter)
-        container.removeEventListener("mouseleave", handleMouseLeave)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const handleChange = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches)
-    setPrefersReducedMotion(media.matches)
-    if (typeof media.addEventListener === "function") {
-      media.addEventListener("change", handleChange)
-    } else {
-      media.addListener(handleChange)
-    }
-    return () => {
-      if (typeof media.removeEventListener === "function") {
-        media.removeEventListener("change", handleChange)
-      } else {
-        media.removeListener(handleChange)
-      }
-    }
-  }, [])
-
-  const shouldAnimate = !prefersReducedMotion
-  const baseSpeed = isActive ? 0.35 : 0.18
-  const accentSpeed = isActive ? 0.22 : 0.12
-
   return (
-    <div ref={containerRef} className="relative min-h-screen overflow-x-hidden bg-white">
+    <div className="relative min-h-screen overflow-x-hidden bg-white">
       {/* SVG Filters */}
       <svg className="absolute inset-0 w-0 h-0">
         <defs>
@@ -98,29 +37,25 @@ export default function ShaderBackground({ children }: ShaderBackgroundProps) {
         </defs>
       </svg>
 
-      {/* Background Shaders */}
-      {shouldAnimate ? (
-        <>
-          <MeshGradient
-            className="absolute inset-0 w-full h-full"
-            colors={["#ffffff", "#f7efe0", "#d4af37", "#f0e4cf", "#ffffff"]}
-            speed={baseSpeed}
-            backgroundColor="#ffffff"
-          />
-          <MeshGradient
-            className="absolute inset-0 w-full h-full opacity-60"
-            colors={["#ffffff", "#f5e7c9", "#d4af37", "#ffffff"]}
-            speed={accentSpeed}
-            wireframe="true"
-            backgroundColor="transparent"
-          />
-        </>
-      ) : (
+      {/* Background image with subtle overlay */}
+      <div className="pointer-events-none absolute inset-0">
         <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,#f7efe0_0%,#ffffff_65%,#ffffff_100%)]"
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(0deg, rgba(255,255,255,0.94), rgba(255,255,255,0.92)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2000&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         />
-      )}
+        <div
+          className="absolute inset-0 opacity-18"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 18% 32%, rgba(134,55,48,0.16), transparent 60%), radial-gradient(circle at 82% 20%, rgba(134,55,48,0.12), transparent 58%)",
+          }}
+        />
+      </div>
 
       {children}
     </div>

@@ -27,7 +27,7 @@ export const homepageCopy = {
     items: [
       {
         key: "cyber",
-        href: undefined,
+        href: "/solutions/cybersecurity-risk",
         copy: {
           en: {
             title: "Cybersecurity & Risk Intelligence",

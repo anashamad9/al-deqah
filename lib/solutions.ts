@@ -44,6 +44,130 @@ export type Solution = {
 
 export const solutions: Solution[] = [
   {
+    slug: "cybersecurity-risk",
+    name: "Cybersecurity & Risk Intelligence",
+    category: "Security & Resilience",
+    tagline: "Defend critical assets with adaptive, intelligence-led security operations.",
+    description:
+      "Protect your enterprise with layered cyber defenses, 24/7 threat monitoring, and governance programs that anticipate risk before it becomes a breach.",
+    overview:
+      "Our cybersecurity and risk intelligence teams fuse red/blue teaming, zero-trust architecture, and automation to harden cloud, OT, and hybrid environments—aligning security posture with business velocity and regulatory demands.",
+    stats: [
+      {
+        label: "Mean Time to Detect",
+        value: "↓ 68%",
+        description: "Faster threat detection through automated telemetry correlation and SOC playbooks.",
+      },
+      {
+        label: "Coverage Uplift",
+        value: "95%",
+        description: "Critical assets mapped with continuous controls monitoring across cloud, edge, and OT.",
+      },
+      {
+        label: "Compliance Readiness",
+        value: "100%",
+        description: "Framework alignment (ISO 27001, NCA ECC, GDPR) backed by living risk registers.",
+      },
+    ],
+    features: [
+      {
+        title: "Zero-Trust Architecture",
+        description:
+          "Micro-segmentation, identity-aware access, and continuous verification to limit lateral movement across workloads.",
+      },
+      {
+        title: "Threat Intelligence Fusion",
+        description:
+          "Hunt programs combining global intel feeds, OT telemetry, and AI-driven anomaly detection for contextual alerts.",
+      },
+      {
+        title: "Security Automation & SOAR",
+        description:
+          "Codified response runbooks, automated enrichment, and cross-tool orchestration to slash mean time to respond.",
+      },
+      {
+        title: "Governance & Assurance",
+        description:
+          "Policy engineering, risk quantification dashboards, and compliance automation to satisfy board and regulator scrutiny.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Security Operations Modernization",
+        description:
+          "Build or elevate SOC capabilities with unified telemetry, automated triage, and threat hunting enablement.",
+        bullets: ["SOC playbook design", "Managed detection & response", "Purple-team readiness drills"],
+      },
+      {
+        title: "Industrial & OT Protection",
+        description:
+          "Safeguard plants and critical infrastructure with asset discovery, network segmentation, and anomaly detection.",
+        bullets: ["Passive OT monitoring", "Safety system hardening", "Incident response tabletops"],
+      },
+      {
+        title: "Regulatory Compliance & GRC",
+        description:
+          "Operationalize frameworks such as NIST CSF, NCA ECC, and ISO 27001 with living risk registers and audit-ready evidence.",
+        bullets: ["Policy and control mapping", "Automated evidence collection", "Executive cyber risk dashboards"],
+      },
+    ],
+    techStack: [
+      {
+        title: "Security Platforms",
+        items: ["Microsoft Defender XDR", "Palo Alto Cortex", "CrowdStrike Falcon", "Splunk Enterprise Security"],
+      },
+      {
+        title: "Automation & Orchestration",
+        items: ["Microsoft Sentinel", "Cortex XSOAR", "Swimlane", "ServiceNow SecOps"],
+      },
+      {
+        title: "Identity & Access",
+        items: ["Azure AD Conditional Access", "Okta", "CyberArk", "HashiCorp Boundary"],
+      },
+      {
+        title: "OT & Edge Security",
+        items: ["Nozomi Networks", "Claroty", "Dragos", "Cisco Cyber Vision"],
+      },
+    ],
+    engagement: [
+      {
+        title: "Assess & Prioritize",
+        description: "Attack surface mapping, maturity benchmarking, and risk quantification workshops.",
+      },
+      {
+        title: "Architecture & Blueprint",
+        description: "Zero-trust reference designs, control selection, and security operating model definition.",
+      },
+      {
+        title: "Implement & Automate",
+        description: "Platform rollout, detection engineering, and SOAR runbook development with enablement.",
+      },
+      {
+        title: "Operate & Evolve",
+        description: "Continuous monitoring, threat hunting, and board-level reporting with managed services.",
+      },
+    ],
+    differentiators: [
+      {
+        title: "Adversary Simulation Expertise",
+        description: "Red, blue, and purple teams pressure-test controls across IT, cloud, and OT landscapes.",
+      },
+      {
+        title: "Regional Compliance Fluency",
+        description: "Hands-on experience with GCC, EU, and global regulatory mandates to keep programs audit-ready.",
+      },
+      {
+        title: "Automation-First Delivery",
+        description: "Reusable detections, infrastructure-as-code, and SOAR packs accelerate time to value.",
+      },
+    ],
+    cta: {
+      label: "Schedule a cyber resilience briefing",
+      href: "/contact?topic=cyber",
+      description: "Align security priorities with our incident response and GRC strategists.",
+    },
+  },
+  {
     slug: "medical-vr",
     name: "Medical VR",
     category: "Immersive Healthcare",
