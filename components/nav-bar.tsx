@@ -15,8 +15,8 @@ const NAV_LINKS = [
   { key: "solutions", href: "/solutions", icon: Layers3 },
   { key: "sectors", href: "/#sectors", icon: ShieldHalf },
   { key: "about", href: "/about", icon: Info },
-  { key: "blog", href: "#", icon: Newspaper, soon: true },
-  { key: "partners", href: "#", icon: Handshake, soon: true },
+  { key: "blog", href: "/blog", icon: Newspaper, soon: true },
+  { key: "partners", href: "/partners", icon: Handshake, soon: true },
 ] as const
 
 const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], string>> = {
@@ -134,30 +134,23 @@ export default function NavBar({
             </>
           )
 
+          const soonClasses =
+            variant === "dark"
+              ? "text-white/50 hover:text-white/70 hover:bg-white/10"
+              : "text-neutral-500 hover:text-neutral-700 hover:bg-neutral-900/5"
+
           return (
-            <span key={item.key} className={cn("flex items-center", language === "ar" ? "flex-row-reverse" : "")}> 
-              {isSoon ? (
-                <span
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-light text-neutral-400",
-                    language === "ar" && "arabic flex-row-reverse"
-                  )}
-                >
-                  {content}
-                </span>
-              ) : (
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-light transition-all duration-200",
-                    linkClasses,
-                    language === "ar" && "arabic flex-row-reverse"
-                  )}
-                >
-                  {content}
-                </Link>
+            <Link
+              key={item.key}
+              href={item.href}
+              className={cn(
+                "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-light transition-all duration-200",
+                language === "ar" && "arabic flex-row-reverse",
+                isSoon ? soonClasses : linkClasses
               )}
-            </span>
+            >
+              {content}
+            </Link>
           )
         })}
       </nav>
