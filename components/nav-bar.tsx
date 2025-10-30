@@ -124,10 +124,10 @@ export default function NavBar({
           const label = navLabels[item.key as keyof typeof navLabels]
           const content = (
             <>
-              <Icon className="h-3.5 w-3.5 text-[#a05a3c]" strokeWidth={1.8} />
-              <span>{label}</span>
+              <Icon className="h-5 w-5 text-[#a05a3c]" strokeWidth={1.6} />
+              <span className="text-sm leading-none">{label}</span>
               {isSoon ? (
-                <span className={`rounded-full border border-[#e6d3c8] bg-[#fdf7f3] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a05a3c] ${language === "ar" ? "arabic" : ""}`}>
+                <span className={`rounded-full border border-[#e6d3c8] bg-[#fdf7f3] px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#a05a3c] ${language === "ar" ? "arabic" : ""}`}>
                   {language === "ar" ? "قريباً" : "Soon"}
                 </span>
               ) : null}
@@ -144,7 +144,7 @@ export default function NavBar({
               key={item.key}
               href={item.href}
               className={cn(
-                "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-light transition-all duration-200",
+                "flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm font-normal transition-all duration-200",
                 language === "ar" && "arabic flex-row-reverse",
                 isSoon ? soonClasses : linkClasses
               )}
