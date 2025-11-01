@@ -65,7 +65,11 @@ export function SectorsSection() {
                 isArabic ? "text-right arabic" : ""
               }`}
             >
-              <span className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.35em] text-[#863730]">
+              <span
+                className={`inline-flex items-center gap-2 text-[11px] font-medium text-[#863730] ${
+                  isArabic ? "arabic" : "uppercase tracking-[0.35em]"
+                }`}
+              >
                 <span className="inline-flex h-2 w-2 rounded-full bg-[#863730]" />
                 {tString(data.label, language)}
               </span>
@@ -78,12 +82,16 @@ export function SectorsSection() {
               <p className="text-sm font-light leading-relaxed text-slate-600">
                 {tString(data.description, language)}
               </p>
-              <div className="grid gap-2 text-[12px] font-medium uppercase tracking-[0.35em] text-[#a05a3c]">
-                <span className="flex items-center gap-2">
+              <div
+                className={`grid gap-2 text-[12px] font-medium text-[#a05a3c] ${
+                  isArabic ? "arabic text-right" : "uppercase tracking-[0.35em]"
+                }`}
+              >
+                <span className={`flex items-center gap-2 ${isArabic ? "flex-row-reverse" : ""}`}>
                   <span className="inline-flex h-2 w-2 rounded-full bg-[#a05a3c]" />
                   {isArabic ? "أنظمة موثوقة" : "Reliable Systems"}
                 </span>
-                <span className="flex items-center gap-2">
+                <span className={`flex items-center gap-2 ${isArabic ? "flex-row-reverse" : ""}`}>
                   <span className="inline-flex h-2 w-2 rounded-full bg-[#a05a3c]" />
                   {isArabic ? "شراكات طويلة" : "Long-Term Partners"}
                 </span>
@@ -152,7 +160,11 @@ export function SectorsSection() {
                       <h3 className="text-lg font-medium text-[#0f172a]">{sector.title}</h3>
                       <p className="text-sm font-light leading-relaxed text-slate-600">{sector.description}</p>
                     </div>
-                    <div className="mt-auto flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-[#a1694b]">
+                    <div
+                      className={`mt-auto flex items-center gap-2 text-[11px] font-medium text-[#a1694b] ${
+                        isArabic ? "arabic flex-row-reverse" : "uppercase tracking-[0.32em]"
+                      }`}
+                    >
                       <span className="inline-flex h-1.5 w-1.5 rounded-full bg-[#863730]" />
                       <span>{isArabic ? "حلول موثوقة" : "Trusted Systems"}</span>
                     </div>

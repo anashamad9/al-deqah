@@ -2,8 +2,8 @@
 
 import Header from "@/components/header"
 import HeroContent from "@/components/hero-content"
-import PulsingCircle from "@/components/pulsing-circle"
 import ShaderBackground from "@/components/shader-background"
+import { PartnersBar } from "@/components/partners-bar"
 import ServicesSection from "@/components/services-section"
 import { SectorsSection } from "@/components/sectors-section"
 import { WhyUsSection } from "@/components/why-us-section"
@@ -15,9 +15,9 @@ export default function ShaderShowcase() {
       <ShaderBackground>
         <Header />
         <HeroContent />
-        <PulsingCircle />
       </ShaderBackground>
 
+      <PartnersBar />
       <ServicesSection />
       <SectorsSection />
       <WhyUsSection />
