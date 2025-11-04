@@ -75,7 +75,7 @@ const PARTNER_CONTENT = {
     name: { en: "Dell", ar: "دِل" },
     description: {
       en: "Edge-to-core infrastructure, ruggedized servers, and lifecycle services powering smart factory and immersive training environments.",
-      ar: "بنية تحتية من الحافة إلى المركز مع خوادم متينة وخدمات طوال دورة الحياة لدعم المصانع الذكية وبيئات التدريب الغامرة.",
+      ar: "بنية تحتية من الحافة إلى المركز مع خوادم متينة وخدمات طوال دورة الحياة لدعم المصانع الذكية وبيئات التدريب الرائعة.",
     },
   },
   Lenovo: {

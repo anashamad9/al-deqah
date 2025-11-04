@@ -81,7 +81,7 @@ export default function HeroContent() {
         type="button"
         onClick={open}
         className={`group absolute bottom-12 z-30 flex items-center gap-3 rounded-full border border-white/20 bg-white/80 px-4 py-2 text-xs font-medium text-neutral-900 shadow-[0_25px_45px_-30px_rgba(0,0,0,0.4)] backdrop-blur transition-all duration-200 hover:translate-y-[-2px] hover:bg-white ${
-          isArabic ? "right-8 arabic flex-row-reverse" : "left-8"
+          isArabic ? "left-8 arabic flex-row-reverse" : "right-8"
         }`}
       >
         <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#863730] text-white shadow-[0_10px_25px_-18px_rgba(134,55,48,0.65)]">

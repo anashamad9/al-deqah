@@ -77,7 +77,7 @@ export const homepageCopy = {
           },
           ar: {
             title: "الواقع الممتد والميتافيرس",
-            description: "تجارب غامرة تربط العالمين المادي والرقمي.",
+            description: "تجارب رائعة تربط العالمين المادي والرقمي.",
           },
         },
       },
@@ -104,7 +104,7 @@ export const homepageCopy = {
             description: "Virtual replicas for testing, monitoring, and optimizing real-world systems.",
           },
           ar: {
-            title: "التوائم الرقمية والمحاكاة",
+            title: "التوأم الرقمي والمحاكاة",
             description: "نماذج افتراضية للاختبار والمراقبة وتحسين الأنظمة الواقعية.",
           },
         },
@@ -119,7 +119,7 @@ export const homepageCopy = {
           },
           ar: {
             title: "حزم المحاكاة الطبية بالواقع الافتراضي",
-            description: "تجارب تدريب سريري غامرة وتفاعل للمرضى مخصصة لمبتكري الرعاية الصحية.",
+            description: "تجارب تدريب سريري رائعة وتفاعل للمرضى مخصصة لمبتكري الرعاية الصحية.",
           },
         },
       },
@@ -140,7 +140,7 @@ export const homepageCopy = {
     } as LocalizedString,
     description: {
       en: "We tailor platforms, products, and managed services to the mission-critical demands of public and private organizations—delivering resilient infrastructure, immersive experiences, and measurable impact.",
-      ar: "نصمم المنصات والمنتجات والخدمات المدارة لتلبية احتياجات المؤسسات الحكومية والخاصة الأساسية، ونقدم بنية تحتية مرنة وتجارب غامرة وأثراً ملموساً.",
+      ar: "نصمم المنصات والمنتجات والخدمات المدارة لتلبية احتياجات المؤسسات الحكومية والخاصة الأساسية، ونقدم بنية تحتية مرنة وتجارب رائعة وأثراً ملموساً.",
     } as LocalizedString,
     highlights: [
       {
@@ -168,7 +168,7 @@ export const homepageCopy = {
         },
         description: {
           en: "Data-rich insights, automation, and immersive interactions that improve responsiveness and long-term performance.",
-          ar: "رؤى غنية بالبيانات وأتمتة وتفاعلات غامرة تعزز سرعة الاستجابة وتحسن الأداء على المدى الطويل.",
+          ar: "رؤى غنية بالبيانات وأتمتة وتفاعلات رائعة تعزز سرعة الاستجابة وتحسن الأداء على المدى الطويل.",
         },
       },
     ],
@@ -205,7 +205,7 @@ export const homepageCopy = {
         icon: "GraduationCap",
         copy: {
           en: { title: "Education & Universities", description: "Immersive learning environments, smart campuses, and research enablement." },
-          ar: { title: "التعليم والجامعات", description: "بيئات تعلم غامرة وحرم جامعي ذكي ودعم للبحث والابتكار." },
+          ar: { title: "التعليم والجامعات", description: "بيئات تعلم رائعة وحرم جامعي ذكي ودعم للبحث والابتكار." },
         },
       },
       {

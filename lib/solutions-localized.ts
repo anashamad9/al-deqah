@@ -144,8 +144,8 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   "medical-vr": {
     ar: {
       name: "الواقع الافتراضي الطبي",
-      category: "الرعاية الصحية الغامرة",
-      tagline: "منصات غامرة للمحاكاة الطبية والتدريب وتفاعل المرضى.",
+      category: "الرعاية الصحية الرائعة",
+      tagline: "منصات رائعة للمحاكاة الطبية والتدريب وتفاعل المرضى.",
       description:
         "قدّم بيئات افتراضية فائقة الواقعية تُسرّع التدريب السريري، وتُقصّر دورات التحضير الجراحي، وتمكّن المرضى من فهم رحلات العلاج.",
       overview:
@@ -195,7 +195,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
         },
         {
           title: "تثقيف المرضى والدعم العلاجي",
-          description: "تقديم رحلات غامرة للمرضى توضح الإجراءات، وتدعم الالتزام بالعلاج، وتخفف القلق.",
+          description: "تقديم رحلات رائعة للمرضى توضح الإجراءات، وتدعم الالتزام بالعلاج، وتخفف القلق.",
           bullets: ["جولات تمهيدية قبل العمليات", "إزالة الحساسية من الفوبيا", "العلاج السلوكي بالتعرّض"],
         },
       ],
@@ -212,7 +212,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
         },
         {
           title: "مخطط التجربة",
-          description: "لوحات سرد غامرة، تخطيط التقاط الأصول، وتحديد بنية المحاكاة.",
+          description: "لوحات سرد رائعة، تخطيط التقاط الأصول، وتحديد بنية المحاكاة.",
         },
         {
           title: "البناء والتكامل",
@@ -239,7 +239,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
       ],
       cta: {
         label: "حدد ورشة عمل للواقع الافتراضي الطبي",
-        description: "حدد خارطة طريقك الغامرة مع فريق الابتكار السريري لدينا.",
+        description: "حدد خارطة طريقك الرائعة مع فريق الابتكار السريري لدينا.",
       },
     },
   },
@@ -251,7 +251,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
       description:
         "صمّم بنى البيانات وخطوط التعلم الآلي وتدفقات القرارات الذكية الممتدة من النموذج الأولي إلى العمليات الحرجة.",
       overview:
-        "نبني منتجات ذكاء اصطناعي تحرك مؤشرات الأداء من خلال مكدسات بيانات حديثة، وحوكمة للنماذج، وتصميم يركز على الإنسان، حتى يثق الفرق بالقرارات المدفوعة بالذكاء الاصطناعي.",
+        "نبني منتجات ذكاء اصطناعي تحرك مؤشرات الأداء من خلال أدواتات بيانات حديثة، وحوكمة للنماذج، وتصميم يركز على الإنسان، حتى يثق الفرق بالقرارات المدفوعة بالذكاء الاصطناعي.",
       stats: [
         {
           label: "زمن الوصول إلى الرؤية",
@@ -347,7 +347,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "xr-immersive": {
     ar: {
-      name: "الواقع الممتد والتجارب الغامرة",
+      name: "الواقع الممتد والتجارب الرائعة",
       category: "الواقع الممتد",
       tagline: "قصص ومساحات تستجيب لكل حركة.",
       description:
@@ -357,7 +357,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
       stats: [
         {
           label: "زيادة التفاعل",
-          description: "متوسط زيادة زمن التواجد ثلاث مرات عبر الوجهات الغامرة.",
+          description: "متوسط زيادة زمن التواجد ثلاث مرات عبر الوجهات الرائعة.",
         },
         {
           label: "نطاق النشر",
@@ -405,7 +405,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
       ],
       techStack: [
         { title: "محركات التجربة" },
-        { title: "الأجهزة الغامرة" },
+        { title: "الأجهزة الرائعة" },
         { title: "منصات التجربة" },
         { title: "التحليلات والتشغيل" },
       ],
@@ -442,7 +442,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
         },
       ],
       cta: {
-        label: "خطط لتجربة غامرة",
+        label: "خطط لتجربة رائعة",
         description: "تعاون معنا لصناعة لحظة XR لا تُنسى مع استوديو التجارب المكانية لدينا.",
       },
     },

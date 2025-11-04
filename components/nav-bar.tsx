@@ -10,6 +10,9 @@ import LanguageToggle from "@/components/language-toggle"
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+import { solutions } from "@/lib/solutions"
+import { getLocalizedSolutions } from "@/lib/solutions-localized"
 
 const NAV_LINKS = [
   { key: "solutions", href: "/solutions", icon: Layers3 },
@@ -78,6 +81,26 @@ export default function NavBar({
   }, [])
 
   const navLabels = useMemo(() => NAV_LABELS[language], [language])
+  const localizedSolutions = useMemo(() => getLocalizedSolutions(language, solutions), [language])
+  const solutionMenuItems = useMemo(
+    () => [
+      ...localizedSolutions.map((solution) => ({
+        slug: `/solutions/${solution.slug}`,
+        name: solution.name,
+        tagline: solution.tagline,
+      })),
+      {
+        slug: "/training",
+        name: language === "ar" ? "برامج التدريب وتطوير القدرات" : "Training & Capability Uplift",
+        tagline:
+          language === "ar"
+            ? "برامج متخصصة لرفع جاهزية القيادة والكوادر في بيئات العمل الرقمية."
+            : "Specialized programmes that accelerate leadership, project delivery, and workforce readiness.",
+      },
+    ],
+    [language, localizedSolutions]
+  )
+  const viewAllLabel = language === "ar" ? "عرض كل الحلول" : "See all solutions"
 
   const glassyClasses =
     variant === "dark"
@@ -122,6 +145,74 @@ export default function NavBar({
           const Icon = item.icon
           const isSoon = Boolean((item as { soon?: boolean }).soon)
           const label = navLabels[item.key as keyof typeof navLabels]
+          if (item.key === "solutions") {
+            return (
+              <HoverCard key={item.key} openDelay={150} closeDelay={150}>
+                <HoverCardTrigger asChild>
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm font-normal transition-all duration-200",
+                      language === "ar" && "arabic flex-row-reverse",
+                      linkClasses
+                    )}
+                  >
+                    <Icon className="h-5 w-5 text-[#a05a3c]" strokeWidth={1.6} />
+                    <span>{label}</span>
+                  </button>
+                </HoverCardTrigger>
+                <HoverCardContent
+                  align="start"
+                  className={cn(
+                    "w-[640px] rounded-3xl border border-neutral-200/60 bg-white/95 p-0 shadow-[0_40px_120px_-70px_rgba(15,23,42,0.4)] backdrop-blur",
+                    language === "ar" && "text-right arabic"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "grid overflow-hidden md:grid-cols-[1.2fr_2fr]",
+                      language === "ar" ? "md:grid-flow-col-dense" : ""
+                    )}
+                  >
+                    <div className="flex flex-col justify-between gap-6 bg-gradient-to-br from-[#fdf7f3] via-white to-[#f3e7e0] p-6">
+                      <div className="space-y-3">
+                        <h3 className="text-lg font-medium text-neutral-900">{label}</h3>
+                        <p className="text-sm text-neutral-600">
+                          {language === "ar"
+                            ? "تعرّف على منصاتنا المكانية والذكية وكيف نفعّلها عبر القطاعات."
+                            : "Explore spatial, intelligent, and connected platforms engineered for critical missions."}
+                        </p>
+                      </div>
+                      <Link
+                        href="/solutions"
+                        className={cn(
+                          "inline-flex items-center gap-2 rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-[#742f29]",
+                          language === "ar" && "flex-row-reverse arabic"
+                        )}
+                      >
+                        <span>{viewAllLabel}</span>
+                      </Link>
+                    </div>
+                    <div className="flex flex-col gap-2 p-6">
+                      {solutionMenuItems.map((solutionItem) => (
+                        <Link
+                          key={solutionItem.slug}
+                          href={solutionItem.slug}
+                          className={cn(
+                            "group flex flex-col gap-1 rounded-2xl border border-transparent px-4 py-3 text-left transition-all duration-200 hover:border-[#863730]/40 hover:bg-[#fdf7f3] hover:shadow-sm",
+                            language === "ar" && "text-right arabic"
+                          )}
+                        >
+                          <span className="text-sm font-medium text-neutral-900">{solutionItem.name}</span>
+                          <span className="text-xs text-neutral-500 leading-relaxed">{solutionItem.tagline}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+            )
+          }
           const content = (
             <>
               <Icon className="h-5 w-5 text-[#a05a3c]" strokeWidth={1.6} />

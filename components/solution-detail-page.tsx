@@ -11,6 +11,15 @@ import type { Language } from "@/lib/i18n"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
+const SOLUTION_BACKGROUNDS: Record<string, string> = {
+  "cybersecurity-risk": "https://images.unsplash.com/photo-1510511336377-1a9caa095849?auto=format&fit=crop&w=2000&q=80",
+  "ai-data-science": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80",
+  "xr-immersive": "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=2000&q=80",
+  "iot-platforms": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80",
+  "digital-twins": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2000&q=80",
+  "medical-vr": "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2000&q=80",
+}
+
 const DETAIL_COPY: Record<
   Language,
   {
@@ -56,7 +65,7 @@ const DETAIL_COPY: Record<
     useCasesHeading: "أين ننفّذ الحل",
     useCasesIntro:
       "نربط كل تعاون بمؤشرات تشغيل قابلة للقياس، مع أدلة تشغيل مضبوطة بحسب المتطلبات التنظيمية وظروف الميدان.",
-    techHeading: "مكدس التقنية وآلية التنفيذ",
+    techHeading: "أدوات التقنية وآلية التنفيذ",
     techIntro:
       "نختار أدوات قابلة للتشغيل البيني تتكامل مع استثماراتك الحالية وتُهيّئ المؤسسة للابتكار المستقبلي.",
     stackLabel: "النموذج",
@@ -74,16 +83,23 @@ export default function SolutionDetailPage({ solution }: SolutionDetailPageProps
   const copy = DETAIL_COPY[language]
   const isArabic = language === "ar"
   const localizedSolution = useMemo(() => getLocalizedSolution(solution, language), [solution, language])
+  const heroImage = SOLUTION_BACKGROUNDS[solution.slug] ?? "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80"
 
   return (
     <>
       <Header variant="dark" />
       <div className="bg-white text-gray-900">
-        <section className="relative overflow-hidden bg-[#0c0805] py-28 text-white">
+        <section
+          className="relative overflow-hidden py-28 text-white"
+          style={{
+            backgroundImage: `linear-gradient(115deg, rgba(7,4,10,0.88) 10%, rgba(15,12,18,0.75) 55%, rgba(17,14,20,0.82) 100%), url(${heroImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1d140d] to-black opacity-90" />
-            <div className="absolute left-1/2 top-[-45%] h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[#863730]/25 blur-3xl opacity-60" />
-            <div className="absolute bottom-[-50%] right-[-10%] h-[480px] w-[480px] rounded-full bg-[#863730]/25 blur-3xl opacity-60" />
+            <div className="absolute left-1/2 top-[-45%] h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[#863730]/25 blur-3xl opacity-50" />
+            <div className="absolute bottom-[-50%] right-[-10%] h-[480px] w-[480px] rounded-full bg-[#863730]/20 blur-3xl opacity-60" />
           </div>
           <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-8">
             <div className={`flex flex-col gap-6 md:flex-row md:items-end md:justify-between ${isArabic ? "text-right" : ""}`}>

@@ -43,7 +43,7 @@ export default function ShaderBackground({ children }: ShaderBackgroundProps) {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(0deg, rgba(255,255,255,0.94), rgba(255,255,255,0.92)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2000&q=80')",
+              "linear-gradient(0deg, rgba(255,255,255,0.94), rgba(255,255,255,0.92)), url('/GettyImages-1383963898_1200x675.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

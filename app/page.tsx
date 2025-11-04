@@ -7,6 +7,7 @@ import { PartnersBar } from "@/components/partners-bar"
 import ServicesSection from "@/components/services-section"
 import { SectorsSection } from "@/components/sectors-section"
 import { WhyUsSection } from "@/components/why-us-section"
+import HomeFAQ from "@/components/home-faq"
 import Footer from "@/components/footer"
 
 export default function ShaderShowcase() {
@@ -21,6 +22,7 @@ export default function ShaderShowcase() {
       <ServicesSection />
       <SectorsSection />
       <WhyUsSection />
+      <HomeFAQ />
       <Footer />
     </>
   )
