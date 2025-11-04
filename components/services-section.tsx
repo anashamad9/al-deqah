@@ -1,8 +1,7 @@
 "use client"
 
-import { useRef } from "react"
 import Link from "next/link"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 
 import { useLanguage } from "@/components/language-context"
@@ -160,7 +159,6 @@ export default function ServicesSection() {
               <ServiceStackCard
                 key={service.slug}
                 index={index}
-                total={services.length}
                 serviceKey={service.slug}
                 language={language}
                 exploreLabel={tString(data.exploreLabel, language)}
@@ -176,24 +174,18 @@ export default function ServicesSection() {
 
 type ServiceCardProps = ServiceItem & {
   index: number
-  total: number
   serviceKey: string
   language: Language
   exploreLabel: string
 }
 
-function ServiceStackCard({ title, description, href, index, total, serviceKey, language, exploreLabel }: ServiceCardProps) {
-  const isArabic = language === "ar"
-  const cardRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  })
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.97 },
+  show: { opacity: 1, y: 0, scale: 1 },
+}
 
-  const scale = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.95, 0.88])
-  const exitY = index === total - 1 ? -80 : -140
-  const y = useTransform(scrollYProgress, [0, 1], [0, exitY])
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.65])
+function ServiceStackCard({ title, description, href, index, serviceKey, language, exploreLabel }: ServiceCardProps) {
+  const isArabic = language === "ar"
 
   const accent = accentGradients[index % accentGradients.length]
   const theme = visualThemes[serviceKey] ?? visualThemes.default
@@ -205,9 +197,14 @@ function ServiceStackCard({ title, description, href, index, total, serviceKey, 
 
   return (
     <motion.article
-      ref={cardRef}
-      style={{ scale, y, opacity, zIndex: index + 1 }}
-      className="group sticky top-32 overflow-hidden rounded-[40px] border border-white/60 bg-white/90 p-10 shadow-[0_40px_140px_-60px_rgba(36,32,57,0.45)] backdrop-blur-lg transition-shadow duration-300 hover:shadow-[0_50px_160px_-60px_rgba(134,55,48,0.45)]"
+      className="group overflow-hidden rounded-[40px] border border-white/50 bg-white/92 p-10 shadow-[0_32px_120px_-70px_rgba(36,32,57,0.38)] transition-shadow duration-300 hover:shadow-[0_44px_140px_-65px_rgba(134,55,48,0.38)]"
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ amount: 0.35, once: false }}
+      transition={{ duration: 0.6, ease: [0.21, 0.67, 0.38, 0.98], delay: index * 0.08 }}
+      whileHover={{ y: -6 }}
+      style={{ willChange: "transform, opacity" }}
     >
       <div
         dir={isArabic ? "rtl" : "ltr"}
