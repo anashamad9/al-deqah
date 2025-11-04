@@ -54,6 +54,20 @@ export const homepageCopy = {
         },
       },
       {
+        key: "training",
+        href: "/training",
+        copy: {
+          en: {
+            title: "Training & Capability Uplift",
+            description: "Immersive programs and certifications that accelerate leadership, project delivery, and workforce readiness.",
+          },
+          ar: {
+            title: "التدريب وتطوير القدرات",
+            description: "برامج تدريبية متخصصة تعزز القيادة، وإدارة المشاريع، وجهوزية الكوادر المؤسسية.",
+          },
+        },
+      },
+      {
         key: "xr",
         href: "/solutions/xr-immersive",
         copy: {

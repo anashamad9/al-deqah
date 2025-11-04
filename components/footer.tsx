@@ -4,7 +4,7 @@ import { useMemo } from "react"
 
 import Image from "next/image"
 import Link from "next/link"
-import { Mail, MapPin, Phone, ArrowUpRight, Linkedin, Instagram, Twitter, Github } from "lucide-react"
+import { Mail, MapPin, Phone, ArrowUpRight, Linkedin, Instagram } from "lucide-react"
 
 import { useLanguage } from "@/components/language-context"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
@@ -22,8 +22,6 @@ const COMPANY_LINKS = [
 const SOCIAL_LINKS = [
   { label: "LinkedIn", icon: Linkedin, href: "#" },
   { label: "Instagram", icon: Instagram, href: "#" },
-  { label: "Twitter X", icon: Twitter, href: "#" },
-  { label: "GitHub", icon: Github, href: "#" },
 ] as const
 
 const FOOTER_COPY: Record<
@@ -97,7 +95,7 @@ const FOOTER_COPY: Record<
   },
   ar: {
     brandLabel: "شركة الدقة",
-    brandTagline: "تقنيات بصرية متقدمة وأنظمة ذكية",
+    brandTagline: "حلول رقمية غامرة وأنظمة متصلة",
     description:
       "نمزج الحوسبة المكانية، والأتمتة الذكية، والتصميم الغامر لمساعدة المؤسسات على بناء تجارب تحويلية ونتائج قابلة للقياس.",
     ctaLabel: "لنتعاون",
@@ -339,17 +337,6 @@ export default function Footer() {
           <p className={isArabic ? "arabic text-right" : ""}>
             &copy; {new Date().getFullYear()} {copy.legal.rights}
           </p>
-          <div className={`mt-4 flex items-center gap-4 sm:mt-0 ${isArabic ? "flex-row-reverse arabic" : ""}`}>
-            <a href="#" className="transition-colors duration-200 hover:text-white">
-              {copy.legal.terms}
-            </a>
-            <a href="#" className="transition-colors duration-200 hover:text-white">
-              {copy.legal.privacy}
-            </a>
-            <a href="#" className="transition-colors duration-200 hover:text-white">
-              {copy.legal.cookies}
-            </a>
-          </div>
         </div>
       </div>
     </footer>

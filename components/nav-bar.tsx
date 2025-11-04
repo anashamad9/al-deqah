@@ -16,19 +16,19 @@ const NAV_LINKS = [
   { key: "sectors", href: "/#sectors", icon: ShieldHalf },
   { key: "about", href: "/about", icon: Info },
   { key: "blog", href: "/blog", icon: Newspaper, soon: true },
-  { key: "partners", href: "/partners", icon: Handshake, soon: true },
+  { key: "partners", href: "/partners", icon: Handshake },
 ] as const
 
 const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], string>> = {
   en: {
-    solutions: "Solutions",
+    solutions: "Our Services",
     sectors: "Sectors",
     about: "About Us",
     blog: "Blog",
     partners: "Partners",
   },
   ar: {
-    solutions: "الحلول",
+    solutions: "خدماتنا",
     sectors: "القطاعات",
     about: "من نحن",
     blog: "المدونة",

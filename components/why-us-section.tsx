@@ -31,7 +31,7 @@ export function WhyUsSection() {
         <div className={`mb-16 text-center ${isArabic ? "arabic" : ""}`}>
           <h2 className="text-4xl font-light text-gray-900 md:text-5xl">
             {tString(data.headingPrefix, language)}{" "}
-            <span className="font-medium italic text-[#863730]">{tString(data.accent, language)}</span>
+            <span className="font-medium text-[#863730]">{tString(data.accent, language)}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm font-light text-gray-600">
             {tString(data.description, language)}

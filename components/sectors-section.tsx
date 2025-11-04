@@ -75,7 +75,7 @@ export function SectorsSection() {
               </span>
               <h2 className="text-4xl font-light text-[#0f172a] md:text-5xl">
                 {tString(data.headingPrefix, language)}{" "}
-                <span className="font-medium italic text-[#863730]">
+                <span className="font-medium text-[#863730]">
                   {tString(data.highlightAccent, language)}
                 </span>
               </h2>

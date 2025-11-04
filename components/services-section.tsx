@@ -146,7 +146,7 @@ export default function ServicesSection() {
         <div className={`mb-20 text-center ${isArabic ? "arabic" : ""}`}>
           <h2 className={`mb-6 text-4xl font-light text-gray-900 md:text-5xl ${isArabic ? "leading-snug" : ""}`}>
             {tString(data.sectionLabel, language)}{" "}
-            <span className="font-medium italic text-[#863730]">{tString(data.sectionAccent, language)}</span>
+            <span className="font-medium text-[#863730]">{tString(data.sectionAccent, language)}</span>
           </h2>
           <p className={`mx-auto max-w-3xl text-base font-light text-gray-600 ${isArabic ? "arabic" : ""}`}>
             {tString(data.description, language)}
