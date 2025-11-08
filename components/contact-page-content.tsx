@@ -72,7 +72,7 @@ export default function ContactPageContent() {
 
   return (
     <>
-      <Header variant="dark" />
+      <Header variant="light" />
       <main className="bg-white text-gray-900">
         <section className="relative overflow-hidden bg-[#0c0805] py-24 text-white">
           <div className="pointer-events-none absolute inset-0">

@@ -156,7 +156,7 @@ export default function Footer() {
   const localizedSolutions = useMemo(() => getLocalizedSolutions(language, solutions), [language])
 
   return (
-    <footer className="relative overflow-hidden bg-[#0c0805] text-white">
+    <footer className="relative overflow-hidden bg-[#0c0805] text-white" dir={isArabic ? "rtl" : "ltr"} lang={language}>
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1d140d] to-black opacity-90" />
         <div className="absolute left-1/2 top-[-35%] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#863730]/25 blur-3xl opacity-70" />
@@ -333,7 +333,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/10 pt-8 text-xs font-light text-white/50 sm:flex sm:items-center sm:justify-between">
+        <div
+          className={`mt-16 border-t border-white/10 pt-8 text-xs font-light text-white/50 sm:flex sm:items-center sm:justify-between ${
+            isArabic ? "sm:flex-row-reverse text-right" : ""
+          }`}
+        >
           <p className={isArabic ? "arabic text-right" : ""}>
             &copy; {new Date().getFullYear()} {copy.legal.rights}
           </p>

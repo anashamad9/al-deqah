@@ -82,7 +82,12 @@ export default function HomeFAQ() {
   const accordionType = useMemo(() => "single" as const, [])
 
   return (
-    <section className={cn("bg-gradient-to-b from-white via-[#f9f6f2] to-white py-20", isArabic && "arabic text-right")}> 
+    <section
+      className={cn(
+        "bg-gradient-to-b from-white via-[#f9f6f2] to-[#f3e2d6] pt-20 pb-48",
+        isArabic && "arabic text-right"
+      )}
+    >
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className={cn("text-xs font-medium uppercase tracking-[0.3em] text-[#a1694b]", isArabic && "arabic")}>
@@ -91,13 +96,13 @@ export default function HomeFAQ() {
           <h2 className="mt-4 text-3xl font-light text-neutral-900 md:text-4xl">{copy.heading}</h2>
           <p className="mt-3 text-sm text-neutral-600">{copy.description}</p>
         </div>
-        <div className="mt-10">
+        <div className="mt-10 pb-12">
           <Accordion type={accordionType} collapsible className="space-y-3">
             {copy.items.map((item, index) => (
               <AccordionItem
                 key={`${language}-${index}`}
                 value={`${language}-${index}`}
-                className="overflow-hidden rounded-3xl border border-[#e5d5cb] bg-white/90 px-6 py-4 shadow-[0_35px_110px_-90px_rgba(15,23,42,0.4)]"
+                className="overflow-hidden rounded-3xl bg-white px-6 py-4 shadow-[0_35px_100px_-70px_rgba(134,55,48,0.35)] ring-1 ring-[#e4d2c8]"
               >
                 <AccordionTrigger className="text-left text-sm font-medium text-neutral-900 hover:text-[#863730]">
                   {item.question}

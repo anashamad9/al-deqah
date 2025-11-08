@@ -43,7 +43,7 @@ export function PartnersBar() {
   const { language } = useLanguage()
   const isArabic = language === "ar"
 
-  const trackClass = "flex flex-none items-center gap-10"
+  const trackClass = "flex flex-none items-center gap-20"
   const animationDuration = 24
   const heading = isArabic
     ? { prefix: "شركاؤنا", accent: "التقنيون" }
@@ -79,9 +79,14 @@ export function PartnersBar() {
               {PARTNER_LOGOS.map((logo) => (
                 <div
                   key={logo.src}
-                  className="flex h-20 w-40 flex-none items-center justify-center rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04] transition-transform duration-200 hover:scale-105"
+                  className="group flex h-20 w-40 flex-none items-center justify-center overflow-hidden rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
                 >
-                  <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-12 w-auto mix-blend-multiply transition-transform duration-200" />
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    loading="lazy"
+                    className="max-h-12 w-auto mix-blend-multiply transition-transform duration-300 group-hover:scale-125"
+                  />
                 </div>
               ))}
             </div>
@@ -98,9 +103,14 @@ export function PartnersBar() {
               {PARTNER_LOGOS.map((logo) => (
                 <div
                   key={`${logo.src}-duplicate`}
-                  className="flex h-20 w-40 flex-none items-center justify-center rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
+                  className="group flex h-20 w-40 flex-none items-center justify-center overflow-hidden rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
                 >
-                  <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-12 w-auto mix-blend-multiply" />
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    loading="lazy"
+                    className="max-h-12 w-auto mix-blend-multiply transition-transform duration-300 group-hover:scale-125"
+                  />
                 </div>
               ))}
             </div>

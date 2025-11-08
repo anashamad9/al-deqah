@@ -152,33 +152,10 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
   }
 
   const isPopup = variant === "popup"
+  const promptOptions = quickPrompts.slice(0, 3)
 
   return (
     <div className={cn("flex flex-col", isPopup ? "h-full" : "flex-1")}>
-      {quickPrompts.length > 0 ? (
-        <div
-          className={cn(
-            "flex flex-wrap items-center gap-2 rounded-2xl border border-gray-200 bg-gray-50/60 p-3 text-xs text-gray-600 shadow-sm sm:px-4 sm:py-3",
-            isPopup && "text-[11px]"
-          )}
-        >
-          <span className={`font-medium text-gray-400 ${isArabic ? "arabic" : ""}`}>{copy.quickPromptsLabel}</span>
-          {quickPrompts.map((prompt) => (
-            <button
-              key={prompt}
-              type="button"
-              onClick={() => sendMessage(prompt)}
-              disabled={isLoading}
-              className={`rounded-full border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-medium text-gray-600 transition-colors duration-200 hover:border-[#863730]/60 hover:bg-[#fdfaf3] hover:text-gray-900 disabled:pointer-events-none disabled:opacity-50 ${
-                isArabic ? "arabic" : ""
-              }`}
-            >
-              {prompt}
-            </button>
-          ))}
-        </div>
-      ) : null}
-
       <div
         className={cn(
           "mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_25px_60px_-55px_rgba(0,0,0,0.25)]",
@@ -203,6 +180,30 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
         </div>
 
         <div className="border-t border-gray-100 bg-white px-4 py-4 sm:px-6">
+          {promptOptions.length > 0 ? (
+            <div
+              className={cn(
+                "mb-3 flex flex-wrap items-center gap-2 text-[11px] font-medium text-gray-500",
+                isArabic ? "justify-end text-right arabic" : ""
+              )}
+            >
+              <span className="text-gray-400">{copy.quickPromptsLabel}</span>
+              {promptOptions.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  onClick={() => sendMessage(prompt)}
+                  disabled={isLoading}
+                  className={cn(
+                    "rounded-full border border-gray-200 px-3 py-1 text-[11px] text-gray-600 transition-all duration-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
+                    isArabic ? "arabic" : ""
+                  )}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+          ) : null}
           <form
             className={`mx-auto flex w-full max-w-4xl items-end gap-3 ${isArabic ? "flex-row-reverse text-right" : ""}`}
             onSubmit={handleSubmit}
