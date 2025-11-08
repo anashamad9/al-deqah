@@ -105,7 +105,7 @@ function DeqahAIPopup() {
           <span className="text-lg leading-none">&times;</span>
         </button>
 
-        <div className="flex max-h-[72vh] flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white p-4 shadow-[0_20px_55px_-35px_rgba(0,0,0,0.6)] sm:p-6">
+        <div className="flex max-h-[90vh] min-h-[420px] flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white p-4 shadow-[0_20px_55px_-35px_rgba(0,0,0,0.6)] sm:max-h-[76vh] sm:p-6">
           <DeqahAIChat quickPrompts={QUICK_PROMPTS[language]} variant="popup" />
         </div>
       </div>

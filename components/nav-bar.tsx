@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
-import { useDeqahAI } from "@/components/deqah-ai-widget"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import { solutions } from "@/lib/solutions"
 import { getLocalizedSolutions } from "@/lib/solutions-localized"
@@ -40,8 +39,8 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
 }
 
 const CTA_LABELS: Record<Language, string> = {
-  en: "Talk to AI",
-  ar: "تحدث مع الذكاء الاصطناعي",
+  en: "Our Services",
+  ar: "خدماتنا",
 }
 
 type NavBarVariant = "light" | "dark"
@@ -58,11 +57,10 @@ export default function NavBar({
   className,
   showLogo = true,
   showLanguageToggle = true,
-  showAssistantCta = true,
+  showAssistantCta = false,
   variant = "light",
 }: NavBarProps) {
   const { language } = useLanguage()
-  const { open } = useDeqahAI()
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -117,12 +115,12 @@ export default function NavBar({
       : "text-neutral-800 hover:text-neutral-950 hover:bg-neutral-900/5"
   const ctaBubbleClasses =
     variant === "dark"
-      ? "bg-[#0c0805] text-white"
-      : "bg-black text-white"
+      ? "bg-white text-[#0c0805]"
+      : "bg-white text-[#0c0805]"
   const ctaMainClasses =
     variant === "dark"
       ? "bg-white text-[#0c0805] hover:shadow-[0_12px_22px_-12px_rgba(255,255,255,0.65)]"
-      : "bg-black text-white hover:bg-[#23140e] hover:shadow-[0_15px_30px_-12px_rgba(134,55,48,0.45)]"
+      : "bg-white text-[#0c0805] hover:bg-white hover:shadow-[0_15px_30px_-12px_rgba(134,55,48,0.45)]"
 
   return (
     <header
@@ -249,9 +247,8 @@ export default function NavBar({
       <div className="flex items-center gap-3">
         {showLanguageToggle ? <LanguageToggle variant={variant} /> : null}
         {showAssistantCta ? (
-          <button
-            type="button"
-            onClick={open}
+          <Link
+            href="/services"
             id="gooey-btn"
             className="group relative flex items-center transition-transform duration-200 hover:-translate-y-0.5"
             style={{ filter: "url(#gooey-filter)" }}
@@ -275,7 +272,7 @@ export default function NavBar({
             >
               {CTA_LABELS[language]}
             </span>
-          </button>
+          </Link>
         ) : null}
       </div>
     </header>

@@ -79,9 +79,9 @@ export function PartnersBar() {
               {PARTNER_LOGOS.map((logo) => (
                 <div
                   key={logo.src}
-                  className="flex h-20 w-40 flex-none items-center justify-center rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
+                  className="flex h-20 w-40 flex-none items-center justify-center rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04] transition-transform duration-200 hover:scale-105"
                 >
-                  <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-12 w-auto mix-blend-multiply" />
+                  <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-12 w-auto mix-blend-multiply transition-transform duration-200" />
                 </div>
               ))}
             </div>

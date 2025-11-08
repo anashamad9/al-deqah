@@ -1,7 +1,8 @@
 "use client"
 
+import { useRef } from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 
 import { useLanguage } from "@/components/language-context"
@@ -153,12 +154,13 @@ export default function ServicesSection() {
         </div>
 
         <div className="relative pb-32">
-          <div className="pointer-events-none absolute inset-x-0 -top-10 bottom-0 rounded-[56px] bg-gradient-to-b from-[#ffffff] via-[#f7f5ff]/40 to-transparent blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute inset-x-0 -top-10 bottom-0 rounded-[56px] bg-gradient-to-b from-[#ffffff] via-[#f7f5ff]/45 to-transparent blur-2xl" aria-hidden />
           <div className="relative flex flex-col gap-24">
             {services.map((service, index) => (
               <ServiceStackCard
                 key={service.slug}
                 index={index}
+                total={services.length}
                 serviceKey={service.slug}
                 language={language}
                 exploreLabel={tString(data.exploreLabel, language)}
@@ -174,18 +176,24 @@ export default function ServicesSection() {
 
 type ServiceCardProps = ServiceItem & {
   index: number
+  total: number
   serviceKey: string
   language: Language
   exploreLabel: string
 }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.97 },
-  show: { opacity: 1, y: 0, scale: 1 },
-}
-
-function ServiceStackCard({ title, description, href, index, serviceKey, language, exploreLabel }: ServiceCardProps) {
+function ServiceStackCard({ title, description, href, index, total, serviceKey, language, exploreLabel }: ServiceCardProps) {
   const isArabic = language === "ar"
+  const cardRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.95, 0.9])
+  const exitY = index === total - 1 ? -60 : -120
+  const y = useTransform(scrollYProgress, [0, 1], [0, exitY])
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.72])
 
   const accent = accentGradients[index % accentGradients.length]
   const theme = visualThemes[serviceKey] ?? visualThemes.default
@@ -197,14 +205,9 @@ function ServiceStackCard({ title, description, href, index, serviceKey, languag
 
   return (
     <motion.article
-      className="group overflow-hidden rounded-[40px] border border-white/50 bg-white/92 p-10 shadow-[0_32px_120px_-70px_rgba(36,32,57,0.38)] transition-shadow duration-300 hover:shadow-[0_44px_140px_-65px_rgba(134,55,48,0.38)]"
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ amount: 0.35, once: false }}
-      transition={{ duration: 0.6, ease: [0.21, 0.67, 0.38, 0.98], delay: index * 0.08 }}
-      whileHover={{ y: -6 }}
-      style={{ willChange: "transform, opacity" }}
+      ref={cardRef}
+      style={{ scale, y, opacity, zIndex: index + 1, willChange: "transform, opacity" }}
+      className="group sticky top-24 overflow-hidden rounded-[40px] border border-white/60 bg-white/94 p-10 shadow-[0_26px_110px_-75px_rgba(36,32,57,0.32)] backdrop-blur transition-shadow duration-300 hover:shadow-[0_38px_136px_-62px_rgba(134,55,48,0.34)]"
     >
       <div
         dir={isArabic ? "rtl" : "ltr"}
@@ -255,8 +258,8 @@ function ServiceStackCard({ title, description, href, index, serviceKey, languag
             theme={theme}
           />
 
-          <div className="pointer-events-none absolute -top-12 left-8 h-40 w-40 rounded-full bg-white/50 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-10 right-2 h-32 w-32 rounded-full bg-[#863730]/20 blur-2xl" />
+          <div className="pointer-events-none absolute -top-12 left-8 h-36 w-36 rounded-full bg-white/40 blur-2xl" />
+          <div className="pointer-events-none absolute -bottom-10 right-2 h-28 w-28 rounded-full bg-[#863730]/18 blur-xl" />
         </div>
       </div>
     </motion.article>

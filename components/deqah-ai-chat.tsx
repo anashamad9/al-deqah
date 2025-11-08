@@ -214,7 +214,7 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={handleTextareaKeyDown}
               disabled={isLoading}
-              className={`max-h-40 flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-3 text-sm font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 disabled:opacity-60 ${
+              className={`max-h-40 flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-3 text-base font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 disabled:opacity-60 ${
                 isArabic ? "arabic text-right" : ""
               }`}
             />
