@@ -99,6 +99,27 @@ const PARTNER_CONTENT = {
       ar: "رؤية حاسوبية وحلول أمنية مدعومة بالذكاء الاصطناعي وأجهزة استشعار إنترنت الأشياء لتوفير مراقبة ذكية للمرافق والبنى التحتية الحيوية.",
     },
   },
+  ICSI: {
+    name: { en: "ICSI", ar: "ICSI" },
+    description: {
+      en: "Digital identity platforms, cyber ranges, and national credentialing programs co-engineered for secure government and telecom workloads.",
+      ar: "منصات هوية رقمية وساحات تدريب سيبراني وبرامج اعتماد وطنية مصممة لدعم الجهات الحكومية وقطاع الاتصالات بأعلى مستويات الأمان.",
+    },
+  },
+  BigCloud: {
+    name: { en: "Big Cloud", ar: "Big Cloud" },
+    description: {
+      en: "Cloud-native integration, DevSecOps enablement, and multi-cloud landing zones that accelerate Industry 4.0 services.",
+      ar: "تكامل سحابي أصيل، وتمكين فرق DevSecOps، ومناطق هبوط متعددة السُحب لتسريع إطلاق خدمات الثورة الصناعية الرابعة.",
+    },
+  },
+  ThirdGenerationHolding: {
+    name: { en: "Third Generation Holding", ar: "الجيل الثالث القابضة" },
+    description: {
+      en: "Smart city investment programs delivering immersive visitor centers, digital twin operations, and executive briefing experiences.",
+      ar: "برامج استثمار للمدن الذكية توفر مراكز زوار غامرة وتوائم رقمية وبيئات عروض تنفيذية للمشاريع العملاقة.",
+    },
+  },
 } as const satisfies Record<
   string,
   {
@@ -111,11 +132,14 @@ const PARTNER_MAPPING = [
   { logoKey: "Kaspersky", brandKey: "Kaspersky" },
   { logoKey: "Splunk", brandKey: "Splunk" },
   { logoKey: "CyberArk", brandKey: "CyberArk" },
-  { logoKey: "Hikvision", brandKey: "Lenovo" },
-  { logoKey: "Microsoft", brandKey: "Dell" },
-  { logoKey: "Dell", brandKey: "Microsoft" },
-  { logoKey: "Lenovo", brandKey: "IBM" },
-  { logoKey: "IBM", brandKey: "Hikvision" },
+  { logoKey: "Dell", brandKey: "Dell" },
+  { logoKey: "Microsoft", brandKey: "Microsoft" },
+  { logoKey: "IBM", brandKey: "IBM" },
+  { logoKey: "Hikvision", brandKey: "Hikvision" },
+  { logoKey: "Lenovo", brandKey: "Lenovo" },
+  { logoKey: "ICSI", brandKey: "ICSI" },
+  { logoKey: "Big Cloud", brandKey: "BigCloud" },
+  { logoKey: "Third Generation Holding", brandKey: "ThirdGenerationHolding" },
 ] as const satisfies Array<{
   logoKey: keyof typeof LOGO_BY_NAME
   brandKey: keyof typeof PARTNER_CONTENT
@@ -164,7 +188,7 @@ export default function PartnersPageContent() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-lg font-medium text-[#0c0805]">{partner.name[language]}</h3>
+                  <h3 className="text-lg font-medium text-[#0c0805]">{partner.name.en}</h3>
                   <p className="text-sm font-light text-gray-600">{partner.description[language]}</p>
                 </div>
               </article>

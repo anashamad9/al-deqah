@@ -1,10 +1,10 @@
 "use client"
 
-import { useMemo } from "react"
+import { useEffect, useMemo, useRef } from "react"
 
 import Image from "next/image"
 import Link from "next/link"
-import { Mail, MapPin, Phone, ArrowUpRight, Linkedin, Instagram } from "lucide-react"
+import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react"
 
 import { useLanguage } from "@/components/language-context"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
@@ -17,11 +17,6 @@ const COMPANY_LINKS = [
   { key: "contact", href: "/contact" },
   { key: "deqahAI", href: "/deqah-ai" },
   { key: "insights", href: "#" },
-] as const
-
-const SOCIAL_LINKS = [
-  { label: "LinkedIn", icon: Linkedin, href: "#" },
-  { label: "Instagram", icon: Instagram, href: "#" },
 ] as const
 
 const FOOTER_COPY: Record<
@@ -148,6 +143,98 @@ const CONTACT_ITEMS = [
   },
 ] as const
 
+function FooterNetworkOverlay({ nodes = 50 }: { nodes?: number }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas || typeof window === "undefined") return
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let animationId: number
+    let width = canvas.clientWidth
+    let height = canvas.clientHeight
+    let linkDistance = 140
+    const particles: Array<{ x: number; y: number; vx: number; vy: number }> = []
+
+    const initParticles = () => {
+      particles.length = 0
+      const count = Math.max(18, Math.min(nodes, Math.round((width + height) / 22)))
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+        })
+      }
+    }
+
+    const resize = () => {
+      width = canvas.clientWidth || canvas.offsetWidth
+      height = canvas.clientHeight || canvas.offsetHeight
+      linkDistance = Math.min(200, Math.max(width, height) * 0.25)
+
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.scale(dpr, dpr)
+
+      initParticles()
+    }
+
+    const drawFrame = () => {
+      ctx.clearRect(0, 0, width, height)
+
+      particles.forEach((particle) => {
+        particle.x += particle.vx
+        particle.y += particle.vy
+        if (particle.x <= 0 || particle.x >= width) particle.vx *= -1
+        if (particle.y <= 0 || particle.y >= height) particle.vy *= -1
+
+        ctx.beginPath()
+        ctx.fillStyle = "rgba(255, 210, 203, 0.85)"
+        ctx.arc(particle.x, particle.y, 1.2, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i]
+          const b = particles[j]
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          const distance = Math.hypot(dx, dy)
+          if (distance < linkDistance) {
+            ctx.beginPath()
+            ctx.strokeStyle = `rgba(137, 59, 46, ${0.8 - distance / (linkDistance * 1.2)})`
+            ctx.lineWidth = 0.5
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
+            ctx.stroke()
+          }
+        }
+      }
+
+      animationId = requestAnimationFrame(drawFrame)
+    }
+
+    resize()
+    window.addEventListener("resize", resize)
+    animationId = requestAnimationFrame(drawFrame)
+
+    return () => {
+      cancelAnimationFrame(animationId)
+      window.removeEventListener("resize", resize)
+    }
+  }, [nodes])
+
+  return <canvas ref={canvasRef} aria-hidden className="network-canvas opacity-60 mix-blend-screen" />
+}
+
 export default function Footer() {
   const { language } = useLanguage()
   const copy = FOOTER_COPY[language]
@@ -156,26 +243,31 @@ export default function Footer() {
   const localizedSolutions = useMemo(() => getLocalizedSolutions(language, solutions), [language])
 
   return (
-    <footer className="relative overflow-hidden bg-[#0c0805] text-white" dir={isArabic ? "rtl" : "ltr"} lang={language}>
+    <footer
+      className="relative overflow-hidden bg-[#0c0805] text-white"
+      dir={isArabic ? "rtl" : "ltr"}
+      lang={language}
+    >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1d140d] to-black opacity-90" />
-        <div className="absolute left-1/2 top-[-35%] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#863730]/25 blur-3xl opacity-70" />
-        <div className="absolute bottom-[-45%] right-[-10%] h-[420px] w-[420px] rounded-full bg-[#863730]/25 blur-3xl opacity-60" />
+        <div className="hero-gradient-layer absolute inset-0 opacity-90" />
+        <div className="hero-noise absolute inset-0 opacity-40 mix-blend-soft-light" />
+        <div className="hero-glow absolute bottom-[-20%] left-1/2 h-[420px] w-[420px] -translate-x-1/2 opacity-70" />
+        <FooterNetworkOverlay nodes={48} />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-8 py-20 lg:py-24">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,340px)_1fr]">
-          <div className="space-y-10" dir={isArabic ? "rtl" : "ltr"}>
+          <div className={`space-y-10 ${isArabic ? "text-right" : ""}`} dir={isArabic ? "rtl" : "ltr"}>
             <div className={`space-y-6 ${isArabic ? "text-right" : ""}`}>
-              <div
-                dir={isArabic ? "rtl" : "ltr"}
-                className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse justify-end text-right" : ""}`}
-              >
-                <div className="flex size-14 items-center justify-center rounded-full bg-white/10">
+              <div className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse justify-end" : ""}`}>
+                <div className={`${isArabic ? "order-2" : "order-1"} flex size-14 items-center justify-center rounded-full bg-white/10`}>
                   <Image src="/logo-2.png" alt="Al-Deqah logo" width={52} height={68} className="h-10 w-auto" />
                 </div>
-                <div className={isArabic ? "text-right arabic" : ""} dir={isArabic ? "rtl" : "ltr"}>
-                  <p className={`text-xs uppercase tracking-[0.35em] text-[#863730] ${isArabic ? "arabic" : ""}`}>
+                <div
+                  className={`${isArabic ? "order-1 text-right arabic" : "order-2"}`}
+                  dir={isArabic ? "rtl" : "ltr"}
+                >
+                  <p className={`text-xs font-semibold uppercase tracking-[0.35em] text-white ${isArabic ? "arabic" : ""}`}>
                     {copy.brandLabel}
                   </p>
                   <p className={`text-sm font-light text-white/70 ${isArabic ? "arabic" : ""}`}>{copy.brandTagline}</p>
@@ -190,7 +282,9 @@ export default function Footer() {
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_25px_65px_-55px_rgba(255,255,255,0.65)] backdrop-blur">
-              <p className={`text-xs uppercase tracking-[0.3em] text-[#863730] ${isArabic ? "arabic text-right" : ""}`}>
+              <p
+                className={`text-xs font-semibold uppercase tracking-[0.3em] text-white ${isArabic ? "arabic text-right" : ""}`}
+              >
                 {copy.ctaLabel}
               </p>
               <h3 className={`mt-3 text-lg font-medium text-white ${isArabic ? "arabic text-right" : ""}`}>
@@ -198,7 +292,7 @@ export default function Footer() {
               </h3>
               <Link
                 href="/contact"
-                className={`mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-medium text-black transition-transform duration-300 hover:scale-105 ${
+                className={`mt-6 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition-transform duration-300 hover:scale-105 ${
                   isArabic ? "flex-row-reverse arabic" : ""
                 }`}
               >
@@ -207,43 +301,6 @@ export default function Footer() {
               </Link>
             </div>
 
-            <div className="rounded-2xl border border-[#863730]/30 bg-white/5 p-6 text-xs font-light text-white/70 shadow-[0_25px_60px_-55px_rgba(255,255,255,0.45)]">
-              <p
-                className={`uppercase tracking-[0.3em] text-[#863730] ${isArabic ? "arabic text-right" : ""}`}
-              >
-                {copy.contactCard.label}
-              </p>
-              <p className={`mt-3 text-sm ${isArabic ? "arabic text-right" : ""}`}>{copy.contactCard.address}</p>
-              <p className={`mt-1 text-sm ${isArabic ? "arabic text-right" : ""}`}>{copy.contactCard.details}</p>
-            </div>
-
-            <div className="space-y-4">
-              {CONTACT_ITEMS.map((item) => {
-                const Icon = item.icon
-                const label = copy.contactItems[item.key]
-                const content = (
-                  <div
-                    dir={isArabic ? "rtl" : "ltr"}
-                    className={`flex items-center gap-3 text-sm font-light text-white/70 transition-colors duration-200 hover:text-white ${
-                      isArabic ? "flex-row-reverse justify-end text-right arabic" : ""
-                    }`}
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[#863730]">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <span>{label}</span>
-                  </div>
-                )
-
-                return item.href ? (
-                  <a key={item.key} href={item.href} className="block">
-                    {content}
-                  </a>
-                ) : (
-                  <div key={item.key}>{content}</div>
-                )
-              })}
-            </div>
           </div>
 
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -315,26 +372,19 @@ export default function Footer() {
               </div>
             ))}
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               <p className={`text-xs uppercase tracking-[0.3em] text-white/40 ${isArabic ? "arabic text-right" : ""}`}>
                 {copy.navTitles.social}
               </p>
-              <div className={`flex flex-wrap gap-3 ${isArabic ? "justify-end" : ""}`}>
-                {SOCIAL_LINKS.map((social) => {
-                  const Icon = social.icon
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      className={`inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#863730]/60 hover:text-white ${
-                        isArabic ? "flex-row-reverse arabic" : ""
-                      }`}
-                    >
-                      <Icon className="h-4 w-4" />
-                      {social.label}
-                    </a>
-                  )
-                })}
+              <div className={`space-y-4 text-sm text-white/80 ${isArabic ? "text-right arabic" : ""}`}>
+                {[copy.contactItems.email, copy.contactItems.phone, copy.contactItems.location].map((item) => (
+                  <div
+                    key={item}
+                    className={`text-sm hover:text-white ${isArabic ? "text-right arabic" : ""}`}
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

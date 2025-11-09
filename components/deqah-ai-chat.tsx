@@ -311,6 +311,8 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
 function ChatBubble({ message, language }: { message: ChatMessage; language: Language }) {
   const isAssistant = message.role === "assistant"
   const isArabic = language === "ar"
+  const formattedContent = formatMessageHtml(message.content)
+
   return (
     <div className={`flex ${isAssistant ? "justify-start" : "justify-end"}`}>
       <div
@@ -319,8 +321,8 @@ function ChatBubble({ message, language }: { message: ChatMessage; language: Lan
             ? "bg-gray-100 text-gray-700 shadow-[0_15px_40px_-35px_rgba(0,0,0,0.4)]"
             : "bg-[#0c0805] text-white shadow-[0_18px_45px_-35px_rgba(0,0,0,0.8)]"
         } ${isArabic ? "text-right arabic" : ""}`}
+        dangerouslySetInnerHTML={{ __html: formattedContent }}
       >
-        {message.content}
       </div>
     </div>
   )
@@ -349,4 +351,19 @@ function Dot() {
   return (
     <span className="size-1.5 animate-bounce rounded-full bg-gray-400 [animation-delay:calc(var(--i,0)*120ms)]" />
   )
+}
+
+function formatMessageHtml(content: string) {
+  const escaped = escapeHtml(content)
+  const withBold = escaped.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+  return withBold.replace(/\n/g, "<br />")
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
 }

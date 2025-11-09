@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { Sparkles } from "lucide-react"
 
+import { useEffect, useRef, useState } from "react"
+
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
@@ -14,7 +16,6 @@ const HERO_COPY: Record<
     description: string
     bookMeeting: string
     talkToAI: string
-    servicesCta: string
   }
 > = {
   en: {
@@ -22,14 +23,12 @@ const HERO_COPY: Record<
     description: "Al-Deqah-Tech delivers cutting-edge solutions in Cybersecurity, AI, XR, IoT.",
     bookMeeting: "Book a meeting",
     talkToAI: "Talk to AI",
-    servicesCta: "Our Services",
   },
   ar: {
     heading: "تمكين المستقبل بتقنيات الثورة الصناعية الرابعة",
     description: "توفر شركة الدقة حلولاً متقدمة في الأمن السيبراني والذكاء الاصطناعي والواقع الممتد وإنترنت الأشياء.",
     bookMeeting: "احجز اجتماعاً",
     talkToAI: "تحدث مع الذكاء الاصطناعي",
-    servicesCta: "خدماتنا",
   },
 }
 
@@ -38,10 +37,33 @@ export default function HeroContent() {
   const copy = HERO_COPY[language]
   const isArabic = language === "ar"
   const { open } = useDeqahAI()
+  const heroRef = useRef<HTMLElement>(null)
+  const [showFloatingButton, setShowFloatingButton] = useState(false)
+
+  useEffect(() => {
+    const heroSection = heroRef.current
+    if (!heroSection || typeof window === "undefined") return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingButton(!entry.isIntersecting)
+      },
+      { threshold: 0.15 }
+    )
+
+    observer.observe(heroSection)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <>
-      <main className={`absolute bottom-8 z-20 max-w-lg ${isArabic ? "right-8 text-right" : "left-8 text-left"}`}>
+      <main
+        ref={heroRef}
+        className={`absolute bottom-8 z-20 max-w-lg ${isArabic ? "right-8 text-right" : "left-8 text-left"}`}
+      >
         <div className={isArabic ? "text-right space-y-0" : "text-left"}>
           {/* Main Heading */}
           <h1
@@ -67,14 +89,15 @@ export default function HeroContent() {
             >
               {copy.bookMeeting}
             </Link>
-            <Link
-              href="/services"
+            <button
+              type="button"
+              onClick={open}
               className={`px-8 py-3 rounded-full bg-white text-[#1a0503] font-normal text-xs transition-all duration-200 hover:bg-white/90 shadow-[0_12px_25px_-18px_rgba(0,0,0,0.45)] ${
                 isArabic ? "arabic" : ""
               }`}
             >
-              {copy.servicesCta}
-            </Link>
+              {copy.talkToAI}
+            </button>
           </div>
         </div>
       </main>
@@ -82,26 +105,27 @@ export default function HeroContent() {
       <button
         type="button"
         onClick={open}
-        className={`group fixed bottom-6 md:bottom-10 z-40 flex items-center gap-3 rounded-full border border-[#f6d9ce] bg-white/85 px-4 py-2 text-xs font-medium text-neutral-900 shadow-[0_25px_45px_-30px_rgba(0,0,0,0.4)] backdrop-blur transition-all duration-200 hover:translate-y-[-2px] hover:bg-white ${
+        className={`group fixed bottom-6 md:bottom-10 z-40 flex items-center gap-3 rounded-full border border-[#f6d9ce] bg-white/85 px-4 py-2 text-xs font-medium text-neutral-900 shadow-[0_25px_45px_-30px_rgba(0,0,0,0.4)] backdrop-blur transition-all duration-300 ease-out hover:translate-y-[-2px] hover:bg-white ${
           isArabic ? "left-6 md:left-10 arabic flex-row-reverse" : "right-6 md:right-10"
-        }`}
+        } ${showFloatingButton ? "pointer-events-auto opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-3"}`}
+        aria-hidden={!showFloatingButton}
       >
         <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#863730] text-white shadow-[0_10px_25px_-18px_rgba(134,55,48,0.65)]">
           <span className="absolute inset-0 rounded-full bg-[#863730] opacity-60 blur-sm" />
           <Sparkles className="relative h-5 w-5" />
         </span>
         <span className={`relative ${isArabic ? "text-right arabic" : "text-left"}`}>
-          <span
-            className={`block text-[11px] text-neutral-500 ${
-              isArabic ? "arabic font-normal" : "uppercase tracking-[0.28em]"
-            }`}
-          >
-            {isArabic ? "ابدأ" : "Start"}
+            <span
+              className={`block text-[11px] text-neutral-500 ${
+                isArabic ? "arabic font-normal" : "uppercase tracking-[0.28em]"
+              }`}
+            >
+              {isArabic ? "ابدأ" : "Start"}
+            </span>
+            <span className={`block text-sm font-medium text-neutral-900 ${isArabic ? "arabic" : ""}`}>
+              {copy.talkToAI}
+            </span>
           </span>
-          <span className={`block text-sm font-medium text-neutral-900 ${isArabic ? "arabic" : ""}`}>
-            {copy.talkToAI}
-          </span>
-        </span>
       </button>
     </>
   )

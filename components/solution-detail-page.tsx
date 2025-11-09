@@ -84,6 +84,9 @@ export default function SolutionDetailPage({ solution }: SolutionDetailPageProps
   const isArabic = language === "ar"
   const localizedSolution = useMemo(() => getLocalizedSolution(solution, language), [solution, language])
   const heroImage = SOLUTION_BACKGROUNDS[solution.slug] ?? "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80"
+  const badgeTextClass = isArabic ? "arabic tracking-normal" : "uppercase tracking-[0.25em]"
+  const badgeBaseClass = "inline-flex items-center justify-center rounded-md bg-[#6d3228]/90 px-3 py-1 text-[11px] font-semibold text-white shadow-[0_6px_18px_rgba(0,0,0,0.25)]"
+  const badgeClass = `${badgeBaseClass} ${badgeTextClass}`
 
   return (
     <>
@@ -104,14 +107,9 @@ export default function SolutionDetailPage({ solution }: SolutionDetailPageProps
           <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-8">
             <div className={`flex flex-col gap-6 md:flex-row md:items-end md:justify-between ${isArabic ? "text-right" : ""}`}>
               <div className={`max-w-3xl space-y-5 ${isArabic ? "ml-auto text-right arabic" : ""}`}>
-                <div
-                  className={`inline-flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-[#863730] ${
-                    isArabic ? "flex-row-reverse arabic" : ""
-                  }`}
-                >
-                  <span>{localizedSolution.category}</span>
-                  <span className="h-[1px] w-10 bg-[#863730]/60" />
-                  <span>{localizedSolution.name}</span>
+                <div className={`flex flex-wrap gap-2 ${isArabic ? "flex-row-reverse" : ""}`}>
+                  <span className={`${badgeClass} ${isArabic ? "order-2" : ""}`}>{localizedSolution.category}</span>
+                  <span className={`${badgeClass} ${isArabic ? "order-1" : ""}`}>{localizedSolution.name}</span>
                 </div>
                 <h1 className={`text-4xl font-light leading-tight md:text-5xl ${isArabic ? "arabic" : ""}`}>
                   {localizedSolution.tagline}
@@ -150,7 +148,9 @@ export default function SolutionDetailPage({ solution }: SolutionDetailPageProps
                     isArabic ? "text-right arabic" : ""
                   }`}
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#863730]/80">{stat.label}</p>
+                  <div className={`flex ${isArabic ? "justify-end" : "justify-start"}`}>
+                    <span className={badgeClass}>{stat.label}</span>
+                  </div>
                   <p className="mt-2 text-2xl font-medium text-white">{stat.value}</p>
                   {stat.description ? <p className="mt-2 text-xs text-white/60">{stat.description}</p> : null}
                 </div>

@@ -85,19 +85,29 @@ const ABOUT_COPY: Record<
       quoteLabel: "Al-Deqah Leadership Charter",
       members: [
         {
-          name: "Layla Al-Harthy",
-          title: "Chief Executive Officer",
-          bio: "Visionary leader with 15+ years building technology ventures across the GCC, focused on scaling immersive, data-driven solutions.",
+          name: "Lara Nasser",
+          title: "Director of Training Programs",
+          bio: "Architects sector-specific curricula and blended learning experiences that raise workforce readiness across the region.",
         },
         {
-          name: "Omar Al-Saadi",
-          title: "Chief Technology Officer",
-          bio: "Architecting interoperable platforms that connect AI, IoT, and spatial computing for mission-critical environments.",
+          name: "Malek Momani",
+          title: "Managing Director",
+          bio: "Steers corporate strategy, partnerships, and governance so every engagement reflects Al-Deqah’s regional mandate.",
         },
         {
-          name: "Sara Al-Mutairi",
-          title: "Chief Experience Officer",
-          bio: "Designs the human-centered experiences that bring our Industry 4.0 products to life in enterprise deployments.",
+          name: "Hamza Momani",
+          title: "Executive Director",
+          bio: "Converts strategic roadmaps into operational delivery, aligning design, engineering, and field teams around measurable outcomes.",
+        },
+        {
+          name: "Yazan Al-Ballah",
+          title: "Director of Cybersecurity",
+          bio: "Leads our cyber defense practice, combining threat intelligence and compliance playbooks to secure critical infrastructure.",
+        },
+        {
+          name: "Laman Mohamed",
+          title: "Director of AI & Metaverse",
+          bio: "Explores applied AI, spatial computing, and speculative technologies to build future-proof platforms for clients.",
         },
       ],
     },
@@ -172,19 +182,29 @@ const ABOUT_COPY: Record<
       quoteLabel: "ميثاق قيادة شركة الدقة",
       members: [
         {
-          name: "Layla Al-Harthy",
-          title: "الرئيسة التنفيذية",
-          bio: "قائدة ذات رؤية بخبرة تتجاوز 15 عامًا في بناء مشاريع تقنية عبر دول الخليج، تركّز على توسيع حلول رائعة مدفوعة بالبيانات.",
+          name: "لارا ناصر",
+          title: "مديرة البرامج التدريبية",
+          bio: "تصمم مناهج ومسارات تدريبية مخصصة تربط احتياجات القطاعات برفع جاهزية الكفاءات على مستوى المنطقة.",
         },
         {
-          name: "Omar Al-Saadi",
-          title: "الرئيس التقني",
-          bio: "يصمم منصات قابلة للتشغيل البيني تربط الذكاء الاصطناعي وإنترنت الأشياء والحوسبة المكانية لبيئات تشغيل حساسة.",
+          name: "مالك مومني",
+          title: "المدير العام",
+          bio: "يقود الاستراتيجية والشراكات والحوكمة لضمان توافق كل مبادرة مع رؤية شركة الدقة وتأثيرها الإقليمي.",
         },
         {
-          name: "Sara Al-Mutairi",
-          title: "رئيسة تجربة العملاء",
-          bio: "تصمم التجارب المرتكزة على الإنسان التي تحوّل منتجات الثورة الصناعية الرابعة إلى واقع في بيئات المؤسسات.",
+          name: "حمزة مومني",
+          title: "المدير التنفيذي",
+          bio: "يحوّل الخطط الاستراتيجية إلى مبادرات تشغيلية، موحّدًا فرق التصميم والهندسة والتسليم حول نتائج قابلة للقياس.",
+        },
+        {
+          name: "يزن البلة",
+          title: "مدير إدارة الأمن السيبراني",
+          bio: "يدير منظومة الدفاع السيبراني ويجمع بين استخبارات التهديدات ومتطلبات الامتثال لحماية البنى التحتية الحيوية.",
+        },
+        {
+          name: "لامان محمد",
+          title: "مديرة إدارة الذكاء الاصطناعي والميتافيرس",
+          bio: "تستكشف تطبيقات الذكاء الاصطناعي والتقنيات فوق الواقعية لتطوير منصات مستقبلية ومتصلة لعملائنا.",
         },
       ],
     },
@@ -228,7 +248,7 @@ export default function AboutPageContent() {
 
   return (
     <>
-      <Header variant="dark" />
+      <Header />
       <main className="bg-white text-gray-900">
         <section className="relative overflow-hidden bg-[#0c0805] py-28 text-white">
           <div className="pointer-events-none absolute inset-0">
@@ -281,7 +301,7 @@ export default function AboutPageContent() {
                     isArabic ? "text-right arabic" : ""
                   }`}
                 >
-                  <p className="text-[11px] uppercase tracking-[0.3em] text-[#863730]">
+                  <p className={`text-[11px] text-[#863730] ${isArabic ? "arabic" : "uppercase tracking-[0.3em]"}`}>
                     {language === "ar" ? "ركيزة" : "Pillar"}
                   </p>
                   <h3 className="mt-3 text-lg font-medium text-gray-900">{pillar.title}</h3>
@@ -296,14 +316,22 @@ export default function AboutPageContent() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center">
               <div className={`space-y-4 ${isArabic ? "text-right arabic" : ""}`}>
-                <span className="text-xs uppercase tracking-[0.35em] text-[#863730]">{copy.leadership.label}</span>
+                <span
+                  className={`text-xs text-[#863730] ${isArabic ? "arabic" : "uppercase tracking-[0.35em]"}`}
+                >
+                  {copy.leadership.label}
+                </span>
                 <h2 className="text-3xl font-light text-gray-900 md:text-4xl">{copy.leadership.heading}</h2>
                 <p className="text-sm font-light leading-relaxed text-gray-600">{copy.leadership.description}</p>
               </div>
               <div className="relative hidden h-full overflow-hidden rounded-3xl border border-[#863730]/25 bg-[#fdfaf3] p-8 shadow-[0_35px_80px_-60px_rgba(0,0,0,0.18)] lg:flex">
                 <div className={`space-y-3 text-sm font-light text-gray-700 ${isArabic ? "text-right arabic" : ""}`}>
                   <p>{copy.leadership.quote}</p>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#863730]">{copy.leadership.quoteLabel}</p>
+                  <p
+                    className={`text-xs text-[#863730] ${isArabic ? "arabic" : "uppercase tracking-[0.3em]"}`}
+                  >
+                    {copy.leadership.quoteLabel}
+                  </p>
                 </div>
               </div>
             </div>
@@ -320,7 +348,11 @@ export default function AboutPageContent() {
                     <span className="text-lg font-medium">{member.name.charAt(0)}</span>
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">{member.name}</h3>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#863730]">{member.title}</p>
+                  <p
+                    className={`text-xs text-[#863730] ${isArabic ? "arabic" : "uppercase tracking-[0.3em]"}`}
+                  >
+                    {member.title}
+                  </p>
                   <p className="mt-4 text-sm font-light leading-relaxed text-gray-600">{member.bio}</p>
                 </div>
               ))}
@@ -332,7 +364,11 @@ export default function AboutPageContent() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:items-center">
               <div className={`space-y-4 ${isArabic ? "text-right arabic" : ""}`}>
-                <span className="text-xs uppercase tracking-[0.35em] text-[#863730]">{copy.capabilities.label}</span>
+                <span
+                  className={`text-xs text-[#863730] ${isArabic ? "arabic" : "uppercase tracking-[0.35em]"}`}
+                >
+                  {copy.capabilities.label}
+                </span>
                 <h2 className="text-3xl font-light text-gray-900 md:text-4xl">{copy.capabilities.heading}</h2>
                 <p className="text-sm font-light leading-relaxed text-gray-600">{copy.capabilities.description}</p>
               </div>

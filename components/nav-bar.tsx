@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
-import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Images, Menu, X } from "lucide-react"
+import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Images, Menu, X, UsersRound } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
@@ -20,6 +20,7 @@ const NAV_LINKS = [
   { key: "blog", href: "/blog", icon: Newspaper, soon: true },
   { key: "partners", href: "/partners", icon: Handshake },
   { key: "gallery", href: "/gallery", icon: Images },
+  { key: "clients", href: "/clients", icon: UsersRound },
 ] as const
 
 const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], string>> = {
@@ -30,6 +31,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
     blog: "Blog",
     partners: "Partners",
     gallery: "Our Gallery",
+    clients: "Clients",
   },
   ar: {
     solutions: "خدماتنا",
@@ -38,6 +40,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
     blog: "المدونة",
     partners: "الشركاء",
     gallery: "معرضنا",
+    clients: "عملاؤنا",
   },
 }
 
@@ -358,7 +361,10 @@ export default function NavBar({
                           <Link
                             href="/solutions"
                             onClick={closeMobileMenu}
-                            className="mt-2 inline-flex items-center justify-center rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white"
+                            className={cn(
+                              "mt-2 inline-flex items-center justify-center rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white",
+                              language === "ar" ? "ml-auto" : ""
+                            )}
                           >
                             {viewAllLabel}
                           </Link>

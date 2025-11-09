@@ -29,9 +29,9 @@ const FAQ_COPY = {
           "Yes. Our architectures are designed for interoperability across cloud, on-premise, and OT environments.",
       },
       {
-        question: "Do you offer managed services?",
+        question: "What post-implementation support do you provide?",
         answer:
-          "We provide managed operations, continuous monitoring, and optimisation roadmaps to sustain performance.",
+          "We offer post-launch success teams, 24/7 monitoring, and optimization playbooks to keep programmes on track.",
       },
       {
         question: "How can we start a project?",
@@ -61,9 +61,9 @@ const FAQ_COPY = {
           "نعم، فالهندسات التي نقدمها قابلة للتكامل مع البيئات السحابية والمحلية وأنظمة التشغيل الصناعية.",
       },
       {
-        question: "هل توفرون خدمات مدارة؟",
+        question: "ما خيارات الدعم بعد التنفيذ؟",
         answer:
-          "نقدم خدمات تشغيل مدارة ومراقبة مستمرة وخطط تحسين لضمان الأداء المستدام.",
+          "نوفر فرق نجاح بعد الإطلاق، ومراقبة على مدار الساعة، وخطط تحسين مستمرة لضمان بقاء المبادرات في مسارها.",
       },
       {
         question: "كيف نبدأ مشروعًا؟",

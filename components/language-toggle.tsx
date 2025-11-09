@@ -23,7 +23,7 @@ export default function LanguageToggle({ variant = "light" }: LanguageToggleProp
   const activeClass =
     variant === "dark"
       ? "bg-white text-[#0c0805] shadow-[0_6px_20px_-12px_rgba(255,255,255,0.45)]"
-      : "bg-black text-white shadow-[0_6px_20px_-12px_rgba(0,0,0,0.6)]"
+      : "bg-[#863730] text-white shadow-[0_6px_20px_-12px_rgba(134,55,48,0.45)]"
   const inactiveClass =
     variant === "dark"
       ? "text-white/80 hover:text-white"

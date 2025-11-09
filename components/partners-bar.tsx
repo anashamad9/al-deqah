@@ -7,7 +7,7 @@ import { useLanguage } from "@/components/language-context"
 export const PARTNER_LOGOS = [
   {
     src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-1-300x300-1-150x150.png",
-    alt: "Kaspersky",
+    alt: "CyberArk",
   },
   {
     src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-2-300x300-1-150x150.png",
@@ -15,27 +15,39 @@ export const PARTNER_LOGOS = [
   },
   {
     src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-11-300x300-1-150x150.png",
-    alt: "CyberArk",
-  },
-  {
-    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-12-300x300-1-150x150.png",
-    alt: "Lenovo",
-  },
-  {
-    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-3-300x300-1-150x150.png",
-    alt: "Microsoft",
-  },
-  {
-    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-5-300x300-1-150x150.png",
-    alt: "IBM",
-  },
-  {
-    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-6-300x300-1-150x150.png",
-    alt: "Hikvision",
+    alt: "Kaspersky",
   },
   {
     src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-4-300x300-1-150x150.png",
+    alt: "Microsoft",
+  },
+  {
+    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-3-300x300-1-150x150.png",
+    alt: "Lenovo",
+  },
+  {
+    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-5-300x300-1-150x150.png",
+    alt: "Hikvision",
+  },
+  {
+    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-6-300x300-1-150x150.png",
     alt: "Dell",
+  },
+  {
+    src: "https://aldeqah-tech.com/wp-content/uploads/2025/06/vendors-12-300x300-1-150x150.png",
+    alt: "IBM",
+  },
+  {
+    src: "/parners/icsi.jpg",
+    alt: "ICSI",
+  },
+  {
+    src: "/parners/big-cloud.png",
+    alt: "Big Cloud",
+  },
+  {
+    src: "/parners/third-generation-holding.jpeg",
+    alt: "Third Generation Holding",
   },
 ] as const
 

@@ -25,18 +25,10 @@ const BACKGROUNDS: Record<keyof typeof ICONS, string> = {
 
 const data = homepageCopy.sectors
 
-function formatIndex(index: number, language: Language) {
-  const numeric = `0${index + 1}`.slice(-2)
-  if (language === "ar") {
-    const eastern = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"]
-    return numeric.replace(/\d/g, (digit) => eastern[Number(digit)])
-  }
-  return numeric
-}
-
 export function SectorsSection() {
   const { language } = useLanguage()
   const isArabic = language === "ar"
+  const direction = isArabic ? "rtl" : "ltr"
 
   const highlights = data.highlights.map((item) => ({
     label: tString(item.label, language),
@@ -59,7 +51,11 @@ export function SectorsSection() {
   const activeSector = sectors[activeIndex]
 
   return (
-    <section id="sectors" className="relative overflow-hidden bg-gradient-to-b from-[#f6f2ed] via-white to-white py-24">
+    <section
+      id="sectors"
+      dir={direction}
+      className="relative overflow-hidden bg-gradient-to-b from-[#f6f2ed] via-white to-white py-24"
+    >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(134,55,48,0.12),transparent_60%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.08),transparent_65%)]" />
       </div>
@@ -119,19 +115,18 @@ export function SectorsSection() {
                     key={sector.title}
                     type="button"
                     onClick={() => setActiveIndex(index)}
-                    dir={isArabic ? "rtl" : "ltr"}
+                    dir={direction}
                     className={`flex w-full items-center gap-4 rounded-[28px] border px-5 py-4 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#863730] ${
                       isActive
                         ? "border-[#863730]/50 bg-[#fdf7f3] text-[#863730] shadow-[0_25px_70px_-55px_rgba(134,55,48,0.4)]"
                         : "border-[#f0e3db] bg-white text-neutral-700 hover:border-[#863730]/30 hover:text-[#863730]"
-                    } ${isArabic ? "flex-row-reverse text-right arabic" : "text-left"}`}
+                    } ${isArabic ? "text-right arabic" : "text-left"}`}
                   >
                     <span className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl border border-[#f0dfd5] bg-[#fff9f4] text-[#a1694b]">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <div className={`flex flex-col ${isArabic ? "items-end text-right" : ""}`}>
+                    <div className={`flex flex-col ${isArabic ? "items-end text-right" : "text-left"}`} dir={direction}>
                       <span className="text-[13px] font-semibold">{sector.title}</span>
-                      <span className="text-[11px] text-neutral-500">{`${tString(data.sectorLabel, language)} ${formatIndex(index, language)}`}</span>
                     </div>
                   </button>
                 )
