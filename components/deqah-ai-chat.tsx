@@ -33,29 +33,28 @@ type ChatCopy = {
 const CHAT_COPY: Record<Language, ChatCopy> = {
   en: {
     introMessage:
-      "Hi there! I'm Deqah AI. I can help you explore Industry 4.0 solutions, scope projects, or surface relevant case studies. How can I assist you today?",
+      "Hi there! I'm Al-Deqah. I can help you explore Industry 4.0 solutions, scope projects, or surface relevant case studies. How can I assist you today?",
     quickPromptsLabel: "Quick prompts:",
     conversationLabel: "Conversation",
-    placeholder: "Ask Deqah AI anything…",
+    placeholder: "Ask Al-Deqah anything…",
     sendLabel: "Send",
     thinkingLabel: "Thinking…",
-    errorMessage: "We ran into an issue reaching Deqah AI. Please try again in a moment.",
+    errorMessage: "We ran into an issue reaching Al-Deqah. Please try again in a moment.",
     disclaimer:
-      "Deqah AI is a prototype assistant. For sensitive or regulated projects, connect directly with our delivery team.",
-    typingLabel: "Deqah AI is typing",
+      "Al-Deqah is a prototype assistant. For sensitive or regulated projects, connect directly with our delivery team.",
+    typingLabel: "Al-Deqah is typing",
   },
   ar: {
     introMessage:
-      "مرحباً! أنا الدقة AI. أساعدك في استكشاف حلول الثورة الصناعية الرابعة، تحديد نطاق المشاريع، أو إبراز دراسات حالة ذات صلة. كيف يمكنني مساعدتك اليوم؟",
+      "مرحباً! أنا الدقة. أساعدك في استكشاف حلول الثورة الصناعية الرابعة، تحديد نطاق المشاريع، أو إبراز دراسات حالة ذات صلة. كيف يمكنني مساعدتك اليوم؟",
     quickPromptsLabel: "اقتراحات سريعة:",
     conversationLabel: "المحادثة",
-    placeholder: "اطرح أي سؤال على الدقة AI…",
+    placeholder: "اطرح أي سؤال على الدقة…",
     sendLabel: "إرسال",
     thinkingLabel: "جارٍ التفكير…",
-    errorMessage: "حدث خطأ في الوصول إلى الدقة AI. يرجى المحاولة بعد لحظات.",
-    disclaimer:
-      "الدقة AI مساعد أولي. للمشروعات الحساسة أو الخاضعة للضوابط، تواصل مباشرة مع فريقنا التنفيذي.",
-    typingLabel: "الدقة AI يكتب",
+    errorMessage: "حدث خطأ في الوصول إلى الدقة. يرجى المحاولة بعد لحظات.",
+    disclaimer: "الدقة مساعد أولي. للمشروعات الحساسة أو الخاضعة للضوابط، تواصل مباشرة مع فريقنا التنفيذي.",
+    typingLabel: "الدقة يكتب",
   },
 }
 
@@ -154,21 +153,28 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
   const isPopup = variant === "popup"
   const promptOptions = quickPrompts.slice(0, 3)
 
+  const containerClasses = cn(
+    "flex flex-1 flex-col overflow-hidden",
+    isPopup
+      ? "max-h-full rounded-none border-none bg-transparent shadow-none"
+      : "mt-6 rounded-3xl border border-gray-200 bg-white shadow-[0_25px_60px_-55px_rgba(0,0,0,0.25)]"
+  )
+
+  const headerClasses = cn(
+    "border-b px-6 py-4 text-xs font-medium text-gray-500",
+    isArabic && "arabic",
+    isPopup ? "border-white/20 bg-transparent" : "bg-gray-50/80 border-gray-100"
+  )
+
+  const footerClasses = cn(
+    "border-t px-4 py-4 sm:px-6",
+    isPopup ? "border-white/20 bg-transparent" : "border-gray-100 bg-white"
+  )
+
   return (
     <div className={cn("flex flex-col", isPopup ? "h-full" : "flex-1")}>
-      <div
-        className={cn(
-          "mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_25px_60px_-55px_rgba(0,0,0,0.25)]",
-          isPopup && "max-h-full"
-        )}
-      >
-        <div
-          className={`border-b border-gray-100 bg-gray-50/80 px-6 py-4 text-xs font-medium text-gray-500 ${
-            isArabic ? "arabic" : ""
-          }`}
-        >
-          {copy.conversationLabel}
-        </div>
+      <div className={containerClasses}>
+        <div className={headerClasses}>{copy.conversationLabel}</div>
 
         <div ref={chatContainerRef} className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
@@ -179,7 +185,7 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
           </div>
         </div>
 
-        <div className="border-t border-gray-100 bg-white px-4 py-4 sm:px-6">
+        <div className={footerClasses}>
           {promptOptions.length > 0 ? (
             <div
               className={cn(
@@ -195,7 +201,10 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
                   onClick={() => sendMessage(prompt)}
                   disabled={isLoading}
                   className={cn(
-                    "rounded-full border border-gray-200 px-3 py-1 text-[11px] text-gray-600 transition-all duration-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
+                    "rounded-full px-3 py-1 text-[11px] text-gray-600 transition-all duration-200",
+                    isPopup
+                      ? "border border-white/20 bg-white/10 hover:border-white/40 hover:bg-white/20"
+                      : "border border-gray-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
                     isArabic ? "arabic" : ""
                   )}
                 >

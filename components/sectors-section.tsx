@@ -90,8 +90,9 @@ export function SectorsSection() {
               {highlights.map((item) => (
                 <div
                   key={item.label}
+                  dir={isArabic ? "rtl" : "ltr"}
                   className={`flex items-center gap-2 rounded-[28px] px-4 py-3 text-[#a1694b] ${
-                    isArabic ? "flex-row-reverse" : ""
+                    isArabic ? "text-right" : ""
                   }`}
                 >
                   <span className="inline-flex h-2 w-2 rounded-full bg-[#a1694b]" />
@@ -118,20 +119,19 @@ export function SectorsSection() {
                     key={sector.title}
                     type="button"
                     onClick={() => setActiveIndex(index)}
-                    className={`flex w-full items-center justify-between rounded-[28px] border px-5 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#863730] ${
+                    dir={isArabic ? "rtl" : "ltr"}
+                    className={`flex w-full items-center gap-4 rounded-[28px] border px-5 py-4 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#863730] ${
                       isActive
                         ? "border-[#863730]/50 bg-[#fdf7f3] text-[#863730] shadow-[0_25px_70px_-55px_rgba(134,55,48,0.4)]"
                         : "border-[#f0e3db] bg-white text-neutral-700 hover:border-[#863730]/30 hover:text-[#863730]"
-                    } ${isArabic ? "flex-row-reverse arabic" : ""}`}
+                    } ${isArabic ? "flex-row-reverse text-right arabic" : "text-left"}`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#f0dfd5] bg-[#fff9f4] text-[#a1694b]">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <div className="flex flex-col">
-                        <span className="text-[13px] font-semibold">{sector.title}</span>
-                        <span className="text-[11px] text-neutral-500">{`${tString(data.sectorLabel, language)} ${formatIndex(index, language)}`}</span>
-                      </div>
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl border border-[#f0dfd5] bg-[#fff9f4] text-[#a1694b]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <div className={`flex flex-col ${isArabic ? "items-end text-right" : ""}`}>
+                      <span className="text-[13px] font-semibold">{sector.title}</span>
+                      <span className="text-[11px] text-neutral-500">{`${tString(data.sectorLabel, language)} ${formatIndex(index, language)}`}</span>
                     </div>
                   </button>
                 )

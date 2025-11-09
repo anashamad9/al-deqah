@@ -200,7 +200,11 @@ export default function TrainingPageContent() {
                   </span>
                   <h2 className="text-lg font-medium text-neutral-900">{item.title}</h2>
                 </div>
-                <ul className="space-y-2 text-sm text-neutral-600">
+                <ul
+                  className={`space-y-2 text-sm text-neutral-600 list-disc list-inside ${
+                    isArabic ? "pr-4" : "pl-5"
+                  }`}
+                >
                   {item.bullets.map((bullet) => (
                     <li key={bullet} className="leading-relaxed">
                       {bullet}
@@ -264,7 +268,7 @@ export default function TrainingPageContent() {
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="rounded-full border border-[#e7dcd2] bg-white/80 px-4 py-2 text-xs font-medium text-neutral-600 shadow-sm data-[state=active]:border-[#863730]/50 data-[state=active]:text-[#863730]"
+                  className="rounded-full border border-[#e7dcd2] bg-white/80 px-4 py-2 text-xs font-medium text-neutral-600 shadow-sm transition-colors duration-200 data-[state=active]:border-[#863730] data-[state=active]:bg-[#863730] data-[state=active]:text-white"
                 >
                   {category.title[language]}
                 </TabsTrigger>
@@ -285,9 +289,11 @@ export default function TrainingPageContent() {
                         <h3 className="text-lg font-medium text-neutral-900">{program.title[language]}</h3>
                         <p className="mt-2 text-sm text-[#863730]">{program.hours[language]}</p>
                       </div>
-                      <div className={`flex items-center gap-2 text-xs font-medium text-neutral-500 ${
-                        isArabic ? "flex-row-reverse" : ""
-                      }`}>
+                      <div
+                        className={`flex items-center gap-2 text-xs font-medium text-neutral-500 ${
+                          isArabic ? "flex-row-reverse self-end text-right" : ""
+                        }`}
+                      >
                         <span>{isArabic ? "عرض التفاصيل" : "View details"}</span>
                         <Sparkles className="h-4 w-4 text-[#863730] transition-transform group-hover:scale-110" />
                       </div>
@@ -321,7 +327,10 @@ export default function TrainingPageContent() {
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent
-          className={`max-w-lg bg-white text-neutral-900 dark:bg-neutral-950/95 dark:text-neutral-100 ${isArabic ? "text-right arabic" : ""}`}
+          dir={isArabic ? "rtl" : "ltr"}
+          className={`max-w-lg bg-white text-neutral-900 dark:bg-neutral-950/95 dark:text-neutral-100 ${
+            isArabic ? "text-right arabic" : ""
+          }`}
         >
           {selectedProgram ? (
             <>
@@ -335,10 +344,14 @@ export default function TrainingPageContent() {
               </DialogHeader>
               <ScrollArea className="mt-4 max-h-[50vh] text-sm text-neutral-700 dark:text-neutral-300">
                 <p className="mb-3 font-medium text-neutral-900 dark:text-neutral-100">{copy.dialogObjectives}</p>
-                <ul className="space-y-2">
+                <ul className={`space-y-2 ${isArabic ? "text-right" : ""}`}>
                   {selectedProgram.objectives[language].map((objective) => (
                     <li key={objective} className="leading-relaxed">
-                      <div className="flex items-start gap-3">
+                      <div
+                        className={`flex items-start gap-3 ${
+                          isArabic ? "flex-row-reverse text-right" : ""
+                        }`}
+                      >
                         <span className="mt-1 h-2 w-2 flex-none rounded-full bg-[#863730]" />
                         <span className="text-neutral-700 dark:text-neutral-300">{objective}</span>
                       </div>

@@ -79,7 +79,7 @@ export function PartnersBar() {
               {PARTNER_LOGOS.map((logo) => (
                 <div
                   key={logo.src}
-                  className="group flex h-20 w-40 flex-none items-center justify-center overflow-hidden rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
+                  className="group mx-6 flex h-20 w-40 min-w-[160px] flex-none items-center justify-center overflow-hidden rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
                 >
                   <img
                     src={logo.src}
@@ -103,7 +103,7 @@ export function PartnersBar() {
               {PARTNER_LOGOS.map((logo) => (
                 <div
                   key={`${logo.src}-duplicate`}
-                  className="group flex h-20 w-40 flex-none items-center justify-center overflow-hidden rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
+                  className="group mx-6 flex h-20 w-40 min-w-[160px] flex-none items-center justify-center overflow-hidden rounded-3xl bg-white/90 px-6 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.45)] ring-1 ring-black/[0.04]"
                 >
                   <img
                     src={logo.src}

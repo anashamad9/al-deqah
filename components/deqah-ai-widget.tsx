@@ -31,8 +31,8 @@ const QUICK_PROMPTS: Record<Language, string[]> = {
 }
 
 const CLOSE_LABELS: Record<Language, string> = {
-  en: "Close Deqah AI chat",
-  ar: "إغلاق محادثة الدقة AI",
+  en: "Close Al-Deqah chat",
+  ar: "إغلاق محادثة الدقة",
 }
 
 export function DeqahAIProvider({ children }: { children: ReactNode }) {
@@ -94,18 +94,18 @@ function DeqahAIPopup() {
 
       <div
         ref={containerRef}
-        className="relative z-10 w-full max-w-lg shadow-[0_30px_70px_-35px_rgba(0,0,0,0.65)]"
+        className="relative z-10 w-full max-w-xl shadow-[0_40px_100px_-40px_rgba(15,23,42,0.65)]"
       >
         <button
           type="button"
           onClick={close}
-          className="absolute -right-2 -top-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:text-gray-900"
+          className="absolute -right-2 -top-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/50 bg-white/90 text-gray-600 shadow-sm transition-colors hover:text-gray-900"
           aria-label={CLOSE_LABELS[language]}
         >
           <span className="text-lg leading-none">&times;</span>
         </button>
 
-        <div className="flex max-h-[90vh] min-h-[420px] flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white p-4 shadow-[0_20px_55px_-35px_rgba(0,0,0,0.6)] sm:max-h-[76vh] sm:p-6">
+        <div className="flex max-h-[88vh] min-h-[480px] flex-col overflow-hidden rounded-[36px] border border-white/30 bg-white/95 p-5 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.55)] sm:max-h-[80vh] sm:p-6">
           <DeqahAIChat quickPrompts={QUICK_PROMPTS[language]} variant="popup" />
         </div>
       </div>

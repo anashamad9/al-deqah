@@ -78,7 +78,7 @@ const FOOTER_COPY: Record<
     companyLinks: {
       about: "About",
       contact: "Contact",
-      deqahAI: "Deqah AI",
+      deqahAI: "Al-Deqah",
       insights: "Industry Insights",
     },
     contactItems: {
@@ -114,7 +114,7 @@ const FOOTER_COPY: Record<
     companyLinks: {
       about: "من نحن",
       contact: "تواصل معنا",
-      deqahAI: "الدقة AI",
+      deqahAI: "الدقة",
       insights: "رؤى صناعية",
     },
     contactItems: {
@@ -165,20 +165,26 @@ export default function Footer() {
 
       <div className="relative mx-auto max-w-7xl px-8 py-20 lg:py-24">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,340px)_1fr]">
-          <div className="space-y-10">
-            <div className="space-y-6">
-              <div className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse text-right" : ""}`}>
+          <div className="space-y-10" dir={isArabic ? "rtl" : "ltr"}>
+            <div className={`space-y-6 ${isArabic ? "text-right" : ""}`}>
+              <div
+                dir={isArabic ? "rtl" : "ltr"}
+                className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse justify-end text-right" : ""}`}
+              >
                 <div className="flex size-14 items-center justify-center rounded-full bg-white/10">
                   <Image src="/logo-2.png" alt="Al-Deqah logo" width={52} height={68} className="h-10 w-auto" />
                 </div>
-                <div className={isArabic ? "text-right arabic" : ""}>
+                <div className={isArabic ? "text-right arabic" : ""} dir={isArabic ? "rtl" : "ltr"}>
                   <p className={`text-xs uppercase tracking-[0.35em] text-[#863730] ${isArabic ? "arabic" : ""}`}>
                     {copy.brandLabel}
                   </p>
                   <p className={`text-sm font-light text-white/70 ${isArabic ? "arabic" : ""}`}>{copy.brandTagline}</p>
                 </div>
               </div>
-              <p className={`text-sm font-light text-white/70 leading-relaxed ${isArabic ? "arabic text-right" : ""}`}>
+              <p
+                dir={isArabic ? "rtl" : "ltr"}
+                className={`text-sm font-light text-white/70 leading-relaxed ${isArabic ? "arabic text-right" : ""}`}
+              >
                 {copy.description}
               </p>
             </div>
@@ -217,8 +223,9 @@ export default function Footer() {
                 const label = copy.contactItems[item.key]
                 const content = (
                   <div
+                    dir={isArabic ? "rtl" : "ltr"}
                     className={`flex items-center gap-3 text-sm font-light text-white/70 transition-colors duration-200 hover:text-white ${
-                      isArabic ? "flex-row-reverse text-right arabic" : ""
+                      isArabic ? "flex-row-reverse justify-end text-right arabic" : ""
                     }`}
                   >
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[#863730]">

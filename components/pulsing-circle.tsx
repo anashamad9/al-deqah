@@ -13,7 +13,7 @@ export default function PulsingCircle() {
     language === "ar"
       ? "شركة الدقة مذهلة • شركة الدقة مذهلة • شركة الدقة مذهلة • شركة الدقة مذهلة •"
       : "Al-Deqah is amazing • Al-Deqah is amazing • Al-Deqah is amazing • Al-Deqah is amazing •"
-  const ariaLabel = language === "ar" ? "افتح محادثة الدقة AI" : "Open Deqah AI chat"
+  const ariaLabel = language === "ar" ? "افتح محادثة الدقة" : "Open Al-Deqah chat"
 
   return (
     <div className={`absolute bottom-8 z-30 ${language === "ar" ? "left-8" : "right-8"}`}>

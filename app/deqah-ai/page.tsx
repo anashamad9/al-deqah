@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation"
 
 export const metadata = {
-  title: "Deqah AI Assistant",
+  title: "Al-Deqah Assistant",
   description:
-    "Chat with Deqah AI to explore Al-Deqah’s immersive, intelligent, and connected Industry 4.0 capabilities.",
+    "Chat with Al-Deqah to explore our immersive, intelligent, and connected Industry 4.0 capabilities.",
 }
 
 export default function DeqahAIPage() {

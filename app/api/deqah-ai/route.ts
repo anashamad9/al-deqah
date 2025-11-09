@@ -37,7 +37,7 @@ export async function POST(request: Request) {
           {
             role: "system",
             content:
-              "You are Deqah AI, a helpful assistant representing Al-Deqah Tech. Provide concise, practical guidance about Industry 4.0, immersive technologies, AI, IoT, and the company’s capabilities. When relevant, recommend workshops, discovery sprints, or managed services. Keep responses professional, empathetic, and tailored to organizations in the Middle East.",
+              "You are Al-Deqah, a helpful assistant representing Al-Deqah Tech. Provide concise, practical guidance about Industry 4.0, immersive technologies, AI, IoT, and the company’s capabilities. When relevant, recommend workshops, discovery sprints, or managed services. Keep responses professional, empathetic, and tailored to organizations in the Middle East.",
           },
           ...trimmedMessages,
         ],
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     if (!response.ok) {
       const errorText = await response.text()
       console.error("OpenAI API Error:", errorText)
-      return NextResponse.json({ error: "Failed to fetch response from Deqah AI." }, { status: 502 })
+      return NextResponse.json({ error: "Failed to fetch response from Al-Deqah." }, { status: 502 })
     }
 
     const data = await response.json()
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
       } satisfies ChatMessage,
     })
   } catch (error) {
-    console.error("Deqah AI route error:", error)
+    console.error("Al-Deqah chat route error:", error)
     return NextResponse.json({ error: "Unexpected error." }, { status: 500 })
   }
 }

@@ -220,7 +220,7 @@ function ServiceStackCard({ title, description, href, index, total, serviceKey, 
           <h3 className="mt-5 text-3xl font-light leading-snug text-gray-900 md:text-4xl">{title}</h3>
           <p className="mt-6 text-sm leading-relaxed text-gray-600 md:text-base">{description}</p>
 
-          <div className={`mt-8 flex flex-wrap gap-3 ${isArabic ? "justify-end" : ""}`}>
+          <div className={`mt-8 flex flex-wrap gap-3 ${isArabic ? "flex-row-reverse justify-end" : ""}`}>
             {tokens.map((token) => (
               <span
                 key={`${token}-${language}`}
@@ -235,7 +235,7 @@ function ServiceStackCard({ title, description, href, index, total, serviceKey, 
             <Link
               href={href}
               className={`mt-10 inline-flex items-center gap-3 text-sm font-medium text-[#863730] transition-transform duration-200 hover:translate-y-[-2px] ${
-                isArabic ? "flex-row-reverse arabic" : ""
+                isArabic ? "flex-row-reverse self-end text-right arabic" : ""
               }`}
             >
               <span className={`${exploreTextClass}`}>{exploreLabel}</span>
@@ -353,7 +353,7 @@ function CardVisualization({ language, isArabic, title, solutionLabel, tokens, a
         {solutionLabel}
       </div>
 
-      <div className={`mt-3 flex flex-wrap gap-2 ${isArabic ? "justify-end" : ""}`}>
+      <div className={`mt-3 flex flex-wrap gap-2 ${isArabic ? "flex-row-reverse justify-end" : ""}`}>
         {tokens.slice(0, 2).map((token) => (
           <span
             key={`card-${token}-${language}`}
