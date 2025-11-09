@@ -143,7 +143,7 @@ export default function NavBar({
     <>
       <header
         className={cn(
-          "fixed left-1/2 top-6 z-50 flex w-[min(calc(100%-3rem),1100px)] -translate-x-1/2 items-center justify-between rounded-[32px] px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
+          "fixed left-1/2 top-6 z-50 flex w-[min(calc(100%-2rem),1250px)] -translate-x-1/2 items-center justify-between rounded-[32px] px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
           backgroundClasses,
           className
         )}
@@ -313,7 +313,7 @@ export default function NavBar({
           <button type="button" className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={closeMobileMenu} aria-label="Close menu overlay" />
           <div
             className={cn(
-              "absolute left-1/2 top-[120px] w-[min(calc(100%-2.5rem),520px)] -translate-x-1/2 rounded-[32px] border border-neutral-200/70 bg-white/95 p-6 shadow-2xl",
+              "absolute left-1/2 top-[120px] max-h-[calc(100vh-160px)] w-[min(calc(100%-2.5rem),520px)] -translate-x-1/2 overflow-y-auto rounded-[32px] border border-neutral-200/70 bg-white/95 p-6 shadow-2xl",
               language === "ar" && "text-right arabic"
             )}
           >
@@ -322,7 +322,17 @@ export default function NavBar({
                 <p className="text-xs uppercase tracking-[0.35em] text-[#a05a3c]">
                   {language === "ar" ? "القائمة" : "Menu"}
                 </p>
-                {showLanguageToggle ? <LanguageToggle variant="light" /> : null}
+                <div className="flex items-center gap-3">
+                  {showLanguageToggle ? <LanguageToggle variant="light" /> : null}
+                  <button
+                    type="button"
+                    onClick={closeMobileMenu}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-sm"
+                    aria-label={language === "ar" ? "إغلاق القائمة" : "Close menu"}
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
 
               <div className="space-y-4">

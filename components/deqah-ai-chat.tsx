@@ -203,7 +203,38 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
   return (
     <div className={cn("flex min-h-0 flex-col", isPopup ? "h-full" : "flex-1")}>
       <div className={containerClasses}>
-        <div className={headerClasses}>{copy.conversationLabel}</div>
+        <div className={headerClasses}>
+          <div className="flex flex-col gap-3">
+            <div>{copy.conversationLabel}</div>
+            {promptOptions.length > 0 ? (
+              <div
+                className={cn(
+                  "flex flex-wrap items-center gap-2 text-[11px] font-medium text-gray-500",
+                  isArabic ? "justify-end text-right arabic" : ""
+                )}
+              >
+                <span className="text-gray-400">{copy.quickPromptsLabel}</span>
+                {promptOptions.map((prompt) => (
+                  <button
+                    key={prompt}
+                    type="button"
+                    onClick={() => sendMessage(prompt)}
+                    disabled={isLoading}
+                    className={cn(
+                      "rounded-full border px-3 py-1 text-[11px] text-gray-600 transition-all duration-200",
+                      isPopup
+                        ? "border-white/20 bg-white/10 hover:border-white/40 hover:bg-white/20"
+                        : "border-gray-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
+                      isArabic ? "arabic" : ""
+                    )}
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
 
         <div className="relative flex-1 min-h-0">
           <div
@@ -234,33 +265,6 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
         </div>
 
         <div className={footerClasses}>
-          {promptOptions.length > 0 ? (
-            <div
-              className={cn(
-                "mb-3 flex flex-wrap items-center gap-2 text-[11px] font-medium text-gray-500",
-                isArabic ? "justify-end text-right arabic" : ""
-              )}
-            >
-              <span className="text-gray-400">{copy.quickPromptsLabel}</span>
-              {promptOptions.map((prompt) => (
-                <button
-                  key={prompt}
-                  type="button"
-                  onClick={() => sendMessage(prompt)}
-                  disabled={isLoading}
-                  className={cn(
-                    "rounded-full px-3 py-1 text-[11px] text-gray-600 transition-all duration-200",
-                    isPopup
-                      ? "border border-white/20 bg-white/10 hover:border-white/40 hover:bg-white/20"
-                      : "border border-gray-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
-                    isArabic ? "arabic" : ""
-                  )}
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-          ) : null}
           <form
             className={`mx-auto flex w-full max-w-4xl items-end gap-3 ${isArabic ? "flex-row-reverse text-right" : ""}`}
             onSubmit={handleSubmit}
@@ -272,14 +276,14 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={handleTextareaKeyDown}
               disabled={isLoading}
-              className={`max-h-40 flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-3 text-base font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730]/60 focus:ring-0 disabled:opacity-60 ${
+              className={`max-h-40 flex-1 resize-none rounded-2xl border border-[#863730]/40 bg-white px-4 py-3 text-base font-light text-gray-700 outline-none transition-colors duration-200 focus:border-[#863730] focus:ring-0 disabled:opacity-60 ${
                 isArabic ? "arabic text-right" : ""
               }`}
             />
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className={`rounded-full bg-[#0c0805] px-5 py-2 text-xs font-medium text-white transition-transform duration-200 hover:scale-[1.02] disabled:pointer-events-none disabled:opacity-60 ${
+              className={`rounded-full bg-[#863730] px-5 py-2 text-xs font-medium text-white transition-transform duration-200 hover:scale-[1.02] disabled:pointer-events-none disabled:opacity-60 ${
                 isArabic ? "arabic" : ""
               }`}
             >

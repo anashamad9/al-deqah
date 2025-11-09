@@ -332,7 +332,7 @@ export default function Footer() {
                     const content = (
                       <>
                         <span className={isArabic ? "arabic" : ""}>{link.label}</span>
-                        <ArrowUpRight className="h-3 w-3 text-[#863730]/70" />
+                        <ArrowUpRight className="h-3 w-3 text-white/70" />
                       </>
                     )
 
