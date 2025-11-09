@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { ArrowDown } from "lucide-react"
 
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
@@ -28,6 +29,7 @@ type ChatCopy = {
   errorMessage: string
   disclaimer: string
   typingLabel: string
+  scrollToBottomLabel: string
 }
 
 const CHAT_COPY: Record<Language, ChatCopy> = {
@@ -43,6 +45,7 @@ const CHAT_COPY: Record<Language, ChatCopy> = {
     disclaimer:
       "Al-Deqah is a prototype assistant. For sensitive or regulated projects, connect directly with our delivery team.",
     typingLabel: "Al-Deqah is typing",
+    scrollToBottomLabel: "Scroll to latest",
   },
   ar: {
     introMessage:
@@ -55,6 +58,7 @@ const CHAT_COPY: Record<Language, ChatCopy> = {
     errorMessage: "حدث خطأ في الوصول إلى الدقة. يرجى المحاولة بعد لحظات.",
     disclaimer: "الدقة مساعد أولي. للمشروعات الحساسة أو الخاضعة للضوابط، تواصل مباشرة مع فريقنا التنفيذي.",
     typingLabel: "الدقة يكتب",
+    scrollToBottomLabel: "التمرير للأسفل",
   },
 }
 
@@ -72,6 +76,7 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
+  const [isAtBottom, setIsAtBottom] = useState(true)
 
   useEffect(() => {
     setMessages((prev) => {
@@ -98,10 +103,31 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
 
   useEffect(() => {
     const container = chatContainerRef.current
-    if (container) {
-      container.scrollTop = container.scrollHeight
+    if (!container) return
+
+    const handleScroll = () => {
+      const distanceFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight
+      setIsAtBottom(distanceFromBottom <= 120)
     }
-  }, [messages, isLoading])
+
+    handleScroll()
+    container.addEventListener("scroll", handleScroll, { passive: true })
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  const scrollToBottom = (behavior: ScrollBehavior = "smooth") => {
+    const container = chatContainerRef.current
+    if (!container) return
+    container.scrollTo({ top: container.scrollHeight, behavior })
+  }
+
+  useEffect(() => {
+    if (!isAtBottom) return
+    scrollToBottom("instant")
+  }, [messages, isLoading, isAtBottom])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -152,9 +178,10 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
 
   const isPopup = variant === "popup"
   const promptOptions = quickPrompts.slice(0, 3)
+  const showScrollButton = !isAtBottom
 
   const containerClasses = cn(
-    "flex flex-1 flex-col overflow-hidden",
+    "flex min-h-0 flex-1 flex-col overflow-hidden",
     isPopup
       ? "max-h-full rounded-none border-none bg-transparent shadow-none"
       : "mt-6 rounded-3xl border border-gray-200 bg-white shadow-[0_25px_60px_-55px_rgba(0,0,0,0.25)]"
@@ -171,18 +198,39 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
     isPopup ? "border-white/20 bg-transparent" : "border-gray-100 bg-white"
   )
 
+  const scrollContainerStyle = isPopup ? ({ WebkitOverflowScrolling: "touch" } as const) : undefined
+
   return (
-    <div className={cn("flex flex-col", isPopup ? "h-full" : "flex-1")}>
+    <div className={cn("flex min-h-0 flex-col", isPopup ? "h-full" : "flex-1")}>
       <div className={containerClasses}>
         <div className={headerClasses}>{copy.conversationLabel}</div>
 
-        <div ref={chatContainerRef} className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-          <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
-            {messages.map((message, index) => (
-              <ChatBubble key={`${message.role}-${index}`} message={message} language={language} />
-            ))}
-            {isLoading ? <TypingIndicator label={copy.typingLabel} isArabic={isArabic} /> : null}
+        <div className="relative flex-1 min-h-0">
+          <div
+            ref={chatContainerRef}
+            className="flex h-full min-h-0 max-h-full flex-col overflow-y-auto px-4 py-6 sm:px-6"
+            style={scrollContainerStyle}
+          >
+            <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+              {messages.map((message, index) => (
+                <ChatBubble key={`${message.role}-${index}`} message={message} language={language} />
+              ))}
+              {isLoading ? <TypingIndicator label={copy.typingLabel} isArabic={isArabic} /> : null}
+            </div>
           </div>
+          {showScrollButton ? (
+            <button
+              type="button"
+              onClick={() => scrollToBottom()}
+              className={cn(
+                "pointer-events-auto absolute bottom-4 inline-flex items-center gap-2 rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white shadow-lg transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#863730]/40",
+                isArabic ? "left-4 flex-row-reverse" : "right-4"
+              )}
+            >
+              <ArrowDown className="h-4 w-4" />
+              <span className={isArabic ? "arabic" : ""}>{copy.scrollToBottomLabel}</span>
+            </button>
+          ) : null}
         </div>
 
         <div className={footerClasses}>

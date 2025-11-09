@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
-import { Layers3, ShieldHalf, Info, BookOpen, Handshake, Newspaper } from "lucide-react"
+import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Images, Menu, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
@@ -19,6 +19,7 @@ const NAV_LINKS = [
   { key: "about", href: "/about", icon: Info },
   { key: "blog", href: "/blog", icon: Newspaper, soon: true },
   { key: "partners", href: "/partners", icon: Handshake },
+  { key: "gallery", href: "/gallery", icon: Images },
 ] as const
 
 const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], string>> = {
@@ -28,6 +29,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
     about: "About Us",
     blog: "Blog",
     partners: "Partners",
+    gallery: "Our Gallery",
   },
   ar: {
     solutions: "خدماتنا",
@@ -35,6 +37,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
     about: "من نحن",
     blog: "المدونة",
     partners: "الشركاء",
+    gallery: "معرضنا",
   },
 }
 
@@ -62,6 +65,7 @@ export default function NavBar({
 }: NavBarProps) {
   const { language } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -122,23 +126,34 @@ export default function NavBar({
       ? "bg-white text-[#0c0805] hover:shadow-[0_12px_22px_-12px_rgba(255,255,255,0.65)]"
       : "bg-white text-[#0c0805] hover:bg-white hover:shadow-[0_15px_30px_-12px_rgba(134,55,48,0.45)]"
 
-  return (
-    <header
-      className={cn(
-        "fixed left-1/2 top-6 z-50 flex w-[min(calc(100%-3rem),1100px)] -translate-x-1/2 items-center justify-between rounded-[32px] px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
-        backgroundClasses,
-        className
-      )}
-    >
-      {showLogo ? (
-        <Link href="/" className="flex items-center" aria-label="Al-Deqah home">
-          <Image src="/logo-2.png" alt="Al-Deqah logo" width={60} height={78} priority className="h-10 w-auto" />
-        </Link>
-      ) : (
-        <span />
-      )}
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", isMobileMenuOpen)
+    return () => {
+      document.body.classList.remove("overflow-hidden")
+    }
+  }, [isMobileMenuOpen])
 
-      <nav className="hidden items-center gap-2 md:flex">
+  const closeMobileMenu = () => setIsMobileMenuOpen(false)
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev)
+
+  return (
+    <>
+      <header
+        className={cn(
+          "fixed left-1/2 top-6 z-50 flex w-[min(calc(100%-3rem),1100px)] -translate-x-1/2 items-center justify-between rounded-[32px] px-5 py-3 transition-all duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-8",
+          backgroundClasses,
+          className
+        )}
+      >
+        {showLogo ? (
+          <Link href="/" className="flex items-center" aria-label="Al-Deqah home">
+            <Image src="/logo-2.png" alt="Al-Deqah logo" width={60} height={78} priority className="h-10 w-auto" />
+          </Link>
+        ) : (
+          <span />
+        )}
+
+        <nav className="hidden items-center gap-2 md:flex">
         {NAV_LINKS.map((item) => {
           const Icon = item.icon
           const isSoon = Boolean((item as { soon?: boolean }).soon)
@@ -242,39 +257,131 @@ export default function NavBar({
             </Link>
           )
         })}
-      </nav>
+        </nav>
 
-      <div className="flex items-center gap-3">
-        {showLanguageToggle ? <LanguageToggle variant={variant} /> : null}
-        {showAssistantCta ? (
-          <Link
-            href="/services"
-            id="gooey-btn"
-            className="group relative flex items-center transition-transform duration-200 hover:-translate-y-0.5"
-            style={{ filter: "url(#gooey-filter)" }}
+        <div className="hidden items-center gap-3 md:flex">
+          {showLanguageToggle ? <LanguageToggle variant={variant} /> : null}
+          {showAssistantCta ? (
+            <Link
+              href="/services"
+              id="gooey-btn"
+              className="group relative flex items-center transition-transform duration-200 hover:-translate-y-0.5"
+              style={{ filter: "url(#gooey-filter)" }}
+            >
+              <span
+                className={cn(
+                  "absolute right-0 flex h-8 w-8 items-center justify-center -translate-x-10 rounded-full transition-all duration-300 group-hover:-translate-x-19",
+                  ctaBubbleClasses
+                )}
+              >
+                <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </span>
+              <span
+                className={cn(
+                  "z-10 flex h-8 items-center rounded-full px-6 py-2 text-xs font-normal transition-all duration-300",
+                  ctaMainClasses,
+                  language === "ar" && "arabic"
+                )}
+              >
+                {CTA_LABELS[language]}
+              </span>
+            </Link>
+          ) : null}
+        </div>
+
+        <button
+          type="button"
+          onClick={toggleMobileMenu}
+          className={cn(
+            "inline-flex items-center justify-center rounded-full border border-white/20 p-2 text-sm text-neutral-700 transition hover:bg-white/80 md:hidden",
+            variant === "dark" ? "border-white/30 text-white hover:bg-white/10" : "border-neutral-200 bg-white/90"
+          )}
+          aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </header>
+
+      {isMobileMenuOpen ? (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <button type="button" className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={closeMobileMenu} aria-label="Close menu overlay" />
+          <div
+            className={cn(
+              "absolute left-1/2 top-[120px] w-[min(calc(100%-2.5rem),520px)] -translate-x-1/2 rounded-[32px] border border-neutral-200/70 bg-white/95 p-6 shadow-2xl",
+              language === "ar" && "text-right arabic"
+            )}
           >
-            <span
-              className={cn(
-                "absolute right-0 flex h-8 w-8 items-center justify-center -translate-x-10 rounded-full transition-all duration-300 group-hover:-translate-x-19",
-                ctaBubbleClasses
-              )}
-            >
-              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
-            </span>
-            <span
-              className={cn(
-                "z-10 flex h-8 items-center rounded-full px-6 py-2 text-xs font-normal transition-all duration-300",
-                ctaMainClasses,
-                language === "ar" && "arabic"
-              )}
-            >
-              {CTA_LABELS[language]}
-            </span>
-          </Link>
-        ) : null}
-      </div>
-    </header>
+            <div className="space-y-5">
+              <div className="flex items-center justify-between">
+                <p className="text-xs uppercase tracking-[0.35em] text-[#a05a3c]">
+                  {language === "ar" ? "القائمة" : "Menu"}
+                </p>
+                {showLanguageToggle ? <LanguageToggle variant="light" /> : null}
+              </div>
+
+              <div className="space-y-4">
+                {NAV_LINKS.map((item) => {
+                  const Icon = item.icon
+                  const label = navLabels[item.key as keyof typeof navLabels]
+                  const isSoon = Boolean((item as { soon?: boolean }).soon)
+                  return (
+                    <div key={item.key} className="space-y-2">
+                      <Link
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className="flex items-center gap-3 rounded-2xl border border-transparent bg-white/70 px-4 py-3 text-base font-medium text-neutral-900 shadow-sm"
+                      >
+                        <Icon className="h-5 w-5 text-[#a05a3c]" strokeWidth={1.6} />
+                        <span>{label}</span>
+                        {isSoon ? (
+                          <span className="rounded-full border border-[#e6d3c8] bg-[#fdf7f3] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#a05a3c]">
+                            {language === "ar" ? "قريباً" : "Soon"}
+                          </span>
+                        ) : null}
+                      </Link>
+                      {item.key === "solutions" ? (
+                        <div className="space-y-2 rounded-2xl border border-neutral-200/60 bg-white/80 p-4">
+                          {solutionMenuItems.map((solution) => (
+                            <Link
+                              key={solution.slug}
+                              href={solution.slug}
+                              onClick={closeMobileMenu}
+                              className="block rounded-xl px-3 py-2 text-sm text-neutral-600 hover:bg-[#fdf7f3]"
+                            >
+                              <p className="font-semibold text-neutral-900">{solution.name}</p>
+                              <p className="text-xs text-neutral-500">{solution.tagline}</p>
+                            </Link>
+                          ))}
+                          <Link
+                            href="/solutions"
+                            onClick={closeMobileMenu}
+                            className="mt-2 inline-flex items-center justify-center rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white"
+                          >
+                            {viewAllLabel}
+                          </Link>
+                        </div>
+                      ) : null}
+                    </div>
+                  )
+                })}
+              </div>
+
+              {showAssistantCta ? (
+                <Link
+                  href="/services"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-center rounded-2xl bg-[#863730] px-5 py-3 text-sm font-medium text-white shadow-lg"
+                >
+                  {language === "ar" ? "استكشف خدماتنا" : "Explore Services"}
+                </Link>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
   )
 }
