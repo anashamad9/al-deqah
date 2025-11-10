@@ -148,7 +148,13 @@ export function SectorsSection() {
                 <span>{isArabic ? "القطاع المختار" : "Selected sector"}</span>
               </div>
               <h3 className="text-2xl font-light text-[#0f172a] drop-shadow-sm">{activeSector.title}</h3>
-              <p className="text-sm leading-relaxed text-slate-700 drop-shadow-sm">{activeSector.description}</p>
+              <div className="space-y-3 text-sm leading-relaxed text-slate-700 drop-shadow-sm">
+                {activeSector.description.split("•").map((paragraph, index) => (
+                  <p key={index} className={paragraph.trim().startsWith("-") ? "pl-4" : ""}>
+                    {paragraph.trim()}
+                  </p>
+                ))}
+              </div>
             </div>
             <div className="border-t border-white/70 bg-white/90 p-5 text-xs text-[#a1694b]">
               {isArabic

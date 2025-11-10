@@ -177,17 +177,17 @@ export default function NavBar({
                 <HoverCardContent
                   align="start"
                   className={cn(
-                    "w-[640px] rounded-3xl border border-neutral-200/60 bg-white/95 p-0 shadow-[0_40px_120px_-70px_rgba(15,23,42,0.4)] backdrop-blur",
+                    "w-[720px] rounded-3xl border border-neutral-200/60 bg-white/95 p-0 shadow-[0_40px_120px_-70px_rgba(15,23,42,0.4)] backdrop-blur",
                     language === "ar" && "text-right arabic"
                   )}
                 >
                   <div
                     className={cn(
-                      "grid overflow-hidden md:grid-cols-[1.2fr_2fr]",
+                      "grid overflow-hidden rounded-3xl md:grid-cols-[1.2fr_2fr]",
                       language === "ar" ? "md:grid-flow-col-dense" : ""
                     )}
                   >
-                    <div className="flex flex-col justify-between gap-6 bg-gradient-to-br from-[#fdf7f3] via-white to-[#f3e7e0] p-6">
+                    <div className="flex flex-col justify-between gap-5 bg-gradient-to-br from-[#fdf7f3] via-white to-[#f3e7e0] p-5">
                       <div className="space-y-3">
                         <h3 className="text-lg font-medium text-neutral-900">{label}</h3>
                         <p className="text-sm text-neutral-600">
@@ -206,18 +206,18 @@ export default function NavBar({
                         <span>{viewAllLabel}</span>
                       </Link>
                     </div>
-                    <div className="flex flex-col gap-2 p-6">
+                    <div className="grid gap-1.5 p-5 sm:grid-cols-2">
                       {solutionMenuItems.map((solutionItem) => (
                         <Link
                           key={solutionItem.slug}
                           href={solutionItem.slug}
                           className={cn(
-                            "group flex flex-col gap-1 rounded-2xl border border-transparent px-4 py-3 text-left transition-all duration-200 hover:border-[#863730]/40 hover:bg-[#fdf7f3] hover:shadow-sm",
+                            "group flex flex-col gap-1 rounded-2xl border border-transparent px-3 py-2 text-left transition-all duration-200 hover:border-[#863730]/40 hover:bg-[#fdf7f3] hover:shadow-sm",
                             language === "ar" && "text-right arabic"
                           )}
                         >
-                          <span className="text-sm font-medium text-neutral-900">{solutionItem.name}</span>
-                          <span className="text-xs text-neutral-500 leading-relaxed">{solutionItem.tagline}</span>
+                          <span className="text-[13px] font-medium text-neutral-900">{solutionItem.name}</span>
+                          <span className="text-[11px] text-neutral-500 leading-relaxed">{solutionItem.tagline}</span>
                         </Link>
                       ))}
                     </div>

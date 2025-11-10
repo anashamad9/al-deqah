@@ -14,60 +14,52 @@ export default function FloatingChatButton() {
       type="button"
       onClick={open}
       aria-label={label}
-      className={`group fixed bottom-6 z-50 flex items-center justify-center rounded-full border border-transparent bg-transparent p-1.5 text-xs transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] sm:bottom-8 ${
+      className={`group fixed bottom-5 z-50 flex items-center justify-center rounded-full border border-transparent bg-transparent text-xs transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] sm:bottom-7 ${
         isArabic ? "left-5 sm:left-8" : "right-5 sm:right-8"
       }`}
     >
       <span className="relative flex flex-col items-center">
-        <span className="scale-[0.78] origin-bottom sm:scale-[0.85]">
-          <span className="relative flex w-20 flex-col items-center transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.05]">
-            <span
-              className={`pointer-events-none absolute -top-1 flex h-10 w-14 items-center justify-center rounded-[26px] bg-gradient-to-b from-[#ffbda9] to-[#f17166] text-[9px] font-semibold text-white shadow-[0_18px_35px_-22px_rgba(0,0,0,0.9)] ${
-                isArabic ? "-left-20" : "-right-20"
-              }`}
-              aria-hidden="true"
-            >
-              <span className="flex gap-1">
-                <span className="h-2 w-2 rounded-full bg-white/85" />
-                <span className="h-2 w-2 rounded-full bg-white/85" />
-                <span className="h-2 w-2 rounded-full bg-white/85" />
-              </span>
-            </span>
-            <span className="relative flex flex-col items-center pt-2">
-              <span
-                className="pointer-events-none absolute inset-x-4 bottom-0 h-3 rounded-full bg-[#c08474]/30 blur-md"
-                aria-hidden="true"
-              />
-              <span className="relative flex h-16 w-16 items-center justify-center">
-                <span
-                  className="absolute -left-2 h-10 w-3 rounded-[18px] bg-[#2f1a18]/50 shadow-[0_12px_20px_-12px_rgba(0,0,0,0.8)]"
-                  aria-hidden="true"
-                />
-                <span
-                  className="absolute -right-2 h-10 w-3 rounded-[18px] bg-[#1a0d0c] shadow-[0_12px_20px_-12px_rgba(0,0,0,0.8)]"
-                  aria-hidden="true"
-                />
-                <span
-                  className="absolute -top-4 flex h-5 w-5 items-center justify-center rounded-full bg-[#110807] shadow-[0_10px_18px_-12px_rgba(0,0,0,0.8)]"
-                  aria-hidden="true"
-                >
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/70" />
-                </span>
-                <span className="absolute inset-0 rounded-[26px] bg-gradient-to-b from-[#ffe6d5] via-[#f4a891] to-[#c85f54] shadow-[0_35px_60px_-30px_rgba(0,0,0,0.8)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_45px_70px_-35px_rgba(0,0,0,0.9)]" />
-                <span className="absolute inset-[3px] rounded-[22px] bg-gradient-to-b from-[#fff9f4] to-[#f7c6b6] shadow-inner transition-transform duration-300 group-hover:-translate-y-[0.5px]" />
-                <span className="relative z-10 flex flex-col items-center gap-2">
-                  <span className="flex gap-2">
-                    <span className="h-2 w-3 rounded-full bg-gradient-to-b from-[#fff7cb] to-[#f5b768] shadow-[0_2px_8px_rgba(0,0,0,0.35)]" />
-                    <span className="h-2 w-3 rounded-full bg-gradient-to-b from-[#fff7cb] to-[#f5b768] shadow-[0_2px_8px_rgba(0,0,0,0.35)]" />
-                  </span>
-                  <span className="h-1 w-6 rounded-full bg-[#a54d45]/50" />
-                </span>
-              </span>
-              <span className="mt-2 h-6 w-10 rounded-[999px] bg-gradient-to-b from-[#f6b0a1] to-[#d66457] shadow-[0_20px_30px_-22px_rgba(0,0,0,0.85)] transition-transform duration-500 group-hover:translate-y-1 group-hover:scale-95" />
-            </span>
-          </span>
+        <MiniBot isArabic={isArabic} />
+        <span
+          className={`mt-2 rounded-full bg-[#0c0805] px-3 py-1 text-[10px] font-medium text-white shadow-[0_10px_30px_-20px_rgba(12,8,5,0.9)] ${
+            isArabic ? "arabic" : "uppercase tracking-[0.25em]"
+          }`}
+        >
+          {label}
         </span>
       </span>
     </button>
+  )
+}
+
+function MiniBot({ isArabic }: { isArabic: boolean }) {
+  return (
+    <span
+      className={`relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#fff5ef] via-white to-[#f4d9cd] shadow-[0_20px_40px_-28px_rgba(12,8,5,0.9)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_30px_60px_-30px_rgba(12,8,5,0.8)]`}
+    >
+      <span className="absolute -top-1 flex h-2 w-4 items-center justify-between">
+        <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-b from-[#2b1c19] to-[#0c0503]" />
+        <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-b from-[#2b1c19] to-[#0c0503]" />
+      </span>
+      <span className="absolute -top-3 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-gradient-to-b from-[#ffceb9] to-[#f29a7c] shadow-[0_4px_8px_rgba(0,0,0,0.15)]" />
+      <span className="relative flex h-8 w-8 flex-col items-center justify-center rounded-2xl bg-gradient-to-b from-white via-[#ffe4d7] to-[#f7c0a5] text-[#1b0b08]">
+        <span className="flex w-full justify-between px-2">
+          <span className="h-1.5 w-2 rounded-full bg-[#ffd26f] shadow-[0_0_6px_rgba(255,210,111,0.8)]" />
+          <span className="h-1.5 w-2 rounded-full bg-[#ffd26f] shadow-[0_0_6px_rgba(255,210,111,0.8)]" />
+        </span>
+        <span className="mt-2 h-0.5 w-3 rounded-full bg-[#b56a58]" />
+      </span>
+      <span
+        className={`absolute -right-1 flex h-3 w-2 rounded-full bg-[#22120f] shadow-[0_4px_8px_rgba(0,0,0,0.2)] ${
+          isArabic ? "hidden" : ""
+        }`}
+      />
+      <span
+        className={`absolute -left-1 flex h-3 w-2 rounded-full bg-[#22120f] shadow-[0_4px_8px_rgba(0,0,0,0.2)] ${
+          isArabic ? "" : "hidden"
+        }`}
+      />
+      <span className="absolute -bottom-3 h-2.5 w-8 rounded-full bg-gradient-to-r from-[#fbb09a] to-[#eb7d63] shadow-[0_12px_20px_-14px_rgba(12,8,5,0.8)]" />
+    </span>
   )
 }

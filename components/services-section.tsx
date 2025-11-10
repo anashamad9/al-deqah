@@ -20,12 +20,15 @@ const accentGradients = [
 
 const serviceImages: Record<string, string> = {
   cyber: "/services/cyber.avif",
+  software: "/tech-company.jpg",
   ai: "/services/ai.jpg",
-  training: "/services/training.jpg",
   xr: "/services/metaverse.jpeg",
   iot: "/services/iot.jpeg",
-  digitalTwins: "/services/digital-twins.webp",
-  medicalVR: "/services/ar-vr.jpg",
+  quality: "/placeholder.jpg",
+  infrastructure: "/GettyImages-1383963898_1200x675.jpg",
+  enterprise: "/services/digital-twins.webp",
+  consulting: "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
+  training: "/services/training.jpg",
 }
 
 type ServiceItem = {

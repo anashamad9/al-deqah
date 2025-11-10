@@ -90,7 +90,7 @@ export default function SolutionDetailPage({ solution }: SolutionDetailPageProps
 
   return (
     <>
-      <Header variant="dark" />
+      <Header variant="light" />
       <div className="bg-white text-gray-900">
         <section
           className="relative overflow-hidden py-28 text-white"

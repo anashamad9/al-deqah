@@ -30,12 +30,26 @@ export const homepageCopy = {
         href: "/solutions/cybersecurity-risk",
         copy: {
           en: {
-            title: "Cybersecurity & Risk Intelligence",
-            description: "Comprehensive security solutions to protect your digital assets and mitigate risks.",
+            title: "Cybersecurity & Digital Threat Intelligence",
+            description: "Layered defenses, monitoring, and governance that neutralize modern cyber risks.",
           },
           ar: {
-            title: "الأمن السيبراني واستخبارات المخاطر",
-            description: "حلول أمنية شاملة لحماية أصولك الرقمية وتقليل المخاطر.",
+            title: "الأمن السيبراني واستخبارات التهديدات الرقمية",
+            description: "دفاعات متعددة الطبقات ومراقبة مستمرة وحوكمة تقلل المخاطر الإلكترونية الحديثة.",
+          },
+        },
+      },
+      {
+        key: "software",
+        href: "/solutions/software-engineering",
+        copy: {
+          en: {
+            title: "Systems & Application Engineering",
+            description: "Design and build enterprise-grade platforms, products, and mission software.",
+          },
+          ar: {
+            title: "تطوير الأنظمة والتطبيقات البرمجية",
+            description: "تصميم وبناء منصات وتطبيقات مؤسسية وبرمجيات تشغيلية عالية الاعتمادية.",
           },
         },
       },
@@ -44,26 +58,12 @@ export const homepageCopy = {
         href: "/solutions/ai-data-science",
         copy: {
           en: {
-            title: "Artificial Intelligence (AI) & Data Science",
-            description: "Advanced AI solutions and data analytics to drive intelligent decision-making.",
+            title: "AI & Advanced Data Analytics",
+            description: "Predictive models and decision intelligence powered by trusted data pipelines.",
           },
           ar: {
-            title: "الذكاء الاصطناعي وعلوم البيانات",
-            description: "حلول الذكاء الاصطناعي والتحليلات لدعم اتخاذ القرارات الذكية.",
-          },
-        },
-      },
-      {
-        key: "training",
-        href: "/training",
-        copy: {
-          en: {
-            title: "Training & Capability Uplift",
-            description: "Immersive programs and certifications that accelerate leadership, project delivery, and workforce readiness.",
-          },
-          ar: {
-            title: "التدريب وتطوير القدرات",
-            description: "برامج تدريبية متخصصة تعزز القيادة، وإدارة المشاريع، وجهوزية الكوادر المؤسسية.",
+            title: "الذكاء الاصطناعي وتحليل البيانات المتقدمة",
+            description: "نماذج تنبؤية وذكاء تشغيلي مدفوع بأنابيب بيانات موثوقة.",
           },
         },
       },
@@ -72,12 +72,12 @@ export const homepageCopy = {
         href: "/solutions/xr-immersive",
         copy: {
           en: {
-            title: "Extended Reality (XR), VR, AR & Metaverse",
-            description: "Immersive experiences that bridge the physical and digital worlds.",
+            title: "VR, AR & Metaverse Experiences",
+            description: "Immersive training, storytelling, and engagement layers across industries.",
           },
           ar: {
-            title: "الواقع الممتد والميتافيرس",
-            description: "تجارب رائعة تربط العالمين المادي والرقمي.",
+            title: "الواقع الافتراضي والمعزز والميتافيرس",
+            description: "تجارب غامرة للتدريب والسرد والتفاعل عبر مختلف القطاعات.",
           },
         },
       },
@@ -86,40 +86,82 @@ export const homepageCopy = {
         href: "/solutions/iot-platforms",
         copy: {
           en: {
-            title: "IoT & Smart Industrial Systems",
-            description: "Connected solutions for intelligent automation and industrial optimization.",
+            title: "IoT & Connected Intelligent Systems",
+            description: "Sensor networks, automation, and telemetry fabrics for smarter operations.",
           },
           ar: {
-            title: "إنترنت الأشياء والأنظمة الصناعية الذكية",
-            description: "حلول متصلة للأتمتة الذكية وتحسين العمليات الصناعية.",
+            title: "إنترنت الأشياء والأنظمة الذكية المتصلة",
+            description: "شبكات استشعار وأتمتة وأقمشة بيانات لعمليات أكثر ذكاءً.",
           },
         },
       },
       {
-        key: "digitalTwins",
-        href: "/solutions/digital-twins",
+        key: "quality",
+        href: "/solutions/quality-assurance",
         copy: {
           en: {
-            title: "Digital Twins & Simulation",
-            description: "Virtual replicas for testing, monitoring, and optimizing real-world systems.",
+            title: "Quality Assurance & Global Standards",
+            description: "Audits, compliance, and testing programs aligned with international frameworks.",
           },
           ar: {
-            title: "التوأم الرقمي والمحاكاة",
-            description: "نماذج افتراضية للاختبار والمراقبة وتحسين الأنظمة الواقعية.",
+            title: "التدقيق وضمان الجودة وتطبيق المعايير العالمية",
+            description: "برامج تدقيق وامتثال واختبارات متوافقة مع الأطر العالمية.",
           },
         },
       },
       {
-        key: "medicalVR",
-        href: "/solutions/medical-vr",
+        key: "infrastructure",
+        href: "/solutions/digital-infrastructure",
         copy: {
           en: {
-            title: "Medical VR Simulation Suites",
-            description: "Immersive clinical training and patient engagement experiences for healthcare innovators.",
+            title: "Digital Infrastructure & IT Services",
+            description: "Cloud, network, and workplace services that keep missions resilient.",
           },
           ar: {
-            title: "حزم المحاكاة الطبية بالواقع الافتراضي",
-            description: "تجارب تدريب سريري رائعة وتفاعل للمرضى مخصصة لمبتكري الرعاية الصحية.",
+            title: "البنية التحتية الرقمية وخدمات تقنية المعلومات",
+            description: "خدمات السحابة والشبكات والبيئات المكتبية لضمان استمرارية المهام.",
+          },
+        },
+      },
+      {
+        key: "enterprise",
+        href: "/solutions/enterprise-platforms",
+        copy: {
+          en: {
+            title: "Integrated Enterprise Solutions",
+            description: "ERP, CRM, and low-code ecosystems unified around measurable outcomes.",
+          },
+          ar: {
+            title: "الحلول المؤسسية المتكاملة",
+            description: "أنظمة ERP وCRM ومنصات منخفضة الشفرة موحّدة حول مؤشرات أداء قابلة للقياس.",
+          },
+        },
+      },
+      {
+        key: "consulting",
+        href: "/solutions/digital-consulting",
+        copy: {
+          en: {
+            title: "Technology Consulting & Digital Transformation",
+            description: "Advisory blueprints that align strategy, operating models, and delivery.",
+          },
+          ar: {
+            title: "الاستشارات التقنية والتحول الرقمي",
+            description: "خرائط استشارية توحّد الاستراتيجية ونماذج التشغيل ومسارات التنفيذ.",
+          },
+        },
+      },
+      {
+        key: "training",
+        href: "/training",
+        copy: {
+          en: {
+            title: "Training & Capability Development",
+            description: "Programs that elevate leadership, project delivery, and workforce readiness.",
+          },
+          ar: {
+            title: "التدريب وتطوير القدرات",
+            description: "برامج ترفع قدرات القيادة والتسليم وجهوزية الكوادر.",
           },
         },
       },
@@ -176,43 +218,91 @@ export const homepageCopy = {
       {
         icon: "Building2",
         copy: {
-          en: { title: "Government & Public Sector", description: "Secure digital services, data governance, and citizen experience platforms." },
-          ar: { title: "القطاع الحكومي والعام", description: "خدمات رقمية آمنة وحوكمة بيانات ومنصات تعزز تجربة المواطن." },
+          en: {
+            title: "Government & Public Sector",
+            description:
+              "We deliver secure citizen platforms, administrative automation, and analytics programs that help ministries operate with trusted data and resilient infrastructure.",
+          },
+          ar: {
+            title: "القطاع الحكومي والعام",
+            description:
+              "نُقدّم حلولاً رقمية متكاملة لدعم المؤسسات الحكومية في رحلتها نحو التحول الرقمي وتعزيز الكفاءة التشغيلية. • نساعد الجهات الحكومية على أتمتة الخدمات الإدارية، وتحسين تجربة المواطن من خلال منصات ذكية وسهلة الاستخدام. • كما نوفر أنظمة متقدمة لإدارة الموارد، والتحليل البياني لدعم اتخاذ القرار المبني على البيانات. • يتم تنفيذ المشاريع وفق أعلى معايير الأمن السيبراني والحوكمة الرقمية لضمان السرية والموثوقية. • نهدف إلى بناء بيئة حكومية رقمية مرنة ومستدامة تواكب تطلعات رؤية التحول الرقمي الوطنية.",
+          },
         },
       },
       {
         icon: "Droplet",
         copy: {
-          en: { title: "Oil and Gas", description: "Operational insight, safety systems, and predictive monitoring from upstream to downstream." },
-          ar: { title: "النفط والغاز", description: "رؤى تشغيلية وأنظمة سلامة ومراقبة تنبؤية من المنبع إلى المصب." },
+          en: {
+            title: "Oil & Gas",
+            description:
+              "Specialized IoT, AI, and digital operations programs that improve uptime, safety, and asset performance across exploration, production, and distribution.",
+          },
+          ar: {
+            title: "قطاع النفط والغاز",
+            description:
+              "نوفّر حلولاً تقنية متخصصة لقطاع النفط والغاز تُسهم في تحسين كفاءة العمليات التشغيلية وتقليل التكاليف. • نستخدم تقنيات الذكاء الاصطناعي وإنترنت الأشياء لتحليل البيانات الميدانية ومراقبة الأداء في الوقت الحقيقي. • كما ندعم أتمتة عمليات الصيانة والإنتاج لضمان استمرارية العمل وتقليل الأعطال غير المتوقعة. • تُسهم حلولنا في تعزيز السلامة المهنية، وإدارة الأصول بفاعلية، وتحقيق استدامة أعلى في الموارد. • هدفنا هو تمكين شركات النفط والغاز من اتخاذ قرارات دقيقة قائمة على البيانات وتحسين الأداء المؤسسي.",
+          },
         },
       },
       {
         icon: "Radio",
         copy: {
-          en: { title: "Telecom & Smart Cities", description: "Critical communications infrastructure and smart-city intelligence at urban scale." },
-          ar: { title: "الاتصالات والمدن الذكية", description: "بنية تحتية للاتصالات الحيوية وذكاء المدن الذكية على نطاق حضري." },
+          en: {
+            title: "Telecom & Smart Cities",
+            description:
+              "Connected infrastructure, IoT fabrics, and AI-powered control rooms that accelerate urban innovation and telecom service delivery.",
+          },
+          ar: {
+            title: "الاتصالات والمدن الذكية",
+            description:
+              "نُقدّم حلولاً مبتكرة لدعم شركات الاتصالات والمشاريع الحضرية في بناء مدن ذكية متصلة وآمنة. • تشمل خدماتنا تصميم البنى التحتية الرقمية، وأنظمة إنترنت الأشياء، والمنصات التحليلية الذكية. • نعمل على تطوير حلول إدارة الطاقة، والمواصلات، والمراقبة البيئية، وخدمات المواطن الرقمية. • كما ندمج تقنيات الذكاء الاصطناعي والميتافيرس لخلق بيئات حضرية أكثر تفاعلاً واستدامة. • هدفنا هو المساهمة في بناء مدن مستقبلية ذكية تُعزز جودة الحياة وتزيد من كفاءة الخدمات العامة.",
+          },
         },
       },
       {
         icon: "Heart",
         copy: {
-          en: { title: "Healthcare & Hospitals", description: "Integrated patient systems, digital diagnostics, and intelligent clinical workflows." },
-          ar: { title: "الرعاية الصحية والمستشفيات", description: "أنظمة متكاملة للمرضى وتشخيصات رقمية ومسارات عمل سريرية ذكية." },
+          en: {
+            title: "Healthcare & Hospitals",
+            description:
+              "End-to-end digital health platforms, virtual care, and clinical intelligence solutions that elevate patient experience and provider performance.",
+          },
+          ar: {
+            title: "الرعاية الصحية والمستشفيات",
+            description:
+              "نُسهم في رقمنة قطاع الرعاية الصحية من خلال أنظمة متكاملة لإدارة المستشفيات والعيادات وسجلات المرضى. • نوفر حلولاً ذكية للجدولة، وإدارة الموارد الطبية، والتطبيب عن بُعد، وتحليل بيانات المرضى. • تركز حلولنا على تحسين تجربة المريض ورفع كفاءة مقدمي الخدمة وضمان أمن وسرية المعلومات الصحية. • كما نساعد المؤسسات الصحية على تطبيق معايير الجودة العالمية. • نسعى إلى دعم التحول نحو منظومة صحية رقمية متكاملة تُقدم رعاية آمنة وفعّالة للمجتمع.",
+          },
         },
       },
       {
         icon: "GraduationCap",
         copy: {
-          en: { title: "Education & Universities", description: "Immersive learning environments, smart campuses, and research enablement." },
-          ar: { title: "التعليم والجامعات", description: "بيئات تعلم رائعة وحرم جامعي ذكي ودعم للبحث والابتكار." },
+          en: {
+            title: "Education & Universities",
+            description:
+              "Digital learning platforms, analytics, and campus automation that enable lifelong learning and academic excellence.",
+          },
+          ar: {
+            title: "قطاع التعليم والجامعات",
+            description:
+              "نُقدّم حلولاً تعليمية رقمية مبتكرة تسهم في تطوير بيئة تعليمية تفاعلية وذكية. • يشمل عملنا تطوير أنظمة إدارة التعلم، ومنصات التعليم الإلكتروني، وحلول الفصول الافتراضية. • نساعد الجامعات والمدارس على التحول نحو التعليم الذكي المعتمد على الذكاء الاصطناعي وتحليل الأداء الأكاديمي. • كما نوفر أدوات لإدارة شؤون الطلاب وأعضاء هيئة التدريس وتحسين جودة العملية التعليمية. • هدفنا هو تمكين المؤسسات التعليمية من تقديم تجربة تعلم مرنة ومتطورة ومواكبة لمتطلبات العصر الرقمي.",
+          },
         },
       },
       {
         icon: "HardHat",
         copy: {
-          en: { title: "Civil Engineering & Construction", description: "Digital twins, connected sites, and data-driven project delivery." },
-          ar: { title: "الهندسة المدنية والإنشاءات", description: "توائم رقمية ومواقع متصلة وتسليم مشاريع قائم على البيانات." },
+          en: {
+            title: "Civil Engineering & Construction",
+            description:
+              "Project management platforms, BIM workflows, and connected site operations that improve schedule, quality, and safety.",
+          },
+          ar: {
+            title: "الهندسة المدنية والإنشاءات",
+            description:
+              "نُقدم حلولاً رقمية متخصصة لشركات الهندسة والإنشاءات لدعم إدارة المشاريع بكفاءة وشفافية. • تشمل خدماتنا أنظمة إدارة المشاريع، ونظم تخطيط الموارد، وتقنيات النمذجة (BIM). • نساعد الشركات في تتبّع مراحل البناء ومراقبة الجودة والتكلفة والجدول الزمني بدقة. • كما نستخدم تقنيات الذكاء الاصطناعي وإنترنت الأشياء لتحسين عمليات الصيانة والسلامة في المواقع. • نسعى لتمكين القطاع من تحقيق التحول الرقمي في إدارة المشاريع الهندسية والإنشائية وفق أفضل الممارسات العالمية.",
+          },
         },
       },
     ],

@@ -107,7 +107,7 @@ export default function SolutionsIndexPage() {
 
   return (
     <>
-      <Header variant="dark" />
+      <Header variant="light" />
       <div className="bg-white text-gray-900">
         <section className="relative overflow-hidden bg-[#07040a] py-28 text-white">
           <div className="pointer-events-none absolute inset-0">
