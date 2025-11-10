@@ -22,7 +22,6 @@ type DeqahAIChatProps = {
 type ChatCopy = {
   introMessage: string
   quickPromptsLabel: string
-  conversationLabel: string
   placeholder: string
   sendLabel: string
   thinkingLabel: string
@@ -37,7 +36,6 @@ const CHAT_COPY: Record<Language, ChatCopy> = {
     introMessage:
       "Hi there! I'm Al-Deqah. I can help you explore Industry 4.0 solutions, scope projects, or surface relevant case studies. How can I assist you today?",
     quickPromptsLabel: "Quick prompts:",
-    conversationLabel: "Conversation",
     placeholder: "Ask Al-Deqah anything…",
     sendLabel: "Send",
     thinkingLabel: "Thinking…",
@@ -51,7 +49,6 @@ const CHAT_COPY: Record<Language, ChatCopy> = {
     introMessage:
       "مرحباً! أنا الدقة. أساعدك في استكشاف حلول الثورة الصناعية الرابعة، تحديد نطاق المشاريع، أو إبراز دراسات حالة ذات صلة. كيف يمكنني مساعدتك اليوم؟",
     quickPromptsLabel: "اقتراحات سريعة:",
-    conversationLabel: "المحادثة",
     placeholder: "اطرح أي سؤال على الدقة…",
     sendLabel: "إرسال",
     thinkingLabel: "جارٍ التفكير…",
@@ -203,38 +200,35 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
   return (
     <div className={cn("flex min-h-0 flex-col", isPopup ? "h-full" : "flex-1")}>
       <div className={containerClasses}>
-        <div className={headerClasses}>
-          <div className="flex flex-col gap-3">
-            <div>{copy.conversationLabel}</div>
-            {promptOptions.length > 0 ? (
-              <div
-                className={cn(
-                  "flex flex-wrap items-center gap-2 text-[11px] font-medium text-gray-500",
-                  isArabic ? "justify-end text-right arabic" : ""
-                )}
-              >
-                <span className="text-gray-400">{copy.quickPromptsLabel}</span>
-                {promptOptions.map((prompt) => (
-                  <button
-                    key={prompt}
-                    type="button"
-                    onClick={() => sendMessage(prompt)}
-                    disabled={isLoading}
-                    className={cn(
-                      "rounded-full border px-3 py-1 text-[11px] text-gray-600 transition-all duration-200",
-                      isPopup
-                        ? "border-white/20 bg-white/10 hover:border-white/40 hover:bg-white/20"
-                        : "border-gray-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
-                      isArabic ? "arabic" : ""
-                    )}
-                  >
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-            ) : null}
+        {promptOptions.length > 0 ? (
+          <div className={headerClasses}>
+            <div
+              className={cn(
+                "flex flex-wrap items-center gap-2 text-[11px] font-medium text-gray-500",
+                isArabic ? "justify-end text-right arabic" : ""
+              )}
+            >
+              <span className="text-gray-400">{copy.quickPromptsLabel}</span>
+              {promptOptions.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  onClick={() => sendMessage(prompt)}
+                  disabled={isLoading}
+                  className={cn(
+                    "rounded-full border px-3 py-1 text-[11px] text-gray-600 transition-all duration-200",
+                    isPopup
+                      ? "border-white/20 bg-white/10 hover:border-white/40 hover:bg-white/20"
+                      : "border-gray-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
+                    isArabic ? "arabic" : ""
+                  )}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <div className="relative flex-1 min-h-0">
           <div
@@ -358,7 +352,8 @@ function Dot() {
 }
 
 function formatMessageHtml(content: string) {
-  const escaped = escapeHtml(content)
+  const withoutHeadingMarkers = content.replace(/(^|\s)#{1,6}\s*/g, "$1")
+  const escaped = escapeHtml(withoutHeadingMarkers)
   const withBold = escaped.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
   return withBold.replace(/\n/g, "<br />")
 }

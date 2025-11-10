@@ -151,7 +151,11 @@ export default function ClientsPageContent() {
                   isArabic ? "text-right arabic" : ""
                 }`}
               >
-                <div className={`flex items-center ${isArabic ? "justify-end" : "justify-start"}`}>
+                <div
+                  className={`flex w-full items-center gap-4 ${
+                    isArabic ? "text-right" : "text-left"
+                  }`}
+                >
                   <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#f3e1d7] via-white to-[#f9ebe4] ring-1 ring-[#e2d2c7]/60">
                     <Image
                       src={client.logo}
@@ -161,10 +165,9 @@ export default function ClientsPageContent() {
                       className="h-10 w-auto object-contain"
                     />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-medium text-[#0c0805]">{client.name[language]}</h3>
-                  <p className="text-sm font-light text-gray-600">{client.description[language]}</p>
+                  <h3 className={`text-lg font-medium text-[#0c0805] ${isArabic ? "ml-auto text-right" : ""}`}>
+                    {client.name[language]}
+                  </h3>
                 </div>
               </article>
             ))}

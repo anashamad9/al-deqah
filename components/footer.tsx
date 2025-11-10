@@ -15,8 +15,6 @@ import { getLocalizedSolutions } from "@/lib/solutions-localized"
 const COMPANY_LINKS = [
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
-  { key: "deqahAI", href: "/deqah-ai" },
-  { key: "insights", href: "#" },
 ] as const
 
 const FOOTER_COPY: Record<
@@ -63,22 +61,20 @@ const FOOTER_COPY: Record<
     contactCard: {
       label: "Headquarters",
       address: "Al-Deqah Tech, Amman - Jordan",
-      details: "info@aldeqah-tech.com · +962 79 200 7354",
+      details: "info@aldeqah-tech.com · 962792007354+",
     },
     navTitles: {
       company: "Company",
-      solutions: "Solutions",
+      solutions: "Services",
       social: "Social",
     },
     companyLinks: {
       about: "About",
       contact: "Contact",
-      deqahAI: "Al-Deqah",
-      insights: "Industry Insights",
     },
     contactItems: {
       email: "info@aldeqah-tech.com",
-      phone: "+962 79 200 7354",
+      phone: "962792007354+",
       location: "Amman, Jordan",
     },
     legal: {
@@ -99,22 +95,20 @@ const FOOTER_COPY: Record<
     contactCard: {
       label: "المقر الرئيسي",
       address: "شركة الدقة، عمّان - الأردن",
-      details: "info@aldeqah-tech.com · ‎+962 79 200 7354",
+      details: "info@aldeqah-tech.com · ‎962792007354+",
     },
     navTitles: {
       company: "الشركة",
-      solutions: "الحلول",
+      solutions: "الخدمات",
       social: "التواصل",
     },
     companyLinks: {
       about: "من نحن",
       contact: "تواصل معنا",
-      deqahAI: "الدقة",
-      insights: "رؤى صناعية",
     },
     contactItems: {
       email: "info@aldeqah-tech.com",
-      phone: "+962 79 200 7354",
+      phone: "962792007354+",
       location: "عمّان، الأردن",
     },
     legal: {
@@ -135,7 +129,7 @@ const CONTACT_ITEMS = [
   {
     key: "phone",
     icon: Phone,
-    href: "tel:+962792007354",
+    href: "tel:962792007354+",
   },
   {
     key: "location",
@@ -241,6 +235,10 @@ export default function Footer() {
   const isArabic = language === "ar"
   const { open } = useDeqahAI()
   const localizedSolutions = useMemo(() => getLocalizedSolutions(language, solutions), [language])
+  const trainingLink = {
+    label: language === "ar" ? "برامج التدريب" : "Training Programs",
+    href: "/training",
+  }
 
   return (
     <footer
@@ -260,9 +258,13 @@ export default function Footer() {
           <div className={`space-y-10 ${isArabic ? "text-right" : ""}`} dir={isArabic ? "rtl" : "ltr"}>
             <div className={`space-y-6 ${isArabic ? "text-right" : ""}`}>
               <div className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse justify-end" : ""}`}>
-                <div className={`${isArabic ? "order-2" : "order-1"} flex size-14 items-center justify-center rounded-full bg-white/10`}>
-                  <Image src="/logo-2.png" alt="Al-Deqah logo" width={52} height={68} className="h-10 w-auto" />
-                </div>
+                <Image
+                  src="/clients/3.png"
+                  alt="Al-Deqah logo"
+                  width={52}
+                  height={68}
+                  className={`${isArabic ? "order-2" : "order-1"} h-12 w-auto`}
+                />
                 <div
                   className={`${isArabic ? "order-1 text-right arabic" : "order-2"}`}
                   dir={isArabic ? "rtl" : "ltr"}
@@ -315,15 +317,20 @@ export default function Footer() {
               },
               {
                 title: copy.navTitles.solutions,
-                links: localizedSolutions.map((solution) => ({
-                  label: solution.name,
-                  href: `/solutions/${solution.slug}`,
-                })),
+                links: [
+                  ...localizedSolutions.map((solution) => ({
+                    label: solution.name,
+                    href: `/solutions/${solution.slug}`,
+                  })),
+                  trainingLink,
+                ],
               },
             ].map((column) => (
               <div key={column.title} className="space-y-5">
                 <p
-                  className={`text-xs uppercase tracking-[0.3em] text-white/40 ${isArabic ? "arabic text-right" : ""}`}
+                  className={`text-lg font-semibold uppercase tracking-[0.18em] text-white ${
+                    isArabic ? "arabic text-right" : ""
+                  }`}
                 >
                   {column.title}
                 </p>
@@ -373,7 +380,11 @@ export default function Footer() {
             ))}
 
             <div className="space-y-4">
-              <p className={`text-xs uppercase tracking-[0.3em] text-white/40 ${isArabic ? "arabic text-right" : ""}`}>
+              <p
+                className={`text-lg font-semibold uppercase tracking-[0.18em] text-white ${
+                  isArabic ? "arabic text-right" : ""
+                }`}
+              >
                 {copy.navTitles.social}
               </p>
               <div className={`space-y-4 text-sm text-white/80 ${isArabic ? "text-right arabic" : ""}`}>

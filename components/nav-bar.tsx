@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
-import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Images, Menu, X, UsersRound } from "lucide-react"
+import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Menu, X, UsersRound } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
@@ -19,7 +19,6 @@ const NAV_LINKS = [
   { key: "about", href: "/about", icon: Info },
   { key: "blog", href: "/blog", icon: Newspaper, soon: true },
   { key: "partners", href: "/partners", icon: Handshake },
-  { key: "gallery", href: "/gallery", icon: Images },
   { key: "clients", href: "/clients", icon: UsersRound },
 ] as const
 
@@ -30,7 +29,6 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
     about: "About Us",
     blog: "Blog",
     partners: "Partners",
-    gallery: "Our Gallery",
     clients: "Clients",
   },
   ar: {
@@ -39,7 +37,6 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
     about: "من نحن",
     blog: "المدونة",
     partners: "الشركاء",
-    gallery: "معرضنا",
     clients: "عملاؤنا",
   },
 }

@@ -48,12 +48,12 @@ export default function ServicesSection() {
 
   return (
     <section id="services" className="relative overflow-hidden bg-white py-28">
-      <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#f9f7ff] via-transparent to-transparent" aria-hidden />
-      <div className="mx-auto max-w-6xl px-8">
+      <div aria-hidden className="absolute inset-0 bg-white" />
+      <div className="relative z-10 mx-auto max-w-6xl px-8">
         <div className={`mb-20 text-center ${isArabic ? "arabic" : ""}`}>
-          <h2 className={`mb-6 text-4xl font-light text-gray-900 md:text-5xl ${isArabic ? "leading-snug" : ""}`}>
+          <h2 className={`mb-6 text-4xl font-light text-[#0c0805] md:text-5xl ${isArabic ? "leading-snug" : ""}`}>
             {tString(data.sectionLabel, language)}{" "}
-            <span className="font-medium text-[#863730]">{tString(data.sectionAccent, language)}</span>
+            <span className="font-medium text-[#a05a3c]">{tString(data.sectionAccent, language)}</span>
           </h2>
           <p className={`mx-auto max-w-3xl text-base font-light text-gray-600 ${isArabic ? "arabic" : ""}`}>
             {tString(data.description, language)}
@@ -61,7 +61,7 @@ export default function ServicesSection() {
         </div>
 
         <div className="relative pb-32">
-          <div className="pointer-events-none absolute inset-x-0 -top-10 bottom-0 rounded-[56px] bg-gradient-to-b from-[#ffffff] via-[#f7f5ff]/45 to-transparent blur-2xl" aria-hidden />
+          <div className="pointer-events-none absolute inset-x-0 -top-10 bottom-0 rounded-[56px] bg-gradient-to-b from-white/80 via-[#f7f5ff]/45 to-transparent blur-2xl" aria-hidden />
           <div className="relative flex flex-col gap-24">
             {services.map((service, index) => (
               <ServiceStackCard

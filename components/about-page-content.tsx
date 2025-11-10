@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 
 import Header from "@/components/header"
@@ -28,7 +29,7 @@ const ABOUT_COPY: Record<
       description: string
       quote: string
       quoteLabel: string
-      members: Array<{ name: string; title: string; bio: string }>
+      members: Array<{ name: string; title: string; image?: string }>
     }
     capabilities: {
       label: string
@@ -87,27 +88,27 @@ const ABOUT_COPY: Record<
         {
           name: "Lara Nasser",
           title: "Director of Training Programs",
-          bio: "Architects sector-specific curricula and blended learning experiences that raise workforce readiness across the region.",
+          image: "/our%20team/Lara.jpeg",
         },
         {
           name: "Malek Momani",
           title: "Managing Director",
-          bio: "Steers corporate strategy, partnerships, and governance so every engagement reflects Al-Deqah’s regional mandate.",
+          image: "/our%20team/Malik.jpeg",
         },
         {
           name: "Hamza Momani",
           title: "Executive Director",
-          bio: "Converts strategic roadmaps into operational delivery, aligning design, engineering, and field teams around measurable outcomes.",
+          image: "/our%20team/Hamzah.jpeg",
         },
         {
           name: "Yazan Al-Ballah",
           title: "Director of Cybersecurity",
-          bio: "Leads our cyber defense practice, combining threat intelligence and compliance playbooks to secure critical infrastructure.",
+          image: "/our%20team/Yazan.jpeg",
         },
         {
           name: "Laman Mohamed",
           title: "Director of AI & Metaverse",
-          bio: "Explores applied AI, spatial computing, and speculative technologies to build future-proof platforms for clients.",
+          image: "/our%20team/Laman.jpeg",
         },
       ],
     },
@@ -184,27 +185,27 @@ const ABOUT_COPY: Record<
         {
           name: "لارا ناصر",
           title: "مديرة البرامج التدريبية",
-          bio: "تصمم مناهج ومسارات تدريبية مخصصة تربط احتياجات القطاعات برفع جاهزية الكفاءات على مستوى المنطقة.",
+          image: "/our%20team/Lara.jpeg",
         },
         {
           name: "مالك مومني",
           title: "المدير العام",
-          bio: "يقود الاستراتيجية والشراكات والحوكمة لضمان توافق كل مبادرة مع رؤية شركة الدقة وتأثيرها الإقليمي.",
+          image: "/our%20team/Malik.jpeg",
         },
         {
           name: "حمزة مومني",
           title: "المدير التنفيذي",
-          bio: "يحوّل الخطط الاستراتيجية إلى مبادرات تشغيلية، موحّدًا فرق التصميم والهندسة والتسليم حول نتائج قابلة للقياس.",
+          image: "/our%20team/Hamzah.jpeg",
         },
         {
           name: "يزن البلة",
           title: "مدير إدارة الأمن السيبراني",
-          bio: "يدير منظومة الدفاع السيبراني ويجمع بين استخبارات التهديدات ومتطلبات الامتثال لحماية البنى التحتية الحيوية.",
+          image: "/our%20team/Yazan.jpeg",
         },
         {
           name: "لامان محمد",
           title: "مديرة إدارة الذكاء الاصطناعي والميتافيرس",
-          bio: "تستكشف تطبيقات الذكاء الاصطناعي والتقنيات فوق الواقعية لتطوير منصات مستقبلية ومتصلة لعملائنا.",
+          image: "/our%20team/Laman.jpeg",
         },
       ],
     },
@@ -260,13 +261,6 @@ export default function AboutPageContent() {
               isArabic ? "items-end text-right" : "text-center"
             }`}
           >
-            <span
-              className={`text-xs uppercase tracking-[0.35em] text-[#863730] ${
-                isArabic ? "arabic self-end" : "self-center"
-              }`}
-            >
-              {copy.hero.label}
-            </span>
             <h1 className={`text-4xl font-light leading-tight md:text-5xl ${isArabic ? "arabic" : ""}`}>
               {copy.hero.heading}
             </h1>
@@ -344,8 +338,20 @@ export default function AboutPageContent() {
                     isArabic ? "text-right arabic" : ""
                   }`}
                 >
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#863730]/15 to-[#863730]/5 text-[#863730]">
-                    <span className="text-lg font-medium">{member.name.charAt(0)}</span>
+                  <div className="relative mb-6 h-16 w-16 overflow-hidden rounded-full bg-gradient-to-br from-[#863730]/15 to-[#863730]/5 text-[#863730]">
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        sizes="64px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span className="flex h-full w-full items-center justify-center text-lg font-medium">
+                        {member.name.charAt(0)}
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">{member.name}</h3>
                   <p
@@ -353,7 +359,6 @@ export default function AboutPageContent() {
                   >
                     {member.title}
                   </p>
-                  <p className="mt-4 text-sm font-light leading-relaxed text-gray-600">{member.bio}</p>
                 </div>
               ))}
             </div>

@@ -40,7 +40,7 @@ const CONTACT_COPY: Record<
     headquarters: {
       label: "Headquarters",
       address: "Al-Deqah Tech, Amman - Jordan",
-      contact: "info@aldeqah-tech.com · +962 79 200 7354",
+      contact: "info@aldeqah-tech.com · 962792007354+",
     },
   },
   ar: {
@@ -60,7 +60,7 @@ const CONTACT_COPY: Record<
     headquarters: {
       label: "المقر الرئيسي",
       address: "شركة الدقة، عمّان - الأردن",
-      contact: "info@aldeqah-tech.com · ‎+962 79 200 7354",
+      contact: "info@aldeqah-tech.com · ‎962792007354+",
     },
   },
 }

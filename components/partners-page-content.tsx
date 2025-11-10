@@ -182,14 +182,17 @@ export default function PartnersPageContent() {
                   isArabic ? "text-right arabic" : ""
                 }`}
               >
-                <div className={`flex items-center ${isArabic ? "justify-end" : "justify-start"}`}>
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f3e1d7] via-white to-[#f9ebe4] ring-1 ring-[#e2d2c7]/60">
+                <div
+                  className={`flex w-full items-center gap-4 ${
+                    isArabic ? "flex-row-reverse text-right" : "text-left"
+                  }`}
+                >
+                  <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#f3e1d7] via-white to-[#f9ebe4] ring-1 ring-[#e2d2c7]/60">
                     <img src={partner.logo.src} alt={partner.logo.alt} className="max-h-10 w-auto mix-blend-multiply" />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-medium text-[#0c0805]">{partner.name.en}</h3>
-                  <p className="text-sm font-light text-gray-600">{partner.description[language]}</p>
+                  <h3 className={`text-lg font-medium text-[#0c0805] ${isArabic ? "ml-auto" : ""}`}>
+                    {partner.name[language]}
+                  </h3>
                 </div>
               </article>
             ))}
