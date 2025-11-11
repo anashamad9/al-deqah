@@ -52,7 +52,7 @@ const CLIENTS = [
     name: { en: "Libyan Banks Association", ar: "اتحاد المصارف الليبية" },
     description: {
       en: "Designing digital policy labs that align regulators and commercial banks on trusted Industry 4.0 adoption.",
-      ar: "تصميم مختبرات سياسات رقمية توحّد الجهات التنظيمية والمصارف التجارية لاعتماد موثوق لحلول الثورة الصناعية الرابعة.",
+      ar: "تصميم مختبرات سياسات رقمية توحّد الجهات التنظيمية والمصارف التجارية لاعتماد موثوق الحلول الثورة الصناعية الرابعة.",
     },
   },
   {

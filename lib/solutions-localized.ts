@@ -368,7 +368,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "enterprise-platforms": {
     ar: {
-      name: "لحلول المؤسسية المتكاملة",
+      name: "الحلول المؤسسية المتكاملة",
       category: "الأنظمة المؤسسية",
       tagline: "نُوحد ERP وCRM والأتمتة حول مؤشرات أداء قابلة للقياس.",
       description:

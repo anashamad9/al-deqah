@@ -132,7 +132,7 @@ export const homepageCopy = {
             description: "ERP, CRM, and low-code ecosystems unified around measurable outcomes.",
           },
           ar: {
-            title: "لحلول المؤسسية المتكاملة",
+            title: "الحلول المؤسسية المتكاملة",
             description: "أنظمة ERP وCRM ومنصات منخفضة الشفرة موحّدة حول مؤشرات أداء قابلة للقياس.",
           },
         },

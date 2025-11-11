@@ -112,7 +112,7 @@ export default function NavBar({
     }
     return items
   }, [language, featuredSolutions])
-  const viewAllLabel = language === "ar" ? "عرض كل الحلول" : "See all solutions"
+  const viewAllLabel = language === "ar" ? "عرض كل االحلول" : "See all solutions"
 
   const glassyClasses =
     variant === "dark"

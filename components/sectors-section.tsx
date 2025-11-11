@@ -158,7 +158,7 @@ export function SectorsSection() {
             </div>
             <div className="border-t border-white/70 bg-white/90 p-5 text-xs text-[#a1694b]">
               {isArabic
-                ? "ننمذج الحلول للبنية التحتية الذكية، والحوكمة، والعمليات الرقمية مع ضمان الامتثال والجاهزية التشغيلية."
+                ? "ننمذج االحلول للبنية التحتية الذكية، والحوكمة، والعمليات الرقمية مع ضمان الامتثال والجاهزية التشغيلية."
                 : "We blueprint smart infrastructure, governance, and digital operations that balance compliance with operational readiness."}
             </div>
           </div>
