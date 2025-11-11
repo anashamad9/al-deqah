@@ -101,7 +101,7 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Yazan.jpeg",
         },
         {
-          name: "Maen Alwah",
+          name: "Lara Mohammad",
           title: "Head of the Metaverse Department",
           image: "/our%20team/Maen.jpeg",
         },
