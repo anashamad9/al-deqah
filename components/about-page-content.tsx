@@ -199,7 +199,7 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Yazan.jpeg",
         },
         {
-          name: "معين الواه",
+          name: "لامان محمد",
           title: "رئيس قسم الميتافيرس",
           image: "/our%20team/Maen.jpeg",
         },
