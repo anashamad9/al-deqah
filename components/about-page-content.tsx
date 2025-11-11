@@ -29,7 +29,7 @@ const ABOUT_COPY: Record<
       description: string
       quote: string
       quoteLabel: string
-      members: Array<{ name: string; title: string; image?: string }>
+      members: Array<{ name: string; title: string; image?: string; imagePosition?: "center" | "top" }>
     }
     capabilities: {
       label: string
@@ -86,11 +86,6 @@ const ABOUT_COPY: Record<
       quoteLabel: "Al-Deqah Leadership Charter",
       members: [
         {
-          name: "Lara Nasser",
-          title: "Training Programs Coordinator",
-          image: "/our%20team/Lara.jpeg",
-        },
-        {
           name: "Malek Momani",
           title: "General Manager",
           image: "/our%20team/Malik.jpeg",
@@ -106,9 +101,15 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Yazan.jpeg",
         },
         {
-          name: "Laman Mohamed",
+          name: "Maen Alwah",
           title: "Head of the Metaverse Department",
-          image: "/our%20team/Laman.jpeg",
+          image: "/our%20team/Maen.jpeg",
+        },
+        {
+          name: "Lara Nasser",
+          title: "Training Programs Coordinator",
+          image: "/our%20team/Lara.jpeg",
+          imagePosition: "top",
         },
       ],
     },
@@ -183,11 +184,6 @@ const ABOUT_COPY: Record<
       quoteLabel: "ميثاق قيادة شركة الدقة",
       members: [
         {
-          name: "لارا ناصر",
-          title: "منسق البرامج التدريبية",
-          image: "/our%20team/Lara.jpeg",
-        },
-        {
           name: "مالك مومني",
           title: "مدير عام",
           image: "/our%20team/Malik.jpeg",
@@ -203,9 +199,15 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Yazan.jpeg",
         },
         {
-          name: "لامان محمد",
+          name: "معين الواه",
           title: "رئيس قسم الميتافيرس",
-          image: "/our%20team/Laman.jpeg",
+          image: "/our%20team/Maen.jpeg",
+        },
+        {
+          name: "لارا ناصر",
+          title: "منسق البرامج التدريبية",
+          image: "/our%20team/Lara.jpeg",
+          imagePosition: "top",
         },
       ],
     },
@@ -345,7 +347,7 @@ export default function AboutPageContent() {
                         alt={member.name}
                         fill
                         sizes="64px"
-                        className="object-cover"
+                        className={`object-cover ${member.imagePosition === "top" ? "object-top" : "object-center"}`}
                       />
                     ) : (
                       <span className="flex h-full w-full items-center justify-center text-lg font-medium">
