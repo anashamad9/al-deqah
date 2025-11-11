@@ -209,11 +209,11 @@ export default function NavBar({
                       <Link
                         href="/solutions"
                         className={cn(
-                          "inline-flex items-center gap-2 rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-[#742f29]",
-                          language === "ar" && "flex-row-reverse arabic"
+                          "flex items-center gap-2 rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-[#742f29]",
+                          language === "ar" ? "arabic justify-end text-right" : "justify-start"
                         )}
                       >
-                        <span>{viewAllLabel}</span>
+                        <span className={language === "ar" ? "text-right" : "text-left"}>{viewAllLabel}</span>
                       </Link>
                     </div>
                     <div className="grid gap-1.5 p-5 sm:grid-cols-2">

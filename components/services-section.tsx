@@ -50,8 +50,27 @@ export default function ServicesSection() {
   }))
 
   return (
-    <section id="services" className="relative overflow-hidden bg-white py-28">
-      <div aria-hidden className="absolute inset-0 bg-white" />
+    <section id="services" className="relative overflow-hidden bg-[#fffefa] py-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#fffdfa] to-white" />
+        <div
+          className="absolute inset-0 opacity-80 mix-blend-multiply"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(134,55,48,0.12) 1px, transparent 0)",
+            backgroundSize: "120px 120px",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-25"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, rgba(134,55,48,0.12) 25%, transparent 25%, transparent 50%, rgba(134,55,48,0.12) 50%, rgba(134,55,48,0.12) 75%, transparent 75%, transparent)",
+            backgroundSize: "200px 200px",
+          }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),transparent_55%)]" />
+      </div>
       <div className="relative z-10 mx-auto max-w-6xl px-8">
         <div className={`mb-20 text-center ${isArabic ? "arabic" : ""}`}>
           <h2 className={`mb-6 text-4xl font-light text-[#0c0805] md:text-5xl ${isArabic ? "leading-snug" : ""}`}>
