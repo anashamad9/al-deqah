@@ -157,7 +157,7 @@ export default function NavBar({
       >
         {showLogo ? (
           <Link href="/" className="flex items-center" aria-label="Al-Deqah home">
-            <Image src="/logo-2.png" alt="Al-Deqah logo" width={60} height={78} priority className="h-10 w-auto" />
+            <Image src="/logo-2.png" alt="Al-Deqah logo" width={76} height={100} priority className="h-12 w-auto" />
           </Link>
         ) : (
           <span />
