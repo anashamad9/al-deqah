@@ -9,8 +9,9 @@ import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react"
 import { useLanguage } from "@/components/language-context"
 import { useDeqahAI } from "@/components/deqah-ai-widget"
 import type { Language } from "@/lib/i18n"
-import { solutions } from "@/lib/solutions"
+import { PRIMARY_SERVICE_SLUGS, solutions } from "@/lib/solutions"
 import { getLocalizedSolutions } from "@/lib/solutions-localized"
+import { homepageCopy } from "@/lib/translations"
 
 const COMPANY_LINKS = [
   { key: "about", href: "/about" },
@@ -229,16 +230,39 @@ function FooterNetworkOverlay({ nodes = 50 }: { nodes?: number }) {
   return <canvas ref={canvasRef} aria-hidden className="network-canvas opacity-60 mix-blend-screen" />
 }
 
+const TRAINING_SERVICE = homepageCopy.services.items.find((item) => item.key === "training")
+
 export default function Footer() {
   const { language } = useLanguage()
   const copy = FOOTER_COPY[language]
   const isArabic = language === "ar"
   const { open } = useDeqahAI()
   const localizedSolutions = useMemo(() => getLocalizedSolutions(language, solutions), [language])
-  const trainingLink = {
-    label: language === "ar" ? "برامج التدريب" : "Training Programs",
-    href: "/training",
-  }
+  const featuredSolutions = useMemo(() => {
+    const map = new Map(localizedSolutions.map((solution) => [solution.slug, solution]))
+    return PRIMARY_SERVICE_SLUGS.map((slug) => map.get(slug)).filter(
+      (solution): solution is (typeof localizedSolutions)[number] => Boolean(solution)
+    )
+  }, [localizedSolutions])
+  const footerSolutions = useMemo(() => {
+    const items = featuredSolutions.map((solution) => ({
+      label: solution.name,
+      href: `/solutions/${solution.slug}`,
+    }))
+    const trainingCopy = TRAINING_SERVICE?.copy[language]
+    if (trainingCopy) {
+      items.push({
+        label: trainingCopy.title,
+        href: TRAINING_SERVICE.href ?? "/training",
+      })
+    } else {
+      items.push({
+        label: language === "ar" ? "التدريب وتطوير القدرات" : "Training & Capability Development",
+        href: "/training",
+      })
+    }
+    return items
+  }, [featuredSolutions, language])
 
   return (
     <footer
@@ -261,9 +285,9 @@ export default function Footer() {
                 <Image
                   src="/clients/3.png"
                   alt="Al-Deqah logo"
-                  width={52}
-                  height={68}
-                  className={`${isArabic ? "order-2" : "order-1"} h-12 w-auto`}
+                  width={72}
+                  height={92}
+                  className={`${isArabic ? "order-2" : "order-1"} h-16 w-auto`}
                 />
                 <div
                   className={`${isArabic ? "order-1 text-right arabic" : "order-2"}`}
@@ -317,13 +341,7 @@ export default function Footer() {
               },
               {
                 title: copy.navTitles.solutions,
-                links: [
-                  ...localizedSolutions.map((solution) => ({
-                    label: solution.name,
-                    href: `/solutions/${solution.slug}`,
-                  })),
-                  trainingLink,
-                ],
+                links: footerSolutions,
               },
             ].map((column) => (
               <div key={column.title} className="space-y-5">
