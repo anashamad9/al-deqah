@@ -87,27 +87,27 @@ const ABOUT_COPY: Record<
       members: [
         {
           name: "Lara Nasser",
-          title: "Director of Training Programs",
+          title: "Training Programs Coordinator",
           image: "/our%20team/Lara.jpeg",
         },
         {
           name: "Malek Momani",
-          title: "Managing Director",
+          title: "General Manager",
           image: "/our%20team/Malik.jpeg",
         },
         {
           name: "Hamza Momani",
-          title: "Executive Director",
+          title: "Technical Affairs Coordinator",
           image: "/our%20team/Hamzah.jpeg",
         },
         {
           name: "Yazan Al-Ballah",
-          title: "Director of Cybersecurity",
+          title: "Cyber Operations Coordinator",
           image: "/our%20team/Yazan.jpeg",
         },
         {
           name: "Laman Mohamed",
-          title: "Director of AI & Metaverse",
+          title: "Head of the Metaverse Department",
           image: "/our%20team/Laman.jpeg",
         },
       ],
@@ -184,27 +184,27 @@ const ABOUT_COPY: Record<
       members: [
         {
           name: "لارا ناصر",
-          title: "مديرة البرامج التدريبية",
+          title: "منسق البرامج التدريبية",
           image: "/our%20team/Lara.jpeg",
         },
         {
           name: "مالك مومني",
-          title: "المدير العام",
+          title: "مدير عام",
           image: "/our%20team/Malik.jpeg",
         },
         {
           name: "حمزة مومني",
-          title: "المدير التنفيذي",
+          title: "منسق الشؤون الفنية",
           image: "/our%20team/Hamzah.jpeg",
         },
         {
           name: "يزن البلة",
-          title: "مدير إدارة الأمن السيبراني",
+          title: "منسق قسم العمليات السيبرانية",
           image: "/our%20team/Yazan.jpeg",
         },
         {
           name: "لامان محمد",
-          title: "مديرة إدارة الذكاء الاصطناعي والميتافيرس",
+          title: "رئيس قسم الميتافيرس",
           image: "/our%20team/Laman.jpeg",
         },
       ],

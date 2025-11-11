@@ -10,8 +10,9 @@ import LanguageToggle from "@/components/language-toggle"
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
-import { solutions } from "@/lib/solutions"
+import { PRIMARY_SERVICE_SLUGS, solutions } from "@/lib/solutions"
 import { getLocalizedSolutions } from "@/lib/solutions-localized"
+import { homepageCopy } from "@/lib/translations"
 
 const NAV_LINKS = [
   { key: "solutions", href: "/solutions", icon: Layers3 },
@@ -45,6 +46,8 @@ const CTA_LABELS: Record<Language, string> = {
   en: "Our Services",
   ar: "خدماتنا",
 }
+
+const TRAINING_SERVICE = homepageCopy.services.items.find((item) => item.key === "training")
 
 type NavBarVariant = "light" | "dark"
 
@@ -84,24 +87,31 @@ export default function NavBar({
 
   const navLabels = useMemo(() => NAV_LABELS[language], [language])
   const localizedSolutions = useMemo(() => getLocalizedSolutions(language, solutions), [language])
-  const solutionMenuItems = useMemo(
-    () => [
-      ...localizedSolutions.map((solution) => ({
-        slug: `/solutions/${solution.slug}`,
-        name: solution.name,
-        tagline: solution.tagline,
-      })),
-      {
+  const featuredSolutions = useMemo(() => {
+    const map = new Map(localizedSolutions.map((solution) => [solution.slug, solution]))
+    return PRIMARY_SERVICE_SLUGS.map((slug) => map.get(slug)).filter(
+      (solution): solution is (typeof localizedSolutions)[number] => Boolean(solution)
+    )
+  }, [localizedSolutions])
+  const solutionMenuItems = useMemo(() => {
+    const items = featuredSolutions.map((solution) => ({
+      slug: `/solutions/${solution.slug}`,
+      name: solution.name,
+    }))
+    const trainingCopy = TRAINING_SERVICE?.copy[language]
+    if (trainingCopy) {
+      items.push({
+        slug: TRAINING_SERVICE.href ?? "/training",
+        name: trainingCopy.title,
+      })
+    } else {
+      items.push({
         slug: "/training",
-        name: language === "ar" ? "برامج التدريب وتطوير القدرات" : "Training & Capability Uplift",
-        tagline:
-          language === "ar"
-            ? "برامج متخصصة لرفع جاهزية القيادة والكوادر في بيئات العمل الرقمية."
-            : "Specialized programmes that accelerate leadership, project delivery, and workforce readiness.",
-      },
-    ],
-    [language, localizedSolutions]
-  )
+        name: language === "ar" ? "التدريب وتطوير القدرات" : "Training & Capability Development",
+      })
+    }
+    return items
+  }, [language, featuredSolutions])
   const viewAllLabel = language === "ar" ? "عرض كل الحلول" : "See all solutions"
 
   const glassyClasses =
@@ -217,7 +227,6 @@ export default function NavBar({
                           )}
                         >
                           <span className="text-[13px] font-medium text-neutral-900">{solutionItem.name}</span>
-                          <span className="text-[11px] text-neutral-500 leading-relaxed">{solutionItem.tagline}</span>
                         </Link>
                       ))}
                     </div>
@@ -362,7 +371,6 @@ export default function NavBar({
                               className="block rounded-xl px-3 py-2 text-sm text-neutral-600 hover:bg-[#fdf7f3]"
                             >
                               <p className="font-semibold text-neutral-900">{solution.name}</p>
-                              <p className="text-xs text-neutral-500">{solution.tagline}</p>
                             </Link>
                           ))}
                           <Link

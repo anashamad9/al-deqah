@@ -8,8 +8,11 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
-import { solutions } from "@/lib/solutions"
+import { PRIMARY_SERVICE_SLUGS, solutions } from "@/lib/solutions"
 import { getLocalizedSolutions } from "@/lib/solutions-localized"
+import { homepageCopy } from "@/lib/translations"
+
+const TRAINING_SERVICE = homepageCopy.services.items.find((item) => item.key === "training")
 
 const PAGE_COPY: Record<
   Language,
@@ -76,20 +79,30 @@ export default function SolutionsIndexPage() {
   const copy = PAGE_COPY[language]
   const isArabic = language === "ar"
   const localizedSolutions = getLocalizedSolutions(language, solutions)
+  const featuredSolutions = useMemo(() => {
+    const map = new Map(localizedSolutions.map((solution) => [solution.slug, solution]))
+    return PRIMARY_SERVICE_SLUGS.map((slug) => map.get(slug)).filter(
+      (solution): solution is (typeof localizedSolutions)[number] => Boolean(solution)
+    )
+  }, [localizedSolutions])
   const trainingCard = useMemo(
-    () => ({
-      slug: "training",
-      name: language === "ar" ? "برامج التدريب وتطوير القدرات" : "Training & Capability Uplift",
-      category: language === "ar" ? "التدريب" : "Training",
-      tagline:
+    () => {
+      const fallbackTagline =
         language === "ar"
-          ? "برامج غامرة ومخصصة تعزز القيادة، وإدارة المشاريع، والجاهزية المؤسسية."
-          : "Immersive, customized programmes that elevate leadership, project delivery, and workforce readiness.",
-    }),
+          ? "برامج ترفع قدرات القيادة والتسليم وجهوزية الكوادر."
+          : "Programs that elevate leadership, project delivery, and workforce readiness."
+      const trainingCopy = TRAINING_SERVICE?.copy[language]
+      return {
+        slug: "training",
+        name: trainingCopy?.title ?? (language === "ar" ? "التدريب وتطوير القدرات" : "Training & Capability Development"),
+        category: language === "ar" ? "التدريب" : "Training",
+        tagline: trainingCopy?.description ?? fallbackTagline,
+      }
+    },
     [language]
   )
 
-  const allSolutions = useMemo(() => [...localizedSolutions, trainingCard], [localizedSolutions, trainingCard])
+  const allSolutions = useMemo(() => [...featuredSolutions, trainingCard], [featuredSolutions, trainingCard])
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(allSolutions.map((item) => item.category)))
@@ -177,10 +190,12 @@ export default function SolutionsIndexPage() {
             </div>
 
             <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-              {filteredSolutions.map((solution) => (
-                <Link
+              {filteredSolutions.map((solution) => {
+                const href = solution.slug === "training" ? "/training" : `/solutions/${solution.slug}`
+                return (
+                  <Link
                   key={solution.slug}
-                  href={`/solutions/${solution.slug}`}
+                  href={href}
                   className="group relative overflow-hidden rounded-[28px] border border-neutral-200/60 bg-gradient-to-br from-white via-white to-[#fdf7f3] p-8 shadow-[0_45px_120px_-90px_rgba(15,23,42,0.4)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_55px_140px_-70px_rgba(134,55,48,0.3)]"
                 >
                   <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{
@@ -203,8 +218,9 @@ export default function SolutionsIndexPage() {
                       <Network className="h-4 w-4" />
                     </div>
                   </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>

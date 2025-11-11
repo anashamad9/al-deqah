@@ -104,7 +104,7 @@ export const homepageCopy = {
             description: "Audits, compliance, and testing programs aligned with international frameworks.",
           },
           ar: {
-            title: "التدقيق وضمان الجودة وتطبيق المعايير العالمية",
+            title: "التدقيق وضمان الجودة وتطبيق المعايير العالمية.",
             description: "برامج تدقيق وامتثال واختبارات متوافقة مع الأطر العالمية.",
           },
         },
@@ -132,7 +132,7 @@ export const homepageCopy = {
             description: "ERP, CRM, and low-code ecosystems unified around measurable outcomes.",
           },
           ar: {
-            title: "الحلول المؤسسية المتكاملة",
+            title: "لحلول المؤسسية المتكاملة",
             description: "أنظمة ERP وCRM ومنصات منخفضة الشفرة موحّدة حول مؤشرات أداء قابلة للقياس.",
           },
         },

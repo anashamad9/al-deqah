@@ -42,6 +42,18 @@ export type Solution = {
   cta: SolutionCTA
 }
 
+export const PRIMARY_SERVICE_SLUGS = [
+  "cybersecurity-risk",
+  "software-engineering",
+  "ai-data-science",
+  "xr-immersive",
+  "iot-platforms",
+  "quality-assurance",
+  "digital-infrastructure",
+  "enterprise-platforms",
+  "digital-consulting",
+] as const
+
 export const solutions: Solution[] = [
   {
     slug: "cybersecurity-risk",

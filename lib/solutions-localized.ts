@@ -40,7 +40,7 @@ type SolutionTranslation = {
 const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTranslation>>> = {
   "cybersecurity-risk": {
     ar: {
-      name: "الأمن السيبراني واستخبارات المخاطر",
+      name: "الأمن السيبراني واستخبارات التهديدات الرقمية",
       category: "الأمن والمرونة",
       tagline: "حصّن الأصول الحيوية بعمليات دفاعية استباقية يقودها الذكاء.",
       description:
@@ -224,7 +224,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "quality-assurance": {
     ar: {
-      name: "التدقيق وضمان الجودة وتطبيق المعايير العالمية",
+      name: "التدقيق وضمان الجودة وتطبيق المعايير العالمية.",
       category: "الجودة والامتثال",
       tagline: "اختبارات مستقلة وأدلة امتثال تُبقي الإصدارات موثوقة وجاهزة للتدقيق.",
       description:
@@ -368,7 +368,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "enterprise-platforms": {
     ar: {
-      name: "الحلول المؤسسية المتكاملة",
+      name: "لحلول المؤسسية المتكاملة",
       category: "الأنظمة المؤسسية",
       tagline: "نُوحد ERP وCRM والأتمتة حول مؤشرات أداء قابلة للقياس.",
       description:
@@ -614,7 +614,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "ai-data-science": {
     ar: {
-      name: "الذكاء الاصطناعي وعلوم البيانات",
+      name: "الذكاء الاصطناعي وتحليل البيانات المتقدمة",
       category: "المنصات الذكية",
       tagline: "فعّل الذكاء الاصطناعي الموثوق عبر مؤسستك.",
       description:
@@ -716,7 +716,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "xr-immersive": {
     ar: {
-      name: "الواقع الممتد والتجارب الرائعة",
+      name: "الواقع الافتراضي والمعزز والميتافيرس",
       category: "الواقع الممتد",
       tagline: "قصص ومساحات تستجيب لكل حركة.",
       description:
@@ -818,7 +818,7 @@ const SOLUTION_TRANSLATIONS: Record<string, Partial<Record<Language, SolutionTra
   },
   "iot-platforms": {
     ar: {
-      name: "منصات إنترنت الأشياء",
+      name: "إنترنت الأشياء والأنظمة الذكية المتصلة",
       category: "ذكاء متصل",
       tagline: "أدِر العالم المادي بحلول موثوقة من الحافة إلى السحابة.",
       description:
