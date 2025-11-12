@@ -24,7 +24,7 @@ const serviceImages: Record<string, string> = {
   ai: "/services/ai.jpg",
   xr: "/services/metaverse.jpeg",
   iot: "/services/iot.jpeg",
-  quality: "/placeholder.jpg",
+  quality: "https://distillery.com/wp-content/uploads/2024/09/9-Ways-AI-is-Helping-Tech-QA-Engineers-in-Their-Projects-1080x675.png",
   infrastructure: "/GettyImages-1383963898_1200x675.jpg",
   enterprise: "/services/digital-twins.webp",
   consulting: "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",

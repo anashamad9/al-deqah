@@ -194,11 +194,6 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Hamzah.jpeg",
         },
         {
-          name: "يزن البلة",
-          title: "منسق قسم العمليات السيبرانية",
-          image: "/our%20team/Yazan.jpeg",
-        },
-        {
           name: "لامان محمد",
           title: "رئيس قسم الميتافيرس",
           image: "/our%20team/Maen.jpeg",

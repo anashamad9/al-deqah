@@ -37,7 +37,10 @@ export default function HeroContent() {
 
   return (
     <>
-      <main className={`absolute bottom-8 z-20 max-w-lg ${isArabic ? "right-8 text-right" : "left-8 text-left"}`}>
+      <main
+        id="hero-section"
+        className={`absolute bottom-8 z-20 max-w-lg ${isArabic ? "right-8 text-right" : "left-8 text-left"}`}
+      >
         <div className={isArabic ? "text-right space-y-0" : "text-left"}>
           {/* Main Heading */}
           <h1

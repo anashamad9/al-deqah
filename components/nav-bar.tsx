@@ -112,7 +112,7 @@ export default function NavBar({
     }
     return items
   }, [language, featuredSolutions])
-  const viewAllLabel = language === "ar" ? "عرض كل االحلول" : "See all solutions"
+  const viewAllLabel = language === "ar" ? "عرض كل الحلول" : "See all solutions"
 
   const glassyClasses =
     variant === "dark"
@@ -210,7 +210,7 @@ export default function NavBar({
                         href="/solutions"
                         className={cn(
                           "flex items-center gap-2 rounded-full bg-[#863730] px-4 py-2 text-xs font-medium text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-[#742f29]",
-                          language === "ar" ? "arabic justify-end text-right" : "justify-start"
+                          language === "ar" ? "arabic justify-end text-right self-end ml-auto" : "justify-start"
                         )}
                       >
                         <span className={language === "ar" ? "text-right" : "text-left"}>{viewAllLabel}</span>
