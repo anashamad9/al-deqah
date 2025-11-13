@@ -72,7 +72,7 @@ const PARTNER_CONTENT = {
     },
   },
   Dell: {
-    name: { en: "Dell", ar: "دِل" },
+    name: { en: "Dell", ar: "Dell" },
     description: {
       en: "Edge-to-core infrastructure, ruggedized servers, and lifecycle services powering smart factory and immersive training environments.",
       ar: "بنية تحتية من الحافة إلى المركز مع خوادم متينة وخدمات طوال دورة الحياة لدعم المصانع الذكية وبيئات التدريب الرائعة.",
