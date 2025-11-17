@@ -207,6 +207,7 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
                 "flex flex-wrap items-center gap-2 text-[11px] font-medium text-gray-500",
                 isArabic ? "justify-end text-right arabic" : ""
               )}
+              dir={isArabic ? "rtl" : undefined}
             >
               <span className="text-gray-400">{copy.quickPromptsLabel}</span>
               {promptOptions.map((prompt) => (
@@ -316,7 +317,7 @@ function ChatBubble({ message, language }: { message: ChatMessage; language: Lan
       <div
         className={`max-w-[82%] rounded-2xl px-4 py-3 text-sm font-light leading-relaxed ${
           isAssistant
-            ? "bg-gray-100 text-gray-700 shadow-[0_15px_40px_-35px_rgba(0,0,0,0.4)]"
+            ? "bg-[#863730] text-white shadow-[0_15px_40px_-35px_rgba(134,55,48,0.6)]"
             : "bg-[#0c0805] text-white shadow-[0_18px_45px_-35px_rgba(0,0,0,0.8)]"
         } ${isArabic ? "text-right arabic" : ""}`}
         dangerouslySetInnerHTML={{ __html: formattedContent }}
