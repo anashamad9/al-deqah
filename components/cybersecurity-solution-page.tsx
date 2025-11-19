@@ -10,7 +10,7 @@ import { useLanguage } from "@/components/language-context"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
-const CYBER_VIDEO_SRC = "https://media.giphy.com/media/xThtawwQXwVTzUXzuI/giphy.mp4"
+const CYBER_VIDEO_SRC = "/videoplayback.mp4"
 const BINARY_PATTERN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='white'/%3E%3Ctext x='8' y='58' fill='%23863730' fill-opacity='0.07' font-size='32' font-family='monospace'%3E0101010101%3C/text%3E%3Ctext x='32' y='138' fill='%23863730' fill-opacity='0.05' font-size='32' font-family='monospace'%3E1010101010%3C/text%3E%3C/svg%3E\")"
 
@@ -257,8 +257,9 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
             <source src={CYBER_VIDEO_SRC} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-[#1b0e0b]/55 to-[#120806]/60" />
-          <div className="relative mx-auto flex min-h-[560px] w-full max-w-6xl flex-col justify-between gap-6 px-6 py-8 text-white">
-            <div className={`flex flex-wrap items-center gap-3 text-xs ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
+          <div className="relative mx-auto flex min-h-[600px] w-full max-w-6xl flex-col gap-6 px-6 pb-20 pt-12 text-white">
+            <div className="pointer-events-none absolute inset-x-0 bottom-12 mx-auto h-56 w-11/12 translate-y-10 rounded-[999px] bg-gradient-to-r from-transparent via-transparent to-transparent" />
+            <div className={`relative z-10 flex flex-wrap items-center gap-3 text-xs ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
               <Link
                 href="/solutions"
                 className="inline-flex items-center gap-2 rounded-full border border-white/40 px-3 py-1 text-[11px] font-semibold text-white/70 transition hover:border-white hover:text-white"
@@ -267,7 +268,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                 <span>{copy.backLabel}</span>
               </Link>
             </div>
-            <div className="space-y-6">
+            <div className="relative z-10 mt-auto space-y-6">
               <div className="space-y-4">
                 <h1 className="text-4xl font-light leading-tight text-white md:text-5xl">{localizedSolution.name}</h1>
                 <p className="max-w-3xl text-sm text-white/80">{copy.heroSubline}</p>
