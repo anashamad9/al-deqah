@@ -10,6 +10,7 @@ import { useLanguage } from "@/components/language-context"
 import type { Language } from "@/lib/i18n"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
+import CybersecuritySolutionPage from "@/components/cybersecurity-solution-page"
 
 const SOLUTION_BACKGROUNDS: Record<string, string> = {
   "cybersecurity-risk": "https://images.unsplash.com/photo-1510511336377-1a9caa095849?auto=format&fit=crop&w=2000&q=80",
@@ -79,6 +80,10 @@ type SolutionDetailPageProps = {
 }
 
 export default function SolutionDetailPage({ solution }: SolutionDetailPageProps) {
+  if (solution.slug === "cybersecurity-risk") {
+    return <CybersecuritySolutionPage solution={solution} />
+  }
+
   const { language } = useLanguage()
   const copy = DETAIL_COPY[language]
   const isArabic = language === "ar"

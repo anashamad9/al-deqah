@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Sparkles, Target, Workflow } from "lucide-react"
+import { ChevronLeft, ChevronRight, Sparkles, Target, Workflow } from "lucide-react"
 import Link from "next/link"
 
 import { useLanguage } from "@/components/language-context"
@@ -12,6 +12,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+const PROGRAMS_PER_PAGE = 10
 
 const TRAINING_COPY = {
   en: {
@@ -152,6 +154,10 @@ export default function TrainingPageContent() {
   const [selectedProgram, setSelectedProgram] = useState<TrainingProgram | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [activeCategoryId, setActiveCategoryId] = useState(trainingCatalog[0]?.id ?? "")
+  const [categoryPages, setCategoryPages] = useState<Record<string, number>>(() => {
+    const firstCategoryId = trainingCatalog[0]?.id
+    return firstCategoryId ? { [firstCategoryId]: 0 } : {}
+  })
 
   const activeCategory: TrainingCategory | undefined = useMemo(
     () => trainingCatalog.find((category) => category.id === activeCategoryId) ?? trainingCatalog[0],
@@ -161,6 +167,11 @@ export default function TrainingPageContent() {
   const handleSelectProgram = (program: TrainingProgram) => {
     setSelectedProgram(program)
     setDialogOpen(true)
+  }
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategoryId(categoryId)
+    setCategoryPages((prev) => ({ ...prev, [categoryId]: 0 }))
   }
 
   return (
@@ -259,7 +270,7 @@ export default function TrainingPageContent() {
         </div>
           <Tabs
             value={activeCategory?.id ?? ""}
-            onValueChange={setActiveCategoryId}
+            onValueChange={handleCategoryChange}
             dir={isArabic ? "rtl" : "ltr"}
             className="mt-6"
           >
@@ -277,8 +288,71 @@ export default function TrainingPageContent() {
 
             {trainingCatalog.map((category) => (
               <TabsContent key={category.id} value={category.id} className="mt-8 focus-visible:outline-none">
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {category.programs.map((program) => (
+                {(() => {
+                  const totalPrograms = category.programs.length
+                  const totalPages = Math.max(1, Math.ceil(totalPrograms / PROGRAMS_PER_PAGE))
+                  const currentPage = Math.min(categoryPages[category.id] ?? 0, totalPages - 1)
+                  const startIndex = currentPage * PROGRAMS_PER_PAGE
+                  const visiblePrograms = category.programs.slice(
+                    startIndex,
+                    startIndex + PROGRAMS_PER_PAGE
+                  )
+                  const rangeStart = totalPrograms === 0 ? 0 : startIndex + 1
+                  const rangeEnd = startIndex + visiblePrograms.length
+                  const rangeLabel =
+                    totalPrograms === 0
+                      ? isArabic
+                        ? "لا توجد برامج متاحة حالياً"
+                        : "No programs available yet"
+                      : isArabic
+                        ? `عرض ${rangeStart}-${rangeEnd} من ${totalPrograms}`
+                        : `Showing ${rangeStart}-${rangeEnd} of ${totalPrograms}`
+
+                  const goToPreviousPage = () => {
+                    setCategoryPages((prev) => ({
+                      ...prev,
+                      [category.id]: Math.max((prev[category.id] ?? 0) - 1, 0),
+                    }))
+                  }
+
+                  const goToNextPage = () => {
+                    setCategoryPages((prev) => ({
+                      ...prev,
+                      [category.id]: Math.min((prev[category.id] ?? 0) + 1, totalPages - 1),
+                    }))
+                  }
+
+                  return (
+                    <>
+                      <div
+                        className={`mb-4 flex items-center justify-between text-xs text-neutral-500 ${
+                          isArabic ? "flex-row-reverse text-right" : ""
+                        }`}
+                      >
+                        <span>{rangeLabel}</span>
+                        <div className={`flex items-center gap-2 ${isArabic ? "flex-row-reverse" : ""}`}>
+                          <button
+                            type="button"
+                            onClick={goToPreviousPage}
+                            disabled={currentPage === 0}
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e7dcd2] bg-white/80 text-[#863730] transition hover:border-[#863730]/50 disabled:cursor-not-allowed disabled:opacity-40"
+                            aria-label={isArabic ? "السابق" : "Previous"}
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={goToNextPage}
+                            disabled={currentPage >= totalPages - 1}
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e7dcd2] bg-white/80 text-[#863730] transition hover:border-[#863730]/50 disabled:cursor-not-allowed disabled:opacity-40"
+                            aria-label={isArabic ? "التالي" : "Next"}
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {visiblePrograms.map((program) => (
                     <button
                       key={program.id}
                       type="button"
@@ -298,8 +372,11 @@ export default function TrainingPageContent() {
                         <Sparkles className="h-4 w-4 text-[#863730] transition-transform group-hover:scale-110" />
                       </div>
                     </button>
-                  ))}
-                </div>
+                        ))}
+                      </div>
+                    </>
+                  )
+                })()}
               </TabsContent>
             ))}
           </Tabs>

@@ -217,10 +217,10 @@ export default function DeqahAIChat({ quickPrompts = [], variant = "page" }: Deq
                   onClick={() => sendMessage(prompt)}
                   disabled={isLoading}
                   className={cn(
-                    "rounded-full border px-3 py-1 text-[11px] text-gray-600 transition-all duration-200",
+                    "rounded-full border px-3 py-1 text-[11px] text-gray-700 transition-all duration-200",
                     isPopup
                       ? "border-white/20 bg-white/10 hover:border-white/40 hover:bg-white/20"
-                      : "border-gray-200 hover:border-[#863730]/50 hover:bg-[#fef5ef]",
+                      : "border-[#c8b0a3] bg-white shadow-sm hover:border-[#863730]/50 hover:bg-[#fef5ef]",
                     isArabic ? "arabic" : ""
                   )}
                 >

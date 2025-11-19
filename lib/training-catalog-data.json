@@ -10862,76 +10862,116 @@
       {
         "id": "engineering-106",
         "title": {
-          "en": "برنامج السلامة ومكافحة الحرائق في المنشآت النفطية يتضمن محاكاة حريق كامل داخل منشأة نفطية، مع تدريب مباشر على الاستجابة، الإخلاء، واستخدام أدوات الإطفاء.",
-          "ar": "برنامج السلامة ومكافحة الحرائق في المنشآت النفطية يتضمن محاكاة حريق كامل داخل منشأة نفطية، مع تدريب مباشر على الاستجابة، الإخلاء، واستخدام أدوات الإطفاء."
+          "en": "Oil Facility Fire Safety Program",
+          "ar": "برنامج سلامة ومكافحة حرائق المنشآت النفطية"
         },
         "hours": {
           "en": "16 training hours",
           "ar": "16 ساعة تدريبية"
         },
         "objectives": {
-          "en": [],
-          "ar": []
+          "en": [
+            "Practice coordinated response to large-scale hydrocarbon fires within process facilities.",
+            "Drill evacuation, incident command, and communication protocols through realistic simulations.",
+            "Reinforce proper selection and use of fixed and portable firefighting equipment."
+          ],
+          "ar": [
+            "ممارسة الاستجابة المنسقة لحرائق الهيدروكربون واسعة النطاق داخل المنشآت التشغيلية.",
+            "تدريب المشاركين على الإخلاء وقيادة الحدث وبروتوكولات الاتصال من خلال محاكاة واقعية.",
+            "تعزيز مهارات اختيار واستخدام معدات الإطفاء الثابتة والمحمولة بالشكل الصحيح."
+          ]
         }
       },
       {
         "id": "engineering-107",
         "title": {
-          "en": "برنامج الدخول الآمن إلى الأماكن الضيقة والمغلقة يركّز على بروتوكولات دخول الخزانات والأنابيب، والتعرف على المخاطر الكامنة، وكيفية اتخاذ قرارات آمنة في بيئة ثلاثية الأبعاد.",
-          "ar": "برنامج الدخول الآمن إلى الأماكن الضيقة والمغلقة يركّز على بروتوكولات دخول الخزانات والأنابيب، والتعرف على المخاطر الكامنة، وكيفية اتخاذ قرارات آمنة في بيئة ثلاثية الأبعاد."
+          "en": "Confined Space Entry Safety",
+          "ar": "برنامج الدخول الآمن إلى الأماكن الضيقة"
         },
         "hours": {
           "en": "12 training hours",
           "ar": "12 ساعة تدريبية"
         },
         "objectives": {
-          "en": [],
-          "ar": []
+          "en": [
+            "Review confined-space regulations and permitting requirements for tanks, pits, and pipelines.",
+            "Identify atmospheric, structural, and operational hazards using immersive 3D simulations.",
+            "Apply rescue strategies and emergency decision-making procedures for high-risk entries."
+          ],
+          "ar": [
+            "مراجعة اللوائح ومتطلبات تصاريح دخول الأماكن المغلقة مثل الخزانات والحفر والأنابيب.",
+            "التعرف على المخاطر الجوية والهيكلية والتشغيلية باستخدام محاكاة ثلاثية الأبعاد غامرة.",
+            "تطبيق استراتيجيات الإنقاذ وإجراءات اتخاذ القرار في الحالات الطارئة للدخول عالي المخاطر."
+          ]
         }
       },
       {
         "id": "engineering-108",
         "title": {
-          "en": "برنامج الاستجابة لتسربات النفط واحتوائها محاكاة تسرب نفطي شامل في البحر أو على اليابسة، مع تطبيق عملي للإجراءات البيئية والبروتوكولات الدولية.",
-          "ar": "برنامج الاستجابة لتسربات النفط واحتوائها محاكاة تسرب نفطي شامل في البحر أو على اليابسة، مع تطبيق عملي للإجراءات البيئية والبروتوكولات الدولية."
+          "en": "Oil Spill Response & Containment",
+          "ar": "برنامج الاستجابة لتسربات النفط واحتوائها"
         },
         "hours": {
           "en": "18 training hours",
           "ar": "18 ساعة تدريبية"
         },
         "objectives": {
-          "en": [],
-          "ar": []
+          "en": [
+            "Simulate offshore and onshore oil-spill containment aligned with international protocols.",
+            "Deploy booms, skimmers, and recovery tactics under varying sea states and weather conditions.",
+            "Coordinate environmental reporting, community messaging, and regulator engagement plans."
+          ],
+          "ar": [
+            "محاكاة احتواء تسربات النفط في البحر والبر بما يتماشى مع البروتوكولات الدولية.",
+            "تطبيق تكتيكات الحواجز والمكاشط وعمليات الاسترداد في ظروف بحرية وجوية مختلفة.",
+            "تنسيق تقارير البيئة ورسائل المجتمع وخطط التواصل مع الجهات التنظيمية."
+          ]
         }
       },
       {
         "id": "engineering-109",
         "title": {
-          "en": "برنامج إدارة الأزمات والقيادة تحت الضغط ينقل المتدرب إلى موقف أزمة معقدة تتطلب قرارات سريعة، توجيه الفريق، وضمان استمرارية التشغيل.",
-          "ar": "برنامج إدارة الأزمات والقيادة تحت الضغط ينقل المتدرب إلى موقف أزمة معقدة تتطلب قرارات سريعة، توجيه الفريق، وضمان استمرارية التشغيل."
+          "en": "Crisis Leadership Under Pressure",
+          "ar": "برنامج القيادة وإدارة الأزمات"
         },
         "hours": {
           "en": "12 training hours",
           "ar": "12 ساعة تدريبية"
         },
         "objectives": {
-          "en": [],
-          "ar": []
+          "en": [
+            "Immerse leaders in complex crisis simulations that require rapid prioritization and judgment.",
+            "Practice directing teams, delegating tasks, and coordinating cross-functional stakeholders in real time.",
+            "Develop continuity playbooks to sustain operations and communication during high-pressure incidents."
+          ],
+          "ar": [
+            "إشراك القادة في محاكاة أزمات معقدة تتطلب تحديد أولويات سريعاً واتخاذ قرارات حاسمة.",
+            "تدريبهم على توجيه الفرق وتفويض المهام وتنسيق أصحاب المصلحة متعدد التخصصات في الوقت الفعلي.",
+            "بناء أدلة استمرارية العمل للحفاظ على التشغيل والاتصال أثناء الحوادث عالية الضغط."
+          ]
         }
       },
       {
         "id": "engineering-110",
         "title": {
-          "en": "برنامج خاص: الاستجابة لتسرب فيديو أمني عبر وسائل التواصل الاجتماعي (فيديو فيروسي) برنامج فريد من نوعه يحاكي تسريب فيديو داخلي من منشأة نفطية وانتشاره على السوشيال ميديا، ويركز على التعامل الإعلامي والأمني، وكيفية التنسيق بين الفرق التقنية والإدارية لضمان السيطرة على الموقف.",
-          "ar": "برنامج خاص: الاستجابة لتسرب فيديو أمني عبر وسائل التواصل الاجتماعي (فيديو فيروسي) برنامج فريد من نوعه يحاكي تسريب فيديو داخلي من منشأة نفطية وانتشاره على السوشيال ميديا، ويركز على التعامل الإعلامي والأمني، وكيفية التنسيق بين الفرق التقنية والإدارية لضمان السيطرة على الموقف."
+          "en": "Viral Security Leak Response",
+          "ar": "برنامج الاستجابة لتسرب فيديو أمني"
         },
         "hours": {
           "en": "10 training hours",
           "ar": "10 ساعة تدريبية"
         },
         "objectives": {
-          "en": [],
-          "ar": []
+          "en": [
+            "Analyze reputational, legal, and operational risks triggered by viral security leaks.",
+            "Design coordinated media, cybersecurity, and HR responses to contain misinformation.",
+            "Run tabletop exercises linking technical forensics with executive decision rooms for swift action."
+          ],
+          "ar": [
+            "تحليل المخاطر السمعة والقانونية والتشغيلية الناتجة عن تسريبات أمنية تنتشر بسرعة.",
+            "تصميم استجابات منسقة إعلامياً وأمنياً وموارد بشرية للحد من المعلومات المضللة.",
+            "تنفيذ تمارين محاكاة تربط التحليلات التقنية لغرفة العمليات بغرف القرارات التنفيذية لاتخاذ إجراءات سريعة."
+          ]
         }
       }
     ]
