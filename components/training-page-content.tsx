@@ -13,7 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-const PROGRAMS_PER_PAGE = 10
+const PROGRAMS_PER_PAGE = 9
 
 const TRAINING_COPY = {
   en: {
@@ -324,8 +324,31 @@ export default function TrainingPageContent() {
 
                   return (
                     <>
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {visiblePrograms.map((program) => (
+                    <button
+                      key={program.id}
+                      type="button"
+                      onClick={() => handleSelectProgram(program)}
+                      className="group flex h-full flex-col justify-between gap-4 rounded-3xl border border-[#e7dcd2] bg-white/90 p-6 text-left shadow-[0_30px_90px_-70px_rgba(15,23,42,0.35)] transition-transform duration-200 hover:-translate-y-1 hover:border-[#863730]/40 hover:shadow-[0_40px_120px_-60px_rgba(134,55,48,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#863730]"
+                    >
+                      <div className={isArabic ? "text-right arabic" : ""}>
+                        <h3 className="text-lg font-medium text-neutral-900">{program.title[language]}</h3>
+                        <p className="mt-2 text-sm text-[#863730]">{program.hours[language]}</p>
+                      </div>
                       <div
-                        className={`mb-4 flex items-center justify-between text-xs text-neutral-500 ${
+                        className={`flex items-center gap-2 text-xs font-medium text-neutral-500 ${
+                          isArabic ? "flex-row-reverse self-end text-right" : ""
+                        }`}
+                      >
+                        <span>{isArabic ? "عرض التفاصيل" : "View details"}</span>
+                        <Sparkles className="h-4 w-4 text-[#863730] transition-transform group-hover:scale-110" />
+                      </div>
+                    </button>
+                        ))}
+                      </div>
+                      <div
+                        className={`mt-6 flex items-center justify-between text-xs text-neutral-500 ${
                           isArabic ? "flex-row-reverse text-right" : ""
                         }`}
                       >
@@ -350,29 +373,6 @@ export default function TrainingPageContent() {
                             <ChevronRight className="h-4 w-4" />
                           </button>
                         </div>
-                      </div>
-                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {visiblePrograms.map((program) => (
-                    <button
-                      key={program.id}
-                      type="button"
-                      onClick={() => handleSelectProgram(program)}
-                      className="group flex h-full flex-col justify-between gap-4 rounded-3xl border border-[#e7dcd2] bg-white/90 p-6 text-left shadow-[0_30px_90px_-70px_rgba(15,23,42,0.35)] transition-transform duration-200 hover:-translate-y-1 hover:border-[#863730]/40 hover:shadow-[0_40px_120px_-60px_rgba(134,55,48,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#863730]"
-                    >
-                      <div className={isArabic ? "text-right arabic" : ""}>
-                        <h3 className="text-lg font-medium text-neutral-900">{program.title[language]}</h3>
-                        <p className="mt-2 text-sm text-[#863730]">{program.hours[language]}</p>
-                      </div>
-                      <div
-                        className={`flex items-center gap-2 text-xs font-medium text-neutral-500 ${
-                          isArabic ? "flex-row-reverse self-end text-right" : ""
-                        }`}
-                      >
-                        <span>{isArabic ? "عرض التفاصيل" : "View details"}</span>
-                        <Sparkles className="h-4 w-4 text-[#863730] transition-transform group-hover:scale-110" />
-                      </div>
-                    </button>
-                        ))}
                       </div>
                     </>
                   )

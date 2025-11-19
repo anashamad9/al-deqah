@@ -22,6 +22,7 @@ const CYBER_COPY = {
       "We safeguard your digital operations through continuous monitoring, proactive threat hunting, and tailored incident readiness.",
     heroSubline:
       "We protect your digital business by detecting threats early and anticipating attacks with integrated cybersecurity and threat intelligence solutions.",
+    heroContactCta: "Contact us",
     heroSecurityCta: "Request a security assessment",
     overview: {
       kicker: "Executive brief",
@@ -115,7 +116,7 @@ const CYBER_COPY = {
       message:
         "Proactive preparation and early intervention are the foundation of resilient cybersecurity. Our advisors are ready to help design a protection program that safeguards continuity and customer trust.",
       support: "Share your requirements and we will craft a tailored service plan.",
-      applyCta: "Apply for managed services",
+      applyCta: "Schedule a cyber resilience briefing",
     },
   },
   ar: {
@@ -125,6 +126,7 @@ const CYBER_COPY = {
       "نحمي عملياتك الرقمية عبر مراقبة مستمرة وصيد تهديدات استباقي وجاهزية دقيقة للاستجابة للحوادث.",
     heroSubline:
       "نحمي أعمالك الرقمية عبر رصد التهديدات واستباق الهجمات. حلول متكاملة للأمن السيبراني واستخبارات التهديدات مصممة حسب احتياجات مؤسستك.",
+    heroContactCta: "تواصل معنا",
     heroSecurityCta: "اطلب تقييم أمني",
     overview: {
       kicker: "نبذة عامة",
@@ -218,7 +220,7 @@ const CYBER_COPY = {
       message:
         "نؤمن أن الوقاية والاستعداد المبكر هما أساس الأمن السيبراني الفعّال. فريقنا جاهز لدعمك في بناء منظومة حماية متكاملة تحافظ على استمرارية أعمالك وثقة عملائك.",
       support: "تواصل معنا اليوم لتحديد احتياجاتك ووضع خطة أمنية تناسب بيئتك التقنية.",
-      applyCta: "تقدم بطلب الحصول على الخدمات",
+      applyCta: "احجز إحاطة حول المرونة السيبرانية",
     },
   },
 } as const
@@ -255,12 +257,8 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
             <source src={CYBER_VIDEO_SRC} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-[#1b0e0b]/55 to-[#120806]/60" />
-          <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 text-white">
-            <div
-              className={`flex flex-wrap items-center gap-3 text-xs ${
-                isArabic ? "flex-row-reverse justify-end" : "justify-start"
-              }`}
-            >
+          <div className="relative mx-auto flex min-h-[560px] w-full max-w-6xl flex-col justify-between gap-6 px-6 py-8 text-white">
+            <div className={`flex flex-wrap items-center gap-3 text-xs ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
               <Link
                 href="/solutions"
                 className="inline-flex items-center gap-2 rounded-full border border-white/40 px-3 py-1 text-[11px] font-semibold text-white/70 transition hover:border-white hover:text-white"
@@ -268,40 +266,21 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                 <ArrowLeft className={`${isArabic ? "rotate-180" : ""} h-4 w-4`} />
                 <span>{copy.backLabel}</span>
               </Link>
-              <span
-                className={`rounded-full border border-white/30 px-3 py-1 text-[11px] font-semibold text-white/70 ${
-                  isArabic ? "arabic tracking-normal" : "uppercase tracking-[0.3em]"
-                }`}
-              >
-                {localizedSolution.category}
-              </span>
             </div>
-            <div className="space-y-5">
-              <p
-                className={`text-sm text-white/60 ${
-                  isArabic ? "arabic tracking-normal" : "uppercase tracking-[0.4em]"
-                }`}
-              >
-                {copy.heroLead}
-              </p>
-              <h1 className="text-4xl font-light leading-tight text-white md:text-5xl">{localizedSolution.name}</h1>
-              <p className="max-w-3xl text-base text-white/85">{copy.heroSupport}</p>
-              <p className="max-w-3xl text-sm text-white/70">{copy.heroSubline}</p>
-            </div>
-            <div className={`flex flex-wrap gap-4 ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
-              <Link
-                href="/contact?topic=cyber"
-                className="inline-flex items-center gap-2 rounded-full bg-white/90 px-6 py-3 text-sm font-semibold text-[#6d3228] shadow-lg transition hover:bg-white"
-              >
-                <span>{localizedSolution.cta?.label ?? copy.heroLead}</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/contact?topic=security-assessment"
-                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                <span>{copy.heroSecurityCta}</span>
-              </Link>
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h1 className="text-4xl font-light leading-tight text-white md:text-5xl">{localizedSolution.name}</h1>
+                <p className="max-w-3xl text-sm text-white/80">{copy.heroSubline}</p>
+              </div>
+              <div className={`flex flex-wrap gap-4 ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
+                <Link
+                  href="/contact?topic=cyber"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/95 px-6 py-3 text-sm font-semibold text-[#6d3228] shadow-lg transition hover:bg-white"
+                >
+                  <span>{copy.heroContactCta}</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -325,47 +304,59 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
           <div className="absolute inset-0 bg-white/92" aria-hidden />
           <div className="relative">
             <section className={`mx-auto max-w-6xl px-6 py-16 ${isArabic ? "text-right arabic" : ""}`}>
-              <div className="mb-10 space-y-3 text-center">
-                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#a1694b]">
-                  {copy.services.title}
-                </span>
-                <h2 className="text-3xl font-light text-neutral-900">{copy.heroLead}</h2>
-                <p className="text-sm text-neutral-600">{copy.services.intro}</p>
-              </div>
-              <div className="relative">
-                <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b from-[#f5c3ac] via-[#c47c66] to-[#5c1f1a] opacity-60 md:block" />
-                <div className="flex flex-col gap-10">
-                  {copy.services.items.map((service, index) => {
-                    const placeLeftColumn = isArabic ? index % 2 === 1 : index % 2 === 0
-                    const columnClass = placeLeftColumn ? "md:col-start-1" : "md:col-start-2"
-                    const paddingClass = placeLeftColumn ? "md:pr-12" : "md:pl-12"
-                    const connectorClass = placeLeftColumn ? "-right-8" : "-left-8"
-                    return (
-                      <div key={service.title} className="md:grid md:grid-cols-2 md:items-center md:gap-6">
-                        <div
-                          className={`relative flex flex-col rounded-[32px] border border-[#eadace]/70 bg-white/95 p-6 shadow-[0_30px_100px_-70px_rgba(15,23,42,0.45)] ${
-                            isArabic ? "text-right arabic" : ""
-                          } ${columnClass} ${paddingClass}`}
+              <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
+                <div className="rounded-[32px] border border-[#eadace] bg-white/90 p-8 shadow-[0_30px_120px_-80px_rgba(15,23,42,0.55)] lg:sticky lg:top-24">
+                  <div className="space-y-5">
+                    <span className="inline-flex items-center rounded-full border border-[#e9d5c7] px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-[#a1694b]">
+                      {copy.services.title}
+                    </span>
+                    <div className="space-y-3">
+                      <h2 className="text-3xl font-light text-neutral-900">{copy.heroLead}</h2>
+                      <p className="text-sm leading-relaxed text-neutral-600">{copy.services.intro}</p>
+                    </div>
+                    <div className={`flex flex-wrap gap-3 text-xs font-medium text-[#7a3b2f] ${isArabic ? "flex-row-reverse" : ""}`}>
+                      {copy.services.items.slice(0, 3).map((service) => (
+                        <span
+                          key={service.title}
+                          className="inline-flex items-center gap-2 rounded-full border border-[#f0e6dd] bg-white px-4 py-2 shadow-sm"
                         >
-                          <div className="flex items-center justify-between text-sm text-[#813529]">
-                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#f6dfd4] font-semibold">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
-                            <span className="text-xs font-semibold tracking-[0.35em] text-[#c99784]">
-                              {isArabic ? "خدمة" : "SERVICE"}
-                            </span>
-                          </div>
-                          <h3 className="mt-4 text-xl font-semibold text-[#3a201a]">{service.title}</h3>
-                          <p className="mt-3 text-sm leading-relaxed text-neutral-600">{service.description}</p>
-                          <div
-                            className={`absolute top-1/2 hidden h-4 w-4 -translate-y-1/2 items-center justify-center rounded-full border border-[#d8c1b5] bg-white text-[10px] text-[#6f3027] md:flex ${connectorClass}`}
-                          >
-                            •
-                          </div>
-                        </div>
+                          <span className="h-2 w-2 rounded-full bg-[#c47c66]" />
+                          {service.title}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-xs text-neutral-500">
+                      {isArabic
+                        ? "نقوم بتخصيص الخدمات حسب نضج برنامجك الأمني وسرعة عملك."
+                        : "Every engagement is tailored to the maturity of your program and the urgency of your mission."}
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-5">
+                  {copy.services.items.map((service, index) => (
+                    <div
+                      key={service.title}
+                      className="flex flex-col rounded-[30px] border border-[#e5d8cc] bg-white/95 p-6 shadow-[0_25px_90px_-70px_rgba(15,23,42,0.45)]"
+                    >
+                      <div className={`flex items-center justify-between text-xs font-semibold text-[#a1694b] ${isArabic ? "flex-row-reverse" : ""}`}>
+                        <span className="inline-flex items-center gap-3">
+                          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7e4d8] text-base text-[#7a342a]">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span className="text-[10px] tracking-[0.35em] text-[#c99784]">
+                            {isArabic ? "خدمة" : "SERVICE"}
+                          </span>
+                        </span>
+                        <span className="text-[11px] uppercase tracking-[0.3em] text-[#d2a089]">
+                          {isArabic ? "جاهزية" : "DELIVERY"}
+                        </span>
                       </div>
-                    )
-                  })}
+                      <h3 className={`mt-4 text-xl font-semibold text-[#3a201a] ${isArabic ? "text-right" : ""}`}>
+                        {service.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-neutral-600">{service.description}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </section>
@@ -396,13 +387,21 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                 <h2 className="text-2xl font-light text-neutral-900">{copy.contact.title}</h2>
                 <p className="mt-4 text-sm text-neutral-600">{copy.contact.message}</p>
                 <p className="mt-2 text-xs text-neutral-500">{copy.contact.support}</p>
-                <div className={`mt-6 flex justify-center ${isArabic ? "arabic" : ""}`}>
+                <div
+                  className={`mt-6 flex flex-wrap justify-center gap-4 ${isArabic ? "flex-row-reverse arabic" : ""}`}
+                >
                   <Link
                     href="/contact?topic=cyber"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#863730] px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-[#6d2d24]"
+                    className="inline-flex items-center gap-2 rounded-full border border-transparent bg-[#f0eae4] px-6 py-3 text-sm font-semibold text-[#6d3228] shadow-lg transition hover:bg-[#ede3da]"
                   >
                     <span>{copy.contact.applyCta}</span>
                     <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/contact?topic=security-assessment"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#d6c8bc] px-6 py-3 text-sm font-semibold text-[#3a201a] transition hover:bg-[#faf7f4]"
+                  >
+                    <span>{copy.heroSecurityCta}</span>
                   </Link>
                 </div>
               </div>
