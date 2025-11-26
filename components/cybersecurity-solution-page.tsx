@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useMemo, useRef } from "react"
-import { ArrowLeft, ArrowUpRight } from "lucide-react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 
 import Footer from "@/components/footer"
 import Header from "@/components/header"
@@ -11,7 +11,7 @@ import { useLanguage } from "@/components/language-context"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
-const CYBER_VIDEO_SRC = "/videoplayback.mp4"
+const CYBER_VIDEO_SRC = "/new%20vid.mp4"
 const CYBER_VIDEO_POSTER = "/tech-company.jpg"
 
 const CYBER_COPY = {
@@ -225,6 +225,25 @@ const CYBER_COPY = {
   },
 } as const
 
+const SERVICE_IMAGES = [
+  "/services/cyber.avif",
+  "/services/ai.jpg",
+  "/services/iot.jpeg",
+  "/services/digital-twins.webp",
+  "/services/ar-vr.jpg",
+  "/services/metaverse.jpeg",
+  "/services/training.jpg",
+  "/tech-company.jpg",
+] as const
+
+const PROCESS_IMAGES = [
+  "/services/cyber.avif",
+  "/services/digital-twins.webp",
+  "/services/iot.jpeg",
+  "/services/ar-vr.jpg",
+  "/services/metaverse.jpeg",
+] as const
+
 type CybersecuritySolutionPageProps = {
   solution: Solution
 }
@@ -235,6 +254,35 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
   const localizedSolution = useMemo(() => getLocalizedSolution(solution, language), [solution, language])
   const copy = CYBER_COPY[language]
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [activeService, setActiveService] = useState(0)
+  const [activeProcess, setActiveProcess] = useState(0)
+  const servicesLength = copy.services.items.length
+  const sanitizeServiceTitle = (title: string) =>
+    isArabic ? title.replace(/\s*\(.*?\)\s*/g, "").trim() : title
+
+  useEffect(() => {
+    if (servicesLength <= 1) return
+
+    const interval = window.setInterval(() => {
+      setActiveService((prev) => (prev + 1) % servicesLength)
+    }, 6000)
+
+    return () => window.clearInterval(interval)
+  }, [servicesLength])
+
+  useEffect(() => {
+    setActiveService(0)
+    setActiveProcess(0)
+  }, [language])
+
+  const goToService = (direction: "next" | "prev") => {
+    setActiveService((prev) => {
+      if (direction === "next") {
+        return (prev + 1) % servicesLength
+      }
+      return (prev - 1 + servicesLength) % servicesLength
+    })
+  }
 
   useEffect(() => {
     const video = videoRef.current
@@ -310,32 +358,14 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
             <source src={CYBER_VIDEO_SRC} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-[#1b0e0b]/55 to-[#120806]/60" />
-          <div className="relative mx-auto flex min-h-[600px] w-full max-w-6xl flex-col gap-6 px-6 pb-20 pt-12 text-white">
-            <div className="pointer-events-none absolute inset-x-0 bottom-12 mx-auto h-56 w-11/12 translate-y-10 rounded-[999px] bg-gradient-to-r from-transparent via-transparent to-transparent" />
-            <div className={`relative z-10 flex flex-wrap items-center gap-3 text-xs ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
-              <Link
-                href="/solutions"
-                className="inline-flex items-center gap-2 rounded-full border border-white/40 px-3 py-1 text-[11px] font-semibold text-white/70 transition hover:border-white hover:text-white"
-              >
-                <ArrowLeft className={`${isArabic ? "rotate-180" : ""} h-4 w-4`} />
-                <span>{copy.backLabel}</span>
-              </Link>
-            </div>
-            <div className="relative z-10 mt-auto space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-4xl font-light leading-tight text-white md:text-5xl">{localizedSolution.name}</h1>
-                <p className="max-w-3xl text-sm text-white/80">{copy.heroSubline}</p>
-              </div>
-              <div className={`flex flex-wrap gap-4 ${isArabic ? "flex-row-reverse justify-end text-right" : "justify-start"}`}>
-                <Link
-                  href="/contact?topic=cyber"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/95 px-6 py-3 text-sm font-semibold text-[#6d3228] shadow-lg transition hover:bg-white"
-                >
-                  <span>{copy.heroContactCta}</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+          <div className="relative mx-auto flex min-h-[600px] w-full text-white">
+            <h1
+              className={`absolute bottom-8 z-10 text-4xl font-light leading-tight text-white md:bottom-10 md:text-5xl ${
+                isArabic ? "right-8 text-right" : "left-8 text-left"
+              }`}
+            >
+              {localizedSolution.name}
+            </h1>
           </div>
         </section>
 
@@ -357,70 +387,165 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
         <div className="relative">
           <div className="relative">
             <section className={`mx-auto max-w-6xl px-6 py-16 ${isArabic ? "text-right arabic" : ""}`}>
-              <div
-                className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start"
-                dir={isArabic ? "rtl" : "ltr"}
-              >
-                <div className="rounded-[32px] border border-[#eadace] bg-white/90 p-8 shadow-[0_30px_120px_-80px_rgba(15,23,42,0.55)] md:sticky md:top-24 md:self-start md:h-fit">
-                  <div className="space-y-5">
-                    <span className="inline-flex items-center rounded-full border border-[#e9d5c7] px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-[#a1694b]">
-                      {copy.services.title}
-                    </span>
-                    <div className="space-y-3">
-                      <h2 className="text-3xl font-light text-neutral-900">{copy.heroLead}</h2>
-                      <p className="text-sm leading-relaxed text-neutral-600">{copy.services.intro}</p>
-                    </div>
-                    <div className={`flex flex-wrap gap-3 text-xs font-medium text-[#7a3b2f] ${isArabic ? "flex-row-reverse" : ""}`}>
-                      {copy.services.items.slice(0, 3).map((service) => (
-                        <span
-                          key={service.title}
-                          className="inline-flex items-center gap-2 rounded-full border border-[#f0e6dd] bg-white px-4 py-2 shadow-sm"
-                        >
-                          <span className="h-2 w-2 rounded-full bg-[#c47c66]" />
-                          {service.title}
-                        </span>
-                      ))}
-                    </div>
-                    <p className="text-xs text-neutral-500">
-                      {isArabic
-                        ? "نقوم بتخصيص الخدمات حسب نضج برنامجك الأمني وسرعة عملك."
-                        : "Every engagement is tailored to the maturity of your program and the urgency of your mission."}
-                    </p>
-                  </div>
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <span className="inline-flex items-center rounded-full border border-[#e9d5c7] px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-[#a1694b]">
+                    {copy.services.title}
+                  </span>
+                  <h2 className="text-3xl font-light text-neutral-900">{copy.heroLead}</h2>
+                  <p className="text-sm leading-relaxed text-neutral-600">{copy.services.intro}</p>
                 </div>
-                <div className="space-y-5">
-                  {copy.services.items.map((service) => (
-                    <div
-                      key={service.title}
-                      className="flex flex-col rounded-[30px] border border-[#e5d8cc] bg-white/95 p-6 shadow-[0_25px_90px_-70px_rgba(15,23,42,0.45)]"
-                    >
-                      <h3 className={`text-xl font-semibold text-[#3a201a] ${isArabic ? "text-right" : ""}`}>
-                        {service.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-neutral-600">{service.description}</p>
-                    </div>
-                  ))}
+
+                <div className="relative min-h-[520px] overflow-hidden rounded-[34px] border border-[#e6d8cb] bg-neutral-950 text-white shadow-[0_35px_120px_-70px_rgba(15,23,42,0.6)]">
+                  {copy.services.items.map((service, index) => {
+                    const image = SERVICE_IMAGES[index % SERVICE_IMAGES.length]
+                    const isActive = activeService === index
+                    return (
+                      <div
+                        key={service.title}
+                        className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                          isActive ? "opacity-100" : "pointer-events-none opacity-0"
+                        }`}
+                        aria-hidden={!isActive}
+                      >
+                        <div
+                          className="absolute inset-0 bg-cover bg-center"
+                          style={{ backgroundImage: `url(${image})` }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/35" />
+                        <div className="relative flex h-full flex-col justify-end gap-4 p-8 md:p-10">
+                          <div className="space-y-3 md:max-w-3xl">
+                            <h3 className="text-2xl font-semibold leading-tight drop-shadow">{service.title}</h3>
+                            <p className="text-sm leading-relaxed text-white/85">{service.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div className={`flex items-center gap-3 ${isArabic ? "flex-row-reverse" : ""}`}>
+                  <button
+                    type="button"
+                    onClick={() => goToService(isArabic ? "next" : "prev")}
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-[#eadace] bg-white text-[#5a251b] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c47c66] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                    aria-label={isArabic ? "الخدمة السابقة" : "Previous service"}
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                  <div
+                    className="flex min-w-0 flex-1 flex-nowrap items-center gap-3 overflow-x-auto overflow-y-hidden rounded-full bg-white/95 px-3 py-2 shadow-[0_12px_50px_-30px_rgba(15,23,42,0.3)]"
+                    style={{ scrollbarWidth: "none" }}
+                  >
+                    {copy.services.items.map((service, index) => {
+                      const isActive = activeService === index
+                      return (
+                        <button
+                          key={service.title}
+                          type="button"
+                          onClick={() => setActiveService(index)}
+                          onMouseEnter={() => setActiveService(index)}
+                          aria-pressed={isActive}
+                          className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c47c66] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                            isActive
+                              ? "border-[#c47c66] bg-[#f7ebe1] text-[#5a251b]"
+                              : "border-[#ebdfd4] bg-white text-[#7a3b2f] hover:border-[#dcb9a3] hover:text-[#5a251b]"
+                          }`}
+                          style={{ flexShrink: 0 }}
+                        >
+                          <span
+                            className={`h-2 w-2 rounded-full ${
+                              isActive ? "bg-[#c47c66]" : "bg-[#d7c7b8]"
+                            }`}
+                          />
+                          <span className="line-clamp-1">{sanitizeServiceTitle(service.title)}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => goToService(isArabic ? "prev" : "next")}
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-[#eadace] bg-white text-[#5a251b] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c47c66] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                    aria-label={isArabic ? "الخدمة التالية" : "Next service"}
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             </section>
 
             <section className={`mx-auto max-w-6xl px-6 pb-16 ${isArabic ? "text-right arabic" : ""}`}>
-              <div className="rounded-3xl border border-[#e7dcd2] bg-white/95 p-8 shadow-[0_40px_120px_-70px_rgba(15,23,42,0.4)]">
-                <div className="mb-8 text-center">
-                  <h2 className="text-2xl font-light text-neutral-900">{copy.process.title}</h2>
-                </div>
-                <div className="grid gap-6 md:grid-cols-2">
-                  {copy.process.steps.map((step, index) => (
-                    <div key={step.title} className="rounded-2xl border border-[#f0e6dd] bg-white/90 p-5">
-                      <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#863730]">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f4e7df] text-base">
-                          {isArabic ? index + 1 : index + 1}
-                        </span>
-                        <span>{step.title}</span>
-                      </div>
-                      <p className="text-sm text-neutral-600">{step.description}</p>
+              <div className="rounded-[32px] border border-[#e7dcd2] bg-white/95 p-7 shadow-[0_40px_120px_-70px_rgba(15,23,42,0.4)]">
+                <div className="flex flex-col gap-4">
+                  <div className={`flex flex-wrap items-center justify-between gap-3 ${isArabic ? "flex-row-reverse" : ""}`}>
+                    <h2 className="text-2xl font-light text-neutral-900">{copy.process.title}</h2>
+                  </div>
+                  <div className="flex items-center gap-3 justify-start rounded-[18px] border border-[#e9d5c7] bg-[#faf5f1] px-3 py-2">
+                    <div className="flex flex-nowrap items-center gap-2 overflow-x-auto overflow-y-hidden" style={{ scrollbarWidth: "none" }}>
+                      {copy.process.steps.map((step, index) => {
+                        const isActive = activeProcess === index
+                        return (
+                          <button
+                            key={step.title}
+                            type="button"
+                            onClick={() => setActiveProcess(index)}
+                            className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c47c66] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                              isActive
+                                ? "border-[#c47c66] bg-white text-[#5a251b]"
+                                : "border-transparent bg-transparent text-[#7a3b2f] hover:border-[#dfc8b7]"
+                            }`}
+                            style={{ flexShrink: 0 }}
+                          >
+                            <span
+                              className={`flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold ${
+                                isActive ? "bg-[#f3e1d6] text-[#5a251b]" : "bg-[#f3ebe5] text-[#8a5b4a]"
+                              }`}
+                            >
+                              {index + 1}
+                            </span>
+                            <span className="line-clamp-1">{step.title}</span>
+                          </button>
+                        )
+                      })}
                     </div>
-                  ))}
+                  </div>
+                  <div className="relative h-[420px] overflow-hidden rounded-[28px] border border-[#edded3] bg-white shadow-[0_30px_110px_-70px_rgba(15,23,42,0.3)]">
+                    {copy.process.steps.map((step, index) => {
+                      const isActive = activeProcess === index
+                      const image = PROCESS_IMAGES[index % PROCESS_IMAGES.length]
+                      return (
+                        <div
+                          key={step.title}
+                          className={`absolute inset-0 w-full transition-opacity duration-500 ${
+                            isActive ? "opacity-100" : "pointer-events-none opacity-0"
+                          }`}
+                          aria-hidden={!isActive}
+                        >
+                          <div
+                            className="absolute inset-0 bg-cover bg-center"
+                            style={{ backgroundImage: `url(${image})` }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/25 to-black/15" />
+                          <div
+                            className={`absolute inset-4 md:inset-6 flex justify-start ${
+                              isArabic ? "text-right" : "text-left"
+                            }`}
+                          >
+                            <div className="max-w-xl rounded-2xl border border-white/60 bg-white/92 p-5 shadow-lg backdrop-blur">
+                              <div className={`mb-2 flex items-center gap-2 text-sm font-semibold text-[#863730] ${isArabic ? "flex-row-reverse" : ""}`}>
+                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f4e7df] text-base">
+                                  {index + 1}
+                                </span>
+                                <span>{step.title}</span>
+                              </div>
+                              <p className="text-sm text-neutral-700">{step.description}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             </section>
