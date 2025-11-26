@@ -1,18 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { useMemo } from "react"
+import { useEffect, useMemo, useRef } from "react"
 import { ArrowLeft, ArrowUpRight } from "lucide-react"
 
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+import { HexagonBackground } from "@/components/ui/shadcn-io/hexagon-background"
 import { useLanguage } from "@/components/language-context"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
-const CYBER_VIDEO_SRC = "/videoplayback.mp4"
-const BINARY_PATTERN =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='white'/%3E%3Ctext x='8' y='58' fill='%23863730' fill-opacity='0.07' font-size='32' font-family='monospace'%3E0101010101%3C/text%3E%3Ctext x='32' y='138' fill='%23863730' fill-opacity='0.05' font-size='32' font-family='monospace'%3E1010101010%3C/text%3E%3C/svg%3E\")"
+const CYBER_VIDEO_SRC = "/new%20video.mov"
 
 const CYBER_COPY = {
   en: {
@@ -234,23 +233,75 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
   const isArabic = language === "ar"
   const localizedSolution = useMemo(() => getLocalizedSolution(solution, language), [solution, language])
   const copy = CYBER_COPY[language]
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const ensurePlay = () => {
+      video.loop = true
+      video.muted = true
+      video.playsInline = true
+      if (video.paused || video.readyState >= 2) {
+        void video.play().catch(() => {})
+      }
+    }
+
+    ensurePlay()
+    video.addEventListener("pause", ensurePlay)
+    video.addEventListener("loadeddata", ensurePlay)
+    video.addEventListener("ended", ensurePlay)
+    video.addEventListener("canplaythrough", ensurePlay)
+    video.setAttribute("playsinline", "true")
+
+    return () => {
+      video.removeEventListener("pause", ensurePlay)
+      video.removeEventListener("loadeddata", ensurePlay)
+      video.removeEventListener("ended", ensurePlay)
+      video.removeEventListener("canplaythrough", ensurePlay)
+    }
+  }, [language, solution])
 
   return (
     <>
       <Header variant="light" />
-      <div className="bg-white text-neutral-900">
+      <div className="relative overflow-visible text-neutral-900" dir={isArabic ? "rtl" : "ltr"}>
+        <HexagonBackground
+          className="pointer-events-none absolute inset-0 -z-20 bg-white"
+          hexagonSize={70}
+          hexagonMargin={4}
+          hexagonProps={{
+            className:
+              "border border-[#d8c6b3]/35 before:bg-transparent after:bg-transparent",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white/[0.22] via-white/[0.18] to-white/[0.16]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background: "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.65), transparent 45%), radial-gradient(circle at 80% 15%, rgba(255,255,255,0.55), transparent 40%), radial-gradient(circle at 50% 75%, rgba(255,255,255,0.6), transparent 42%)",
+            filter: "blur(24px)",
+            opacity: 0.1,
+          }}
+          aria-hidden
+        />
         <section
           className={`relative isolate flex min-h-[640px] items-center overflow-hidden py-24 ${
             isArabic ? "text-right arabic" : ""
           }`}
         >
           <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+          className="absolute inset-0 h-full w-full object-cover"
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
             aria-hidden="true"
             poster="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
           >
@@ -273,7 +324,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                 <h1 className="text-4xl font-light leading-tight text-white md:text-5xl">{localizedSolution.name}</h1>
                 <p className="max-w-3xl text-sm text-white/80">{copy.heroSubline}</p>
               </div>
-              <div className={`flex flex-wrap gap-4 ${isArabic ? "flex-row-reverse justify-end" : "justify-start"}`}>
+              <div className={`flex flex-wrap gap-4 ${isArabic ? "flex-row-reverse justify-end text-right" : "justify-start"}`}>
                 <Link
                   href="/contact?topic=cyber"
                   className="inline-flex items-center gap-2 rounded-full bg-white/95 px-6 py-3 text-sm font-semibold text-[#6d3228] shadow-lg transition hover:bg-white"
@@ -301,12 +352,14 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
           </div>
         </section>
 
-        <div className="relative" style={{ backgroundImage: BINARY_PATTERN, backgroundColor: "#ffffff" }}>
-          <div className="absolute inset-0 bg-white/92" aria-hidden />
+        <div className="relative">
           <div className="relative">
             <section className={`mx-auto max-w-6xl px-6 py-16 ${isArabic ? "text-right arabic" : ""}`}>
-              <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
-                <div className="rounded-[32px] border border-[#eadace] bg-white/90 p-8 shadow-[0_30px_120px_-80px_rgba(15,23,42,0.55)] lg:sticky lg:top-24">
+              <div
+                className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start"
+                dir={isArabic ? "rtl" : "ltr"}
+              >
+                <div className="rounded-[32px] border border-[#eadace] bg-white/90 p-8 shadow-[0_30px_120px_-80px_rgba(15,23,42,0.55)] md:sticky md:top-24 md:self-start md:h-fit">
                   <div className="space-y-5">
                     <span className="inline-flex items-center rounded-full border border-[#e9d5c7] px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-[#a1694b]">
                       {copy.services.title}
@@ -334,25 +387,12 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                   </div>
                 </div>
                 <div className="space-y-5">
-                  {copy.services.items.map((service, index) => (
+                  {copy.services.items.map((service) => (
                     <div
                       key={service.title}
                       className="flex flex-col rounded-[30px] border border-[#e5d8cc] bg-white/95 p-6 shadow-[0_25px_90px_-70px_rgba(15,23,42,0.45)]"
                     >
-                      <div className={`flex items-center justify-between text-xs font-semibold text-[#a1694b] ${isArabic ? "flex-row-reverse" : ""}`}>
-                        <span className="inline-flex items-center gap-3">
-                          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7e4d8] text-base text-[#7a342a]">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-                          <span className="text-[10px] tracking-[0.35em] text-[#c99784]">
-                            {isArabic ? "خدمة" : "SERVICE"}
-                          </span>
-                        </span>
-                        <span className="text-[11px] uppercase tracking-[0.3em] text-[#d2a089]">
-                          {isArabic ? "جاهزية" : "DELIVERY"}
-                        </span>
-                      </div>
-                      <h3 className={`mt-4 text-xl font-semibold text-[#3a201a] ${isArabic ? "text-right" : ""}`}>
+                      <h3 className={`text-xl font-semibold text-[#3a201a] ${isArabic ? "text-right" : ""}`}>
                         {service.title}
                       </h3>
                       <p className="mt-3 text-sm leading-relaxed text-neutral-600">{service.description}</p>
