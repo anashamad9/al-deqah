@@ -11,7 +11,8 @@ import { useLanguage } from "@/components/language-context"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
-const CYBER_VIDEO_SRC = "/new%20video.mov"
+const CYBER_VIDEO_SRC = "/videoplayback.mp4"
+const CYBER_VIDEO_POSTER = "/tech-company.jpg"
 
 const CYBER_COPY = {
   en: {
@@ -295,15 +296,16 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
           }`}
         >
           <video
-          className="absolute inset-0 h-full w-full object-cover"
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+            key={CYBER_VIDEO_SRC}
+            className="absolute inset-0 h-full w-full object-cover"
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
             aria-hidden="true"
-            poster="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
+            poster={CYBER_VIDEO_POSTER}
           >
             <source src={CYBER_VIDEO_SRC} type="video/mp4" />
           </video>
