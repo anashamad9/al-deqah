@@ -486,7 +486,12 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                       isArabic ? "justify-end" : "justify-start"
                     }`}
                   >
-                    <div className="flex flex-nowrap items-center gap-2 overflow-x-auto overflow-y-hidden" style={{ scrollbarWidth: "none" }}>
+                    <div
+                      className={`flex flex-nowrap items-center gap-2 overflow-x-auto overflow-y-hidden ${
+                        isArabic ? "flex-row-reverse" : ""
+                      }`}
+                      style={{ scrollbarWidth: "none" }}
+                    >
                       {copy.process.steps.map((step, index) => {
                         const isActive = activeProcess === index
                         return (
@@ -541,16 +546,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                                 isArabic ? "text-right arabic" : ""
                               }`}
                             >
-                              <div
-                                className={`mb-2 flex items-center gap-2 text-sm font-semibold text-[#863730] ${
-                                  isArabic ? "flex-row-reverse justify-end" : ""
-                                }`}
-                              >
-                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f4e7df] text-base">
-                                  {index + 1}
-                                </span>
-                                <span>{step.title}</span>
-                              </div>
+                              <div className="mb-2 text-sm font-semibold text-[#863730]">{step.title}</div>
                               <p className="text-sm text-neutral-700">{step.description}</p>
                             </div>
                           </div>
