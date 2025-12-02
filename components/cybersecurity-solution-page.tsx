@@ -481,7 +481,11 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                   <div className={`flex flex-wrap items-center justify-between gap-3 ${isArabic ? "flex-row-reverse" : ""}`}>
                     <h2 className="text-2xl font-light text-neutral-900">{copy.process.title}</h2>
                   </div>
-                  <div className="flex items-center gap-3 justify-start rounded-[18px] border border-[#e9d5c7] bg-[#faf5f1] px-3 py-2">
+                  <div
+                    className={`flex items-center gap-3 rounded-[18px] border border-[#e9d5c7] bg-[#faf5f1] px-3 py-2 ${
+                      isArabic ? "justify-end" : "justify-start"
+                    }`}
+                  >
                     <div className="flex flex-nowrap items-center gap-2 overflow-x-auto overflow-y-hidden" style={{ scrollbarWidth: "none" }}>
                       {copy.process.steps.map((step, index) => {
                         const isActive = activeProcess === index
@@ -528,12 +532,20 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                           />
                           <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/25 to-black/15" />
                           <div
-                            className={`absolute inset-4 md:inset-6 flex justify-start ${
-                              isArabic ? "text-right" : "text-left"
+                            className={`absolute inset-4 md:inset-6 flex ${
+                              isArabic ? "justify-end text-right" : "justify-start text-left"
                             }`}
                           >
-                            <div className="max-w-xl rounded-2xl border border-white/60 bg-white/92 p-5 shadow-lg backdrop-blur">
-                              <div className={`mb-2 flex items-center gap-2 text-sm font-semibold text-[#863730] ${isArabic ? "flex-row-reverse" : ""}`}>
+                            <div
+                              className={`max-w-xl rounded-2xl border border-white/60 bg-white/92 p-5 shadow-lg backdrop-blur ${
+                                isArabic ? "text-right arabic" : ""
+                              }`}
+                            >
+                              <div
+                                className={`mb-2 flex items-center gap-2 text-sm font-semibold text-[#863730] ${
+                                  isArabic ? "flex-row-reverse justify-end" : ""
+                                }`}
+                              >
                                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f4e7df] text-base">
                                   {index + 1}
                                 </span>
