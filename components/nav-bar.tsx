@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
-import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Menu, X, UsersRound } from "lucide-react"
+import { Layers3, ShieldHalf, Info, Handshake, Newspaper, Menu, X, UsersRound, BriefcaseBusiness } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import LanguageToggle from "@/components/language-toggle"
@@ -17,6 +17,7 @@ import { homepageCopy } from "@/lib/translations"
 const NAV_LINKS = [
   { key: "solutions", href: "/solutions", icon: Layers3 },
   { key: "sectors", href: "/#sectors", icon: ShieldHalf },
+  { key: "portfolio", href: "/portfolio", icon: BriefcaseBusiness },
   { key: "about", href: "/about", icon: Info },
   { key: "blog", href: "/blog", icon: Newspaper, soon: true },
   { key: "partners", href: "/partners", icon: Handshake },
@@ -27,6 +28,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
   en: {
     solutions: "Our Services",
     sectors: "Sectors",
+    portfolio: "Portfolio",
     about: "About Us",
     blog: "Blog",
     partners: "Partners",
@@ -35,6 +37,7 @@ const NAV_LABELS: Record<Language, Record<(typeof NAV_LINKS)[number]["key"], str
   ar: {
     solutions: "خدماتنا",
     sectors: "القطاعات",
+    portfolio: "أعمالنا",
     about: "من نحن",
     blog: "المدونة",
     partners: "الشركاء",

@@ -8,13 +8,177 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { HexagonBackground } from "@/components/ui/shadcn-io/hexagon-background"
 import { useLanguage } from "@/components/language-context"
+import type { Language } from "@/lib/i18n"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
 const CYBER_VIDEO_SRC = "/new%20vid.mp4"
 const CYBER_VIDEO_POSTER = "/tech-company.jpg"
 
-const CYBER_COPY = {
+type SolutionCopy = {
+  backLabel: string
+  heroLead: string
+  heroSupport: string
+  heroSubline: string
+  heroContactCta: string
+  heroSecurityCta: string
+  overview: {
+    kicker: string
+    title: string
+    lead: string
+    paragraphs: string[]
+  }
+  services: {
+    title: string
+    intro: string
+    items: Array<{
+      title: string
+      description: string
+    }>
+  }
+  process: {
+    title: string
+    steps: Array<{
+      title: string
+      description: string
+    }>
+  }
+  contact: {
+    title: string
+    message: string
+    support: string
+    applyCta: string
+  }
+}
+
+const GENERIC_LABELS: Record<
+  Language,
+  {
+    backLabel: string
+    overviewKicker: string
+    servicesTitle: string
+    servicesIntroFallback: string
+    processTitle: string
+    contactTitlePrefix: string
+    contactSupport: string
+    heroContactCta: string
+    heroSecurityCta: string
+    applyCtaFallback: string
+  }
+> = {
+  en: {
+    backLabel: "Back to solutions",
+    overviewKicker: "Executive brief",
+    servicesTitle: "Strategic services",
+    servicesIntroFallback: "Specialized delivery teams pairing design, engineering, and operations.",
+    processTitle: "Engagement methodology",
+    contactTitlePrefix: "Talk with us about",
+    contactSupport: "Share your priorities and we will tailor the right delivery pod.",
+    heroContactCta: "Contact us",
+    heroSecurityCta: "Book a consultation",
+    applyCtaFallback: "Request a consultation",
+  },
+  ar: {
+    backLabel: "العودة إلى الحلول",
+    overviewKicker: "ملخص تنفيذي",
+    servicesTitle: "الخدمات",
+    servicesIntroFallback: "فرق تسليم متخصصة تجمع بين التصميم والهندسة والتشغيل.",
+    processTitle: "منهجية التنفيذ",
+    contactTitlePrefix: "تواصل معنا بشأن",
+    contactSupport: "شاركنا أولوياتك لنخصص لك فريق تنفيذ مناسب.",
+    heroContactCta: "تواصل معنا",
+    heroSecurityCta: "احجز استشارة",
+    applyCtaFallback: "اطلب استشارة",
+  },
+}
+
+const buildCopyFromSolution = (_solution: Solution, localizedSolution: Solution, language: Language): SolutionCopy => {
+  const labels = GENERIC_LABELS[language]
+  const overviewParagraphs = [localizedSolution.overview, localizedSolution.description].filter(Boolean) as string[]
+  const baseServiceItems =
+    localizedSolution.features?.map((feature) => ({
+      title: feature.title,
+      description: feature.description,
+    })) ?? []
+  const fallbackServiceItems =
+    localizedSolution.useCases?.map((useCase) => ({
+      title: useCase.title,
+      description: useCase.description,
+    })) ?? []
+  const differentiatorItems =
+    localizedSolution.differentiators?.map((item) => ({
+      title: item.title,
+      description: item.description,
+    })) ?? []
+
+  const serviceItems =
+    baseServiceItems.length > 0
+      ? baseServiceItems
+      : fallbackServiceItems.length > 0
+        ? fallbackServiceItems
+        : differentiatorItems.length > 0
+          ? differentiatorItems
+          : [
+              {
+                title: localizedSolution.name,
+                description: localizedSolution.description || labels.servicesIntroFallback,
+              },
+            ]
+
+  const engagementSteps =
+    localizedSolution.engagement?.map((step) => ({
+      title: step.title,
+      description: step.description,
+    })) ?? []
+
+  const processSteps =
+    engagementSteps.length > 0
+      ? engagementSteps
+      : fallbackServiceItems.map((useCase) => ({
+          title: useCase.title,
+          description: useCase.description,
+        }))
+
+  return {
+    backLabel: labels.backLabel,
+    heroLead: localizedSolution.name,
+    heroSupport: localizedSolution.tagline,
+    heroSubline: localizedSolution.description,
+    heroContactCta: labels.heroContactCta,
+    heroSecurityCta: labels.heroSecurityCta,
+    overview: {
+      kicker: labels.overviewKicker,
+      title: localizedSolution.tagline || localizedSolution.name,
+      lead: localizedSolution.description,
+      paragraphs: overviewParagraphs.length > 0 ? overviewParagraphs : [localizedSolution.tagline],
+    },
+    services: {
+      title: labels.servicesTitle,
+      intro: localizedSolution.overview || localizedSolution.description || labels.servicesIntroFallback,
+      items: serviceItems,
+    },
+    process: {
+      title: labels.processTitle,
+      steps:
+        processSteps.length > 0
+          ? processSteps
+          : [
+              {
+                title: localizedSolution.name,
+                description: localizedSolution.overview || labels.servicesIntroFallback,
+              },
+            ],
+    },
+    contact: {
+      title: `${labels.contactTitlePrefix} ${localizedSolution.name}`,
+      message: localizedSolution.cta.description || localizedSolution.overview || localizedSolution.description,
+      support: labels.contactSupport,
+      applyCta: language === "ar" ? "اطلب استشارة تقنية" : localizedSolution.cta.label || labels.applyCtaFallback,
+    },
+  }
+}
+
+const CYBER_COPY: Record<Language, SolutionCopy> = {
   en: {
     backLabel: "Back to solutions",
     heroLead: "Cybersecurity & Threat Intelligence",
@@ -116,7 +280,7 @@ const CYBER_COPY = {
       message:
         "Proactive preparation and early intervention are the foundation of resilient cybersecurity. Our advisors are ready to help design a protection program that safeguards continuity and customer trust.",
       support: "Share your requirements and we will craft a tailored service plan.",
-      applyCta: "Schedule a cyber resilience briefing",
+      applyCta: "Request a tech consultation",
     },
   },
   ar: {
@@ -220,7 +384,7 @@ const CYBER_COPY = {
       message:
         "نؤمن أن الوقاية والاستعداد المبكر هما أساس الأمن السيبراني الفعّال. فريقنا جاهز لدعمك في بناء منظومة حماية متكاملة تحافظ على استمرارية أعمالك وثقة عملائك.",
       support: "تواصل معنا اليوم لتحديد احتياجاتك ووضع خطة أمنية تناسب بيئتك التقنية.",
-      applyCta: "احجز إحاطة حول المرونة السيبرانية",
+      applyCta: "اطلب استشارة تقنية",
     },
   },
 } as const
@@ -252,11 +416,14 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
   const { language } = useLanguage()
   const isArabic = language === "ar"
   const localizedSolution = useMemo(() => getLocalizedSolution(solution, language), [solution, language])
-  const copy = CYBER_COPY[language]
+  const copy =
+    solution.slug === "cybersecurity-risk"
+      ? CYBER_COPY[language]
+      : buildCopyFromSolution(solution, localizedSolution, language)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [activeService, setActiveService] = useState(0)
   const [activeProcess, setActiveProcess] = useState(0)
-  const servicesLength = copy.services.items.length
+  const servicesLength = Math.max(copy.services.items.length, 1)
   const sanitizeServiceTitle = (title: string) =>
     isArabic ? title.replace(/\s*\(.*?\)\s*/g, "").trim() : title
 
@@ -386,14 +553,21 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
 
         <div className="relative">
           <div className="relative">
-            <section className={`mx-auto max-w-6xl px-6 py-16 ${isArabic ? "text-right arabic" : ""}`}>
+            <section
+              className={`mx-auto max-w-6xl px-6 py-16 ${isArabic ? "text-right arabic" : ""}`}
+              dir={isArabic ? "rtl" : "ltr"}
+            >
               <div className="space-y-6">
-                <div className="space-y-3">
+                <div
+                  className={`space-y-3 ${isArabic ? "text-right" : ""}`}
+                >
                   <span className="inline-flex items-center rounded-full border border-[#e9d5c7] px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-[#a1694b]">
                     {copy.services.title}
                   </span>
-                  <h2 className="text-3xl font-light text-neutral-900">{copy.heroLead}</h2>
-                  <p className="text-sm leading-relaxed text-neutral-600">{copy.services.intro}</p>
+                  <h2 className={`text-3xl font-light text-neutral-900 ${isArabic ? "text-right" : ""}`}>{copy.heroLead}</h2>
+                  <p className={`text-sm leading-relaxed text-neutral-600 ${isArabic ? "text-right" : ""}`}>
+                    {copy.services.intro}
+                  </p>
                 </div>
 
                 <div className="relative min-h-[520px] overflow-hidden rounded-[34px] border border-[#e6d8cb] bg-neutral-950 text-white shadow-[0_35px_120px_-70px_rgba(15,23,42,0.6)]">
@@ -475,15 +649,29 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
               </div>
             </section>
 
-            <section className={`mx-auto max-w-6xl px-6 pb-16 ${isArabic ? "text-right arabic" : ""}`}>
+            <section
+              className={`mx-auto max-w-6xl px-6 pb-16 ${isArabic ? "text-right arabic" : ""}`}
+              dir={isArabic ? "rtl" : "ltr"}
+            >
               <div className="rounded-[32px] border border-[#e7dcd2] bg-white/95 p-7 shadow-[0_40px_120px_-70px_rgba(15,23,42,0.4)]">
                 <div className="flex flex-col gap-4">
-                  <div className={`flex flex-wrap items-center justify-between gap-3 ${isArabic ? "flex-row-reverse" : ""}`}>
-                    <h2 className="text-2xl font-light text-neutral-900">{copy.process.title}</h2>
+                  <div
+                    className={`flex flex-wrap items-center gap-3 ${
+                      isArabic ? "flex-row-reverse justify-end text-right arabic" : "justify-between"
+                    }`}
+                    dir={isArabic ? "rtl" : "ltr"}
+                  >
+                    <h2
+                      className={`text-2xl font-light text-neutral-900 ${
+                        isArabic ? "w-full text-right" : ""
+                      }`}
+                    >
+                      {copy.process.title}
+                    </h2>
                   </div>
                   <div
                     className={`flex items-center gap-3 rounded-[18px] border border-[#e9d5c7] bg-[#faf5f1] px-3 py-2 ${
-                      isArabic ? "justify-end" : "justify-start"
+                      isArabic ? "flex-row-reverse justify-end" : "justify-start"
                     }`}
                   >
                     <div
@@ -491,6 +679,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                         isArabic ? "flex-row-reverse" : ""
                       }`}
                       style={{ scrollbarWidth: "none" }}
+                      dir={isArabic ? "rtl" : "ltr"}
                     >
                       {copy.process.steps.map((step, index) => {
                         const isActive = activeProcess === index
@@ -540,13 +729,14 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                             className={`absolute inset-4 md:inset-6 flex ${
                               isArabic ? "justify-end text-right" : "justify-start text-left"
                             }`}
+                            dir={isArabic ? "rtl" : "ltr"}
                           >
                             <div
                               className={`max-w-xl rounded-2xl border border-white/60 bg-white/92 p-5 shadow-lg backdrop-blur ${
-                                isArabic ? "text-right arabic" : ""
+                                isArabic ? "text-right arabic ml-auto" : ""
                               }`}
                             >
-                              <div className="mb-2 text-sm font-semibold text-[#863730]">{step.title}</div>
+                              <div className="mb-2 text-sm font-semibold text-[#863730] text-right">{step.title}</div>
                               <p className="text-sm text-neutral-700">{step.description}</p>
                             </div>
                           </div>
@@ -572,12 +762,6 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                   >
                     <span>{copy.contact.applyCta}</span>
                     <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                  <Link
-                    href="/contact?topic=security-assessment"
-                    className="inline-flex items-center gap-2 rounded-full border border-[#d6c8bc] px-6 py-3 text-sm font-semibold text-[#3a201a] transition hover:bg-[#faf7f4]"
-                  >
-                    <span>{copy.heroSecurityCta}</span>
                   </Link>
                 </div>
               </div>
