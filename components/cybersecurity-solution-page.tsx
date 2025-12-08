@@ -675,9 +675,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
                     }`}
                   >
                     <div
-                      className={`flex flex-nowrap items-center gap-2 overflow-x-auto overflow-y-hidden ${
-                        isArabic ? "flex-row-reverse" : ""
-                      }`}
+                      className="flex flex-nowrap items-center gap-2 overflow-x-auto overflow-y-hidden"
                       style={{ scrollbarWidth: "none" }}
                       dir={isArabic ? "rtl" : "ltr"}
                     >

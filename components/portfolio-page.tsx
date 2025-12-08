@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 import Footer from "@/components/footer"
 import Header from "@/components/header"
@@ -9,6 +9,27 @@ type PortfolioItem = {
   client: string
   project: string
   description: string
+}
+
+type GroupedPortfolio = {
+  client: string
+  items: PortfolioItem[]
+}
+
+const normalizeClientName = (client: string) => {
+  const withoutCountry = client.replace(/\s*\(.+\)/, "").trim()
+
+  // Group all Ministry of Education variants under a single bucket.
+  if (withoutCountry.includes("وزارة التربية والتعليم") || withoutCountry.includes("وزارة التعليم")) {
+    return "وزارة التعليم"
+  }
+
+  return withoutCountry
+}
+
+const extractCountry = (client: string) => {
+  const match = client.match(/\(([^)]+)\)/)
+  return match ? match[1] : null
 }
 
 const portfolioItems: PortfolioItem[] = [
@@ -80,8 +101,23 @@ const portfolioItems: PortfolioItem[] = [
 ]
 
 export default function PortfolioPage() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const activeItem = portfolioItems[activeIndex]
+  const groupedItems = useMemo(() => {
+    const groups = new Map<string, GroupedPortfolio>()
+
+    portfolioItems.forEach((item) => {
+      // Use the normalized client name to group related projects together.
+      const baseClient = normalizeClientName(item.client)
+      if (!groups.has(baseClient)) {
+        groups.set(baseClient, { client: baseClient, items: [] })
+      }
+      groups.get(baseClient)!.items.push(item)
+    })
+
+    return Array.from(groups.values())
+  }, [])
+
+  const [activeGroupIndex, setActiveGroupIndex] = useState(0)
+  const activeGroup = groupedItems[activeGroupIndex]
 
   return (
     <>
@@ -108,13 +144,13 @@ export default function PortfolioPage() {
                 <p className="text-sm font-semibold text-[#863730] text-right">المشاريع</p>
                 <div className="rounded-3xl border border-[#eadace] bg-[#f8f1ea] p-3">
                   <div className="flex flex-col gap-2 max-h-[440px] overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
-                    {portfolioItems.map((item, index) => {
-                      const isActive = index === activeIndex
+                    {groupedItems.map((group, index) => {
+                      const isActive = index === activeGroupIndex
                       return (
                         <button
-                          key={`${item.client}-${item.project}`}
+                          key={group.client}
                           type="button"
-                          onClick={() => setActiveIndex(index)}
+                          onClick={() => setActiveGroupIndex(index)}
                           aria-pressed={isActive}
                           className={`flex items-center justify-between gap-2 rounded-2xl border px-3 py-3 text-sm font-semibold transition duration-150 text-right ${
                             isActive
@@ -122,13 +158,13 @@ export default function PortfolioPage() {
                               : "border-transparent bg-transparent text-[#7a3b2f] hover:border-[#dfc8b7]"
                           }`}
                         >
-                          <span className="line-clamp-1">{item.client}</span>
+                          <span className="line-clamp-1">{group.client}</span>
                           <span
                             className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-[12px] font-bold ${
                               isActive ? "bg-[#f3e1d6] text-[#5a251b]" : "bg-[#f3ebe5] text-[#8a5b4a]"
                             }`}
                           >
-                            {index + 1}
+                            {group.items.length}
                           </span>
                         </button>
                       )
@@ -138,10 +174,27 @@ export default function PortfolioPage() {
               </div>
 
               <div className="rounded-[28px] border border-[#edded3] bg-white shadow-[0_30px_110px_-70px_rgba(15,23,42,0.3)] p-6 text-right">
-                <div className="text-xs font-semibold uppercase tracking-[0.35em] text-[#863730]">المشروع</div>
-                <h3 className="mt-3 text-lg font-semibold text-[#5a251b]">{activeItem.project}</h3>
-                <p className="mt-1 text-sm font-medium text-neutral-800">{activeItem.client}</p>
-                <p className="mt-4 text-sm text-neutral-700 leading-relaxed">{activeItem.description}</p>
+                <div className="text-xs font-semibold uppercase tracking-[0.35em] text-[#863730]">المشاريع</div>
+                <h3 className="mt-3 text-lg font-semibold text-[#5a251b]">{activeGroup.client}</h3>
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  {activeGroup.items.map((item) => (
+                    <div
+                      key={`${item.client}-${item.project}`}
+                      className="h-full rounded-2xl border border-[#edded3] bg-[#fdf9f6] p-4 shadow-sm"
+                    >
+                      <p className="text-sm font-semibold text-[#5a251b]">{item.project}</p>
+                      <p className="mt-1 text-xs font-medium text-neutral-700">{item.client}</p>
+                      <p className="mt-3 text-sm text-neutral-700 leading-relaxed">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 flex items-center justify-center gap-3 text-xs text-[#7a3b2f]">
+                  <span className="h-px w-10 bg-[#e7dcd2]" aria-hidden />
+                  <span className="font-semibold">
+                    مشاريع متنوعة تحت نفس الجهة لعرض عمق الخبرة
+                  </span>
+                  <span className="h-px w-10 bg-[#e7dcd2]" aria-hidden />
+                </div>
               </div>
             </div>
           </section>
