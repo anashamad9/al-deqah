@@ -45,11 +45,11 @@ export const homepageCopy = {
         copy: {
           en: {
             title: "Systems & Application Engineering",
-            description: "Design and build enterprise-grade platforms, products, and mission software.",
+            description: "Custom enterprise systems, web apps, and mobile experiences with smooth integrations.",
           },
           ar: {
             title: "تطوير الأنظمة والتطبيقات البرمجية",
-            description: "تصميم وبناء منصات وتطبيقات مؤسسية وبرمجيات تشغيلية عالية الاعتمادية.",
+            description: "أنظمة وتطبيقات مخصصة مع واجهات سهلة وتكامل سلس لدعم العمليات.",
           },
         },
       },
@@ -73,11 +73,11 @@ export const homepageCopy = {
         copy: {
           en: {
             title: "VR, AR & Metaverse Experiences",
-            description: "Immersive training, storytelling, and engagement layers across industries.",
+            description: "Immersive training, interactive content, and virtual venues for richer engagement.",
           },
           ar: {
             title: "الواقع الافتراضي والمعزز والميتافيرس",
-            description: "تجارب غامرة للتدريب والسرد والتفاعل عبر مختلف القطاعات.",
+            description: "تجارب غامرة للتدريب والمحتوى التفاعلي والاجتماعات الافتراضية.",
           },
         },
       },
@@ -86,12 +86,12 @@ export const homepageCopy = {
         href: "/solutions/iot-platforms",
         copy: {
           en: {
-            title: "IoT & Connected Intelligent Systems",
-            description: "Sensor networks, automation, and telemetry fabrics for smarter operations.",
+            title: "Internet of Things & Smart Systems",
+            description: "Real-time sensing, smart control, and predictive maintenance platforms.",
           },
           ar: {
-            title: "إنترنت الأشياء والأنظمة الذكية المتصلة",
-            description: "شبكات استشعار وأتمتة وأقمشة بيانات لعمليات أكثر ذكاءً.",
+            title: "انترنت الأشياء والأنظمة الذكية",
+            description: "منصات حساسات ذكية للمراقبة اللحظية والأتمتة والصيانة التنبؤية.",
           },
         },
       },
@@ -101,11 +101,11 @@ export const homepageCopy = {
         copy: {
           en: {
             title: "Quality Assurance & Global Standards",
-            description: "Audits, compliance, and testing programs aligned with international frameworks.",
+            description: "Audits, ISO/ITIL/COBIT readiness, and quality programs that reduce risk.",
           },
           ar: {
-            title: "التدقيق وضمان الجودة وتطبيق المعايير العالمية.",
-            description: "برامج تدقيق وامتثال واختبارات متوافقة مع الأطر العالمية.",
+            title: "التدقيق وضمان الجودة وتطبيق المعايير العالمية",
+            description: "تدقيق شامل، جاهزية شهادات، وبرامج جودة متوافقة مع المعايير الدولية.",
           },
         },
       },
@@ -115,11 +115,11 @@ export const homepageCopy = {
         copy: {
           en: {
             title: "Digital Infrastructure & IT Services",
-            description: "Cloud, network, and workplace services that keep missions resilient.",
+            description: "Networks, data centers, storage, and cloud services engineered for continuity.",
           },
           ar: {
             title: "البنية التحتية الرقمية وخدمات تقنية المعلومات",
-            description: "خدمات السحابة والشبكات والبيئات المكتبية لضمان استمرارية المهام.",
+            description: "شبكات ومراكز بيانات وتخزين وسحابة مصممة لاستمرارية العمل.",
           },
         },
       },
@@ -129,11 +129,11 @@ export const homepageCopy = {
         copy: {
           en: {
             title: "Integrated Enterprise Solutions",
-            description: "ERP, CRM, and low-code ecosystems unified around measurable outcomes.",
+            description: "Integrated ERP, data, and process automation with executive analytics.",
           },
           ar: {
             title: "الحلول المؤسسية المتكاملة",
-            description: "أنظمة ERP وCRM ومنصات منخفضة الشفرة موحّدة حول مؤشرات أداء قابلة للقياس.",
+            description: "منصات ERP وبيانات وأتمتة موحّدة لرفع الكفاءة ودعم القرار.",
           },
         },
       },
@@ -143,11 +143,25 @@ export const homepageCopy = {
         copy: {
           en: {
             title: "Technology Consulting & Digital Transformation",
-            description: "Advisory blueprints that align strategy, operating models, and delivery.",
+            description: "Digital strategies, process re-engineering, and cloud/innovation advisory.",
           },
           ar: {
             title: "الاستشارات التقنية والتحول الرقمي",
-            description: "خرائط استشارية توحّد الاستراتيجية ونماذج التشغيل ومسارات التنفيذ.",
+            description: "استراتيجيات رقمية وهندسة عمليات وتحول سحابي يرفع جاهزية المؤسسة.",
+          },
+        },
+      },
+      {
+        key: "institutional",
+        href: "/solutions/institutional-building",
+        copy: {
+          en: {
+            title: "Institutional Building & Governance",
+            description: "Organizational structures, policies, and performance systems that strengthen operations.",
+          },
+          ar: {
+            title: "خدمة البناء المؤسسي",
+            description: "هياكل تنظيمية، سياسات، وحَوْكمة ترفع كفاءة واستدامة الأداء.",
           },
         },
       },

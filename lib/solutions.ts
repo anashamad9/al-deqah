@@ -52,6 +52,7 @@ export const PRIMARY_SERVICE_SLUGS = [
   "digital-infrastructure",
   "enterprise-platforms",
   "digital-consulting",
+  "institutional-building",
 ] as const
 
 export const solutions: Solution[] = [
@@ -374,69 +375,30 @@ export const solutions: Solution[] = [
   {
     slug: "xr-immersive",
     name: "XR & Immersive",
-    category: "Extended Reality",
-    tagline: "Stories and spaces that respond to every movement.",
+    category: "Immersive Experiences",
+    tagline: "VR, AR, and metaverse solutions for realistic training and engagement.",
     description:
-      "Design immersive brand activations, training environments, and digital showrooms that blend physical and virtual experiences.",
+      "We design virtual and augmented environments that simulate real scenarios for learning, collaboration, and interactive storytelling.",
     overview:
-      "From mixed-reality stage shows to collaborative virtual campuses, we orchestrate spatial storytelling that deepens engagement and unlocks new revenue streams.",
-    stats: [
-      { label: "Engagement Lift", value: "3x", description: "Average dwell time increase across immersive venues." },
-      { label: "Deployment Scale", value: "50+ sites", description: "Managed rollouts across retail, events, and learning hubs." },
-      { label: "Uptime", value: "24/7", description: "Monitored experiential platforms with proactive support." },
-    ],
+      "From VR training spaces to AR applications and metaverse venues, our teams craft immersive journeys with high-quality visuals, intuitive interactions, and smooth device integration.",
+    stats: [],
     features: [
-      {
-        title: "Spatial Narrative Design",
-        description: "Story arcs mapped to spatial triggers, volumetric capture, and reactive lighting.",
-      },
-      {
-        title: "Multi-User Collaboration",
-        description: "Shared virtual environments, avatar orchestration, and live event streaming integration.",
-      },
-      {
-        title: "Experience Analytics",
-        description: "Heatmaps, engagement funnels, and biometric inputs to optimize journeys in real time.",
-      },
-      {
-        title: "Hardware Lifecycle Management",
-        description: "Device provisioning, remote updates, and ops dashboards for distributed XR fleets.",
-      },
+      { title: "VR Experiences", description: "3D virtual environments for training, education, and operational simulations." },
+      { title: "AR Applications", description: "Interactive overlays that enhance maintenance, marketing, and learning in the real world." },
+      { title: "Metaverse Spaces", description: "Custom virtual venues for meetings, workshops, and events with full branding." },
+      { title: "Interactive Learning Content", description: "Rich multimedia experiences designed to boost comprehension and retention." },
+      { title: "Device & Platform Integration", description: "Provisioning and managing VR/AR devices and platforms for stable performance." },
     ],
-    useCases: [
-      {
-        title: "Immersive Brand Launches",
-        description: "Hybrid activations with physical-virtual synchronization and social amplification mechanics.",
-        bullets: ["Venue-scale projection mapping", "Realtime VFX pipelines", "NFT and loyalty program tie-ins"],
-      },
-      {
-        title: "Spatial Collaboration Hubs",
-        description: "Persistent, secure environments for design reviews, town halls, and customer co-creation workshops.",
-        bullets: ["Enterprise identity integration", "3D asset review tools", "Live whiteboarding & annotation"],
-      },
-      {
-        title: "Immersive Learning & Onboarding",
-        description: "Soft-skill training, compliance simulations, and knowledge retention analytics.",
-        bullets: ["Adaptive scenario branching", "Speech & gesture analytics", "LMS / LXP integration"],
-      },
-    ],
-    techStack: [
-      { title: "Experiential Engines", items: ["Unreal Engine", "Unity", "Notch", "TouchDesigner"] },
-      { title: "Immersive Hardware", items: ["Hololens 2", "Meta Quest Pro", "Varjo XR-4", "ARKit/ARCore"] },
-      { title: "Experience Platforms", items: ["Microsoft Mesh", "ENGAGE XR", "Spatial.io", "Custom WebXR"] },
-      { title: "Analytics & Ops", items: ["Azure PlayFab", "Amplitude", "Grafana", "Bynder DAM"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Concept & Story Lab", description: "Narrative framing, visual language, and interaction prototyping." },
-      { title: "Experience Engineering", description: "Development sprints with VFX, audio, and systems integration." },
-      { title: "Launch Orchestration", description: "Venue tech coordination, rehearsals, and failover planning." },
-      { title: "Operate & Evolve", description: "Real-time monitoring, content refresh cycles, and performance tuning." },
+      { title: "Needs Analysis", description: "Identify objectives and select the right XR approach for the use case." },
+      { title: "Experience Design", description: "Design flows and prototypes to validate interactions and storytelling." },
+      { title: "Development & Content Production", description: "Build experiences with advanced 3D tools and rich media." },
+      { title: "Testing & Pilot", description: "Run user tests to refine usability and performance before launch." },
+      { title: "Launch & Support", description: "Deploy the experience, train users, and provide ongoing updates." },
     ],
-    differentiators: [
-      { title: "End-to-End Production", description: "Creative, technical, and operational crews under one roof." },
-      { title: "Platform Agnostic", description: "Deploy on-prem, cloud streaming, or standalone devices without lock-in." },
-      { title: "Analytics-Driven Creative", description: "Data instrumentation baked into the creative process from day one." },
-    ],
+    differentiators: [],
     cta: {
       label: "Plan an immersive activation",
       href: "/contact?topic=xr",
@@ -445,70 +407,42 @@ export const solutions: Solution[] = [
   },
   {
     slug: "iot-platforms",
-    name: "IoT Platforms",
-    category: "Connected Intelligence",
-    tagline: "Instrument the physical world with resilient edge-to-cloud IoT.",
+    name: "Internet of Things & Smart Systems",
+    category: "Connected Systems",
+    tagline: "Sensor-driven platforms that monitor, automate, and predict issues in real time.",
     description:
-      "Capture, process, and act on device telemetry with secure IoT platforms purpose-built for industrial and smart city scale.",
+      "We connect devices, facilities, and assets through smart sensors, wireless networks, and real-time analytics to improve operations and decision-making.",
     overview:
-      "We design sensor networks, connectivity strategies, and event-driven applications that unlock real-time awareness and automation for mission-critical operations.",
-    stats: [
-      { label: "Edge Response", value: "<80ms", description: "Deterministic edge processing for time-sensitive actions." },
-      { label: "Coverage", value: "500K+ devices", description: "Fleet management across utilities, logistics, and smart cities." },
-      { label: "Security Posture", value: "Zero-trust", description: "Continuous monitoring aligned with IEC 62443 & NIST." },
-    ],
+      "Our teams design scalable IoT solutions that collect data from across the enterprise, visualize insights instantly, and apply automation and AI for predictive maintenance and smarter control.",
+    stats: [],
     features: [
       {
-        title: "Device Onboarding & Lifecycle",
-        description: "Secure provisioning, certificate rotation, and remote firmware management at fleet scale.",
+        title: "Enterprise IoT Solutions",
+        description: "End-to-end sensor and device architectures that gather accurate data across your operations.",
       },
       {
-        title: "Edge Analytics",
-        description: "Stream processing, rule engines, and ML inference deployed on ruggedized gateways.",
+        title: "Real-time Data Platforms",
+        description: "Dashboards and control centers that surface live metrics for faster decisions.",
       },
       {
-        title: "Command & Control",
-        description: "Bidirectional messaging with safe-guarded actuation flows and human-in-the-loop overrides.",
+        title: "Smart Control & Automation",
+        description: "Remote control and automated responses that boost productivity and reduce errors.",
       },
       {
-        title: "Digital Command Centers",
-        description: "Operations dashboards integrating GIS layers, telemetry, and alert workflows.",
+        title: "AI-driven Predictive Maintenance",
+        description: "Analyze IoT data to forecast failures, reduce downtime, and extend asset life.",
       },
     ],
-    useCases: [
-      {
-        title: "Smart Utilities & Energy",
-        description: "Grid monitoring, demand response, and predictive maintenance for critical infrastructure.",
-        bullets: ["AMI & SCADA integration", "Outage prediction & crew dispatch", "DER orchestration"],
-      },
-      {
-        title: "Logistics & Asset Tracking",
-        description: "Cold chain monitoring, fleet telematics, and warehouse automation.",
-        bullets: ["Real-time location services", "Condition-based alerts", "Digital work instructions"],
-      },
-      {
-        title: "Smart Cities & Built Environments",
-        description: "Environmental sensing, adaptive lighting, and intelligent facilities management.",
-        bullets: ["LoRaWAN / 5G connectivity", "Urban data exchanges", "Occupancy-based automation"],
-      },
-    ],
-    techStack: [
-      { title: "Connectivity", items: ["LoRaWAN", "NB-IoT", "5G", "OPC-UA"] },
-      { title: "Edge & Gateways", items: ["Azure IoT Edge", "AWS IoT Greengrass", "K3s", "NVIDIA Jetson"] },
-      { title: "Cloud Platforms", items: ["Azure IoT Hub", "AWS IoT Core", "Google Cloud IoT", "InfluxDB"] },
-      { title: "Visualization", items: ["Grafana", "Kibana", "Kepler.gl", "Custom React dashboards"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Connectivity Blueprint", description: "Site surveys, hardware selection, and security architecture." },
-      { title: "Pilot & Validation", description: "Proofs of concept with real-world devices and ROI benchmarks." },
-      { title: "Platform Build", description: "Edge software, cloud integration, and data activation pipelines." },
-      { title: "Operate & Scale", description: "24/7 NOC, SLA-based support, and continuous improvement cycles." },
+      { title: "Readiness Assessment", description: "Study current infrastructure and identify integration points for IoT." },
+      { title: "Solution Design", description: "Select devices, platforms, and architecture to meet operational needs." },
+      { title: "Installation & Integration", description: "Deploy sensors and connect them to centralized platforms securely." },
+      { title: "Launch & Optimization", description: "Go live, monitor performance, and refine automations." },
+      { title: "Training & Support", description: "Upskill teams on managing smart systems and provide ongoing assistance." },
     ],
-    differentiators: [
-      { title: "Harsh Environment Expertise", description: "Experience across oil & gas, utilities, and large-scale campuses." },
-      { title: "Security First Delivery", description: "Pen-testing, SBOM management, and policy enforcement baked in." },
-      { title: "Interop & Standards", description: "Support for open data models and existing enterprise systems." },
-    ],
+    differentiators: [],
     cta: {
       label: "Explore IoT acceleration",
       href: "/contact?topic=iot",
@@ -579,200 +513,185 @@ export const solutions: Solution[] = [
     slug: "software-engineering",
     name: "Systems & Application Engineering",
     category: "Digital Engineering",
-    tagline: "Design, modernize, and operate enterprise software with reusable excellence.",
+    tagline: "Custom enterprise systems, web, and mobile applications built around your operations.",
     description:
-      "Cross-functional squads translate mission requirements into resilient platforms, APIs, and experiences that keep pace with regulatory, linguistic, and performance demands.",
+      "We design and build tailored platforms, interfaces, and integrations that streamline processes and scale with your business.",
     overview:
-      "We combine product strategy, bilingual experience design, and DevSecOps automation to build platforms that stay compliant, observable, and simple to evolve — whether refreshing legacy control rooms or launching new digital services.",
-    stats: [
-      { label: "Release Velocity", value: "+35%", description: "Faster production releases via trunk-based delivery and automation." },
-      { label: "Defect Escape Rate", value: "<1%", description: "Quality gates and continuous testing limit production issues." },
-      { label: "Reusable Accelerators", value: "120+", description: "Libraries for auth, telemetry, localization, and analytics." },
-    ],
+      "Using Agile delivery and modern architectures, we transform requirements into reliable software with clean UX, solid integrations, and maintainable codebases.",
+    stats: [],
     features: [
       {
-        title: "Domain-Driven Architecture",
-        description: "Microservices, event-driven, and modular patterns designed around mission domains.",
+        title: "Custom Enterprise Systems",
+        description: "HR, finance, operations, and other line-of-business systems engineered for flexibility and growth.",
       },
       {
-        title: "Product Discovery & UX",
-        description: "Research-backed journeys, bilingual interfaces, and accessibility embedded in each release train.",
+        title: "Interactive Web Applications",
+        description: "Responsive, secure web apps that elevate internal and external service delivery across devices.",
       },
       {
-        title: "DevSecOps Automation",
-        description: "Infrastructure-as-code, policy-as-code, and secure pipelines spanning build, test, and deploy.",
+        title: "Mobile Applications",
+        description: "Android and iOS apps with intuitive experiences that keep services accessible everywhere.",
       },
       {
-        title: "Observability & Telemetry",
-        description: "Tracing, logging, and health scoring integrated from sprint one for faster root-cause analysis.",
+        title: "Integration Services",
+        description: "APIs and connectors that unify legacy and modern platforms for consistent data flow.",
+      },
+      {
+        title: "System Enhancement & Optimization",
+        description: "Performance, security, and UX improvements that extend the life of existing solutions.",
       },
     ],
-    useCases: [
-      {
-        title: "Legacy Platform Modernization",
-        description: "Refactor monoliths into cloud-ready services with API-first interfaces and CI/CD enablement.",
-        bullets: ["Strangler patterns", "Containerization roadmaps", "Automated regression suites"],
-      },
-      {
-        title: "Mission Systems & Field Apps",
-        description: "Offline-first and ruggedized applications for command centers, utilities, and mobility teams.",
-        bullets: ["Edge sync services", "Role-based UI", "Secure device management"],
-      },
-      {
-        title: "Citizen & Customer Portals",
-        description: "Service portals that connect payments, workflows, and knowledge bases across agencies.",
-        bullets: ["Single Sign-On", "Multilingual content ops", "Analytics-driven personalization"],
-      },
-    ],
-    techStack: [
-      { title: "Application Frameworks", items: ["Next.js", "NestJS", "Spring Boot", ".NET 8"] },
-      { title: "Runtime & Cloud", items: ["Azure Kubernetes Service", "AWS ECS/Fargate", "HashiCorp Nomad", "Azure App Service"] },
-      { title: "DevSecOps", items: ["GitHub Actions", "Azure DevOps", "Argo CD", "SonarQube"] },
-      { title: "Experience Engineering", items: ["Figma", "Storybook", "Framer Motion", "WebGL"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Discover & Blueprint", description: "Co-design journeys, KPIs, and architecture guardrails." },
-      { title: "Backlog & Architecture", description: "Domain modeling, API specs, and infrastructure-as-code." },
-      { title: "Build & Integrate", description: "Iterative delivery with automated testing and observability." },
-      { title: "Operate & Evolve", description: "Runbooks, SRE coaching, and backlog acceleration." },
+      {
+        title: "Requirements & Scope",
+        description: "Analyze current processes and capture the features and outputs the system must deliver.",
+      },
+      {
+        title: "Design & Prototyping",
+        description: "Craft UX/UI and prototypes to validate the final shape of the solution with stakeholders.",
+      },
+      {
+        title: "Development",
+        description: "Build with modern frameworks and iterative releases to keep progress visible.",
+      },
+      {
+        title: "Testing & Quality Assurance",
+        description: "Run functional and technical tests to validate performance before launch.",
+      },
+      {
+        title: "Launch & Support",
+        description: "Deploy, integrate, and provide ongoing support and updates.",
+      },
     ],
-    differentiators: [
-      { title: "Bilingual Product Craft", description: "Arabic and English UX, content, and workflows from day one." },
-      { title: "Regulated Industry Know-how", description: "Patterns for government, finance, oil & gas, and healthcare." },
-      { title: "Embedded Enablement", description: "Train-the-trainer and paired delivery to upskill internal teams." },
-    ],
+    differentiators: [],
     cta: {
-      label: "Launch your next software release",
+      label: "Start your build",
       href: "/contact?topic=software",
-      description: "Share your roadmap and we will co-create a modernization sprint plan.",
+      description: "Tell us about the system you need and we'll plan the fastest path to launch.",
     },
   },
   {
     slug: "quality-assurance",
     name: "Quality Assurance & Global Standards",
     category: "Quality & Compliance",
-    tagline: "Independent validation, audits, and automation that keep programs reliable and certified.",
+    tagline: "Audits, certification readiness, and quality programs aligned with global standards.",
     description:
-      "Full lifecycle QA services — from strategy to continuous testing and regulatory documentation — tailored to national infrastructure and enterprise delivery.",
+      "We improve performance and reduce operational risk through structured audits, quality assessments, and compliance support for ISO, ITIL, and COBIT.",
     overview:
-      "Combining automation engineers, compliance specialists, and bilingual documentation experts, we ensure every release meets ISO, ITIL, and sector-specific mandates while maintaining velocity.",
-    stats: [
-      { label: "Automation Coverage", value: "80%", description: "Automated regression and smoke suites across tiers." },
-      { label: "Compliance Readiness", value: "100%", description: "Evidence packs aligned with ISO, ITSM, and local mandates." },
-      { label: "Defect Detection", value: "95%", description: "Shift-left testing and observability catch issues earlier." },
-    ],
+      "Our teams evaluate processes and controls, close gaps with clear recommendations, and build policies and procedures that keep services reliable and audit-ready.",
+    stats: [],
     features: [
-      { title: "QA Strategy & Governance", description: "Playbooks, KPIs, and tooling architectures matched to delivery models." },
-      { title: "Automated & Manual Testing", description: "Functional, API, mobile, and UX testing via reusable frameworks." },
-      { title: "Performance & Resilience", description: "Load, endurance, and chaos testing validating SLAs for critical workloads." },
-      { title: "Compliance & Audit Support", description: "Traceability matrices, bilingual evidence packs, and readiness workshops." },
-    ],
-    useCases: [
       {
-        title: "Regulated Platform Launches",
-        description: "Independent verification for banking, government, and healthcare solutions.",
-        bullets: ["SIT/UAT orchestration", "Accessibility audits", "Security control validation"],
+        title: "Internal & External Audits",
+        description: "End-to-end reviews of systems and procedures with findings, gaps, and remediation guidance.",
       },
       {
-        title: "Cloud & ERP Migrations",
-        description: "Testing accelerators that de-risk large-scale platform modernization.",
-        bullets: ["Data reconciliation", "Interface certification", "Disaster recovery drills"],
+        title: "Quality Assurance & Performance Evaluation",
+        description: "Assess services against KPIs and apply improvement plans that raise productivity and service levels.",
       },
       {
-        title: "Data & AI Pipelines",
-        description: "Validate data lineage, model accuracy, and responsible AI controls.",
-        bullets: ["Quality scoring", "Bias detection suites", "Monitoring dashboards"],
+        title: "ISO Standards Implementation",
+        description: "Gap assessments, documentation, and execution support to achieve ISO certifications.",
+      },
+      {
+        title: "ITIL & COBIT Frameworks",
+        description: "Governance, risk, and IT service management practices aligned with global frameworks.",
+      },
+      {
+        title: "External Audit Readiness",
+        description: "Prepare teams, artifacts, and controls to smoothly pass certification and accreditation audits.",
       },
     ],
-    techStack: [
-      { title: "Test Automation", items: ["Playwright", "Cypress", "Selenium", "Appium"] },
-      { title: "QA Management", items: ["Azure Test Plans", "TestRail", "Zephyr", "K6"] },
-      { title: "Security & Compliance", items: ["OWASP ZAP", "Burp Suite", "Prisma Cloud", "Wiz"] },
-      { title: "Monitoring & Analytics", items: ["Grafana", "Dynatrace", "Elastic APM", "Power BI"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Assess & Calibrate", description: "Maturity assessment and tooling roadmap." },
-      { title: "Design & Enable", description: "Test architecture, data management, and KPIs." },
-      { title: "Execute & Automate", description: "Implement automation, performance, and compliance suites." },
-      { title: "Certify & Optimize", description: "Audit support, shift-left coaching, and continuous improvement." },
+      {
+        title: "Current State Review",
+        description: "Gather evidence across processes, systems, and controls to map gaps and risks.",
+      },
+      {
+        title: "Audit & Quality Plan",
+        description: "Define scope, tools, and priorities for audits and quality improvements.",
+      },
+      {
+        title: "Execution & Validation",
+        description: "Run audits and assessments, validate controls, and document clear recommendations.",
+      },
+      {
+        title: "Policy & Procedure Development",
+        description: "Create or refine quality policies, SOPs, and governance documents.",
+      },
+      {
+        title: "Follow-up & Continuous Improvement",
+        description: "Track remediation, measure impact, and keep quality programs sustainable.",
+      },
     ],
-    differentiators: [
-      { title: "Industry Framework Expertise", description: "ISO, ITIL, NCA, and healthcare-specific compliance experience." },
-      { title: "Bilingual Evidence & Training", description: "Arabic and English documentation, workshops, and playbooks." },
-      { title: "Integrated Toolchain", description: "Accelerators bridging DevSecOps and QA platforms." },
-    ],
+    differentiators: [],
     cta: {
-      label: "Schedule a QA readiness review",
+      label: "Book a quality review",
       href: "/contact?topic=quality",
-      description: "Identify the fastest path to compliant, automated quality operations.",
+      description: "Let's align your operations with international standards.",
     },
   },
   {
     slug: "digital-infrastructure",
     name: "Digital Infrastructure & IT Services",
     category: "Infrastructure & IT Services",
-    tagline: "Cloud, network, and workplace platforms engineered for resilience and scale.",
+    tagline: "Networks, data centers, storage, and cloud services engineered for continuity.",
     description:
-      "We modernize hybrid infrastructure — from data centers to edge sites — with automation, observability, and managed services that keep business operations secure and performant.",
+      "We design and run reliable infrastructure that keeps your operations secure, available, and ready to scale.",
     overview:
-      "Our architects cover cloud landing zones, software-defined networking, workplace productivity, and ITSM so you can deliver secure, always-on services for employees and citizens alike.",
-    stats: [
-      { label: "Cost Optimization", value: "25%", description: "Average reduction through right-sizing and automation." },
-      { label: "Availability SLA", value: "99.95%", description: "SRE practices and multi-region design keep services online." },
-      { label: "Ticket Deflection", value: "40%", description: "Self-service portals and AIOps reduce manual workloads." },
-    ],
+      "From wired and wireless networks to resilient data centers and hybrid cloud, we build integrated environments that support remote work, safeguard data, and simplify future growth.",
+    stats: [],
     features: [
       {
-        title: "Cloud & Hybrid Landing Zones",
-        description: "Policy, security, and automation patterns for Azure, AWS, and sovereign clouds.",
+        title: "Enterprise Network Design",
+        description: "Plan and deploy wired and wireless networks with secure connectivity between sites and branches.",
       },
       {
-        title: "Network & Security Modernization",
-        description: "Software-defined WAN, microsegmentation, and zero-trust edge architectures.",
+        title: "Data Centers & Servers",
+        description: "Design and equip resilient data centers covering power, cooling, security, and server management.",
       },
       {
-        title: "Digital Workplace Services",
-        description: "Device lifecycle, collaboration suites, and identity management as managed services.",
+        title: "Storage & Backup",
+        description: "Implement storage platforms with backup and recovery policies to protect critical data.",
       },
       {
-        title: "Observability & IT Operations",
-        description: "Unified monitoring, AIOps, and runbooks to shorten MTTR and improve user experience.",
+        title: "Cloud & Virtualization",
+        description: "Build hybrid or cloud environments that support remote work and flexible scaling.",
+      },
+      {
+        title: "Managed IT Services",
+        description: "Proactive monitoring, maintenance, and support across networks, servers, and applications.",
       },
     ],
-    useCases: [
-      {
-        title: "Data Center to Cloud Transition",
-        description: "Blueprint and migrate workloads with minimal downtime and governance baked in.",
-        bullets: ["Landing zone build", "Workload prioritization", "Automation runbooks"],
-      },
-      {
-        title: "Smart Campus & Facility Networks",
-        description: "High-availability networks that support IoT, security, and immersive collaboration.",
-        bullets: ["SD-WAN rollouts", "Wi-Fi 6/6E design", "Integrated OT security"],
-      },
-      {
-        title: "Managed IT Operations",
-        description: "24/7 monitoring, patching, and service management with localized SLAs.",
-        bullets: ["SRE pods", "ServiceNow workflows", "Onsite & remote support"],
-      },
-    ],
-    techStack: [
-      { title: "Cloud Platforms", items: ["Microsoft Azure", "AWS", "Google Cloud", "Oracle Cloud"] },
-      { title: "Network & Security", items: ["Cisco Nexus", "Aruba", "Fortinet", "Palo Alto Networks"] },
-      { title: "Workplace & Identity", items: ["Microsoft 365", "Intune", "Jamf", "Okta"] },
-      { title: "Observability & ITSM", items: ["Dynatrace", "Datadog", "Splunk ITSI", "ServiceNow"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Assess & Plan", description: "Current-state review, architecture principles, and migration roadmap." },
-      { title: "Design & Deploy", description: "Implement landing zones, networks, and security controls." },
-      { title: "Transition & Automate", description: "Cutover, automation, and knowledge transfer." },
-      { title: "Operate & Optimize", description: "Managed services, FinOps, and continuous improvement." },
+      {
+        title: "Current State Assessment",
+        description: "Evaluate infrastructure and identify weaknesses and improvement opportunities.",
+      },
+      {
+        title: "Solution Design & Plan",
+        description: "Model the target architecture and define requirements, timelines, and success criteria.",
+      },
+      {
+        title: "Implementation & Configuration",
+        description: "Install equipment, configure systems, and run stability and performance tests.",
+      },
+      {
+        title: "Go-live & Handover",
+        description: "Launch the environment, ensure integration with other systems, and deliver full documentation.",
+      },
+      {
+        title: "Ongoing Support",
+        description: "Provide continuous maintenance, updates, and rapid incident response.",
+      },
     ],
-    differentiators: [
-      { title: "Sovereign Cloud Patterns", description: "Experience with GCC and on-prem mandates for sensitive workloads." },
-      { title: "ITSM + AIOps Integration", description: "Closed-loop operations spanning monitoring and service management." },
-      { title: "Field Engineering Network", description: "Regional engineers for onsite support and rapid response." },
-    ],
+    differentiators: [],
     cta: {
       label: "Book an infrastructure strategy session",
       href: "/contact?topic=infrastructure",
@@ -782,69 +701,45 @@ export const solutions: Solution[] = [
   {
     slug: "enterprise-platforms",
     name: "Integrated Enterprise Solutions",
-    category: "Enterprise Systems",
-    tagline: "Unify ERP, CRM, and workflow platforms around measurable outcomes.",
+    category: "Enterprise Platforms",
+    tagline: "Unify systems, data, and processes in one coherent operating model.",
     description:
-      "We align enterprise applications, low-code ecosystems, and data fabrics so every function shares the same trusted view of operations.",
+      "We design connected enterprise architectures, implement ERP suites, and build analytics that elevate decision-making.",
     overview:
-      "From Dynamics 365 and SAP to Salesforce and bespoke low-code apps, we design operating models, integrations, and analytics that keep distributed teams coordinated and audits satisfied.",
-    stats: [
-      { label: "Process Automation", value: "60%", description: "Manual steps removed across finance, HR, and operations." },
-      { label: "Integration Time", value: "-40%", description: "Reusable APIs and event hubs accelerate new workloads." },
-      { label: "Data Trust Score", value: "98%", description: "Data governance and lineage deliver a single source of truth." },
-    ],
+      "By integrating operational and administrative systems into a single digital environment, we improve efficiency, data flow, and visibility so teams can execute with confidence.",
+    stats: [],
     features: [
       {
-        title: "ERP & CRM Modernization",
-        description: "Roadmaps, implementation, and localization for Dynamics 365, SAP, and Salesforce suites.",
+        title: "System Integration & Data Flow",
+        description: "Connect operational and administrative systems with secure APIs and seamless data exchange.",
       },
       {
-        title: "Integration & Data Fabric",
-        description: "Event-driven architecture, API gateways, and data virtualization to connect every system.",
+        title: "Enterprise Architecture",
+        description: "Assess current architectures, identify gaps, and design a transformation roadmap.",
       },
       {
-        title: "Automation & Low-Code Apps",
-        description: "Power Platform, UiPath, and OutSystems solutions that digitize paper-heavy workflows.",
+        title: "ERP Implementations",
+        description: "Select, localize, and deploy ERP platforms such as Odoo, SAP, or Oracle with tailored modules.",
       },
       {
-        title: "Analytics & Performance",
-        description: "Dashboards, scorecards, and predictive models tied directly to enterprise KPIs.",
+        title: "Executive Dashboards & Analytics",
+        description: "Build live dashboards and business intelligence that keep leadership informed.",
+      },
+      {
+        title: "Process Improvement (BPR & BPM)",
+        description: "Re-engineer processes to reduce waste, increase quality, and support scalable operations.",
       },
     ],
-    useCases: [
-      {
-        title: "Unified Service Centers",
-        description: "Single pane for citizen, customer, and partner interactions across channels.",
-        bullets: ["Case management", "Knowledge bases", "Omnichannel engagement"],
-      },
-      {
-        title: "Supply Chain & Asset Visibility",
-        description: "Track inventory, maintenance, and logistics with real-time alerts.",
-        bullets: ["IoT integration", "Predictive maintenance", "Supplier portals"],
-      },
-      {
-        title: "Finance & HR Transformation",
-        description: "Automate approvals, reporting, and compliance for shared services.",
-        bullets: ["Workflow automation", "Self-service portals", "Regulatory reporting packs"],
-      },
-    ],
-    techStack: [
-      { title: "Business Platforms", items: ["Microsoft Dynamics 365", "SAP S/4HANA", "Oracle Fusion", "Salesforce"] },
-      { title: "Integration Fabric", items: ["MuleSoft", "Boomi", "Azure Integration Services", "Kafka"] },
-      { title: "Automation & Low-Code", items: ["Power Platform", "UiPath", "OutSystems", "Camunda"] },
-      { title: "Data & Analytics", items: ["Microsoft Fabric", "Snowflake", "Databricks", "Power BI"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Assess & Prioritize", description: "Process diagnostics, pain-point mapping, and value cases." },
-      { title: "Design & Localize", description: "Solution architecture, localization, and change strategy." },
-      { title: "Implement & Integrate", description: "Agile deployments with data migration and automation." },
-      { title: "Adopt & Govern", description: "Center-of-excellence coaching, analytics, and release governance." },
+      { title: "Assessment", description: "Study enterprise architecture and operational processes to understand gaps and opportunities." },
+      { title: "Design & Roadmap", description: "Develop an operating model and implementation plan across systems and data." },
+      { title: "Implementation & Integration", description: "Deploy solutions, customize platforms, and migrate data with tight integration." },
+      { title: "Testing & Optimization", description: "Validate performance, tune configurations, and confirm readiness." },
+      { title: "Training & Knowledge Transfer", description: "Enable teams with training, guides, and ongoing support." },
     ],
-    differentiators: [
-      { title: "Full-Stack Enterprise Expertise", description: "ERP, CRM, HCM, and bespoke apps delivered as one program." },
-      { title: "Localized Experiences", description: "Arabic-first templates, content, and training." },
-      { title: "Measured Outcomes", description: "Operational scorecards and adoption analytics embedded in delivery." },
-    ],
+    differentiators: [],
     cta: {
       label: "Plan your enterprise roadmap",
       href: "/contact?topic=enterprise",
@@ -855,72 +750,107 @@ export const solutions: Solution[] = [
     slug: "digital-consulting",
     name: "Technology Consulting & Digital Transformation",
     category: "Advisory & Transformation",
-    tagline: "Advisory blueprints that connect strategy, operating models, and delivery execution.",
+    tagline: "Advisory, governance, and roadmaps that make digital transformation practical.",
     description:
-      "We co-create transformation programs, governance models, and investment cases so boards, regulators, and delivery teams stay aligned.",
+      "We assess current capabilities, design digital strategies, and guide technology choices so transformation programs deliver measurable results.",
     overview:
-      "Our consultants blend market research, financial modeling, and delivery enablement to fast-track national programs, mega projects, and enterprise transformations across the region.",
-    stats: [
-      { label: "Roadmap Acceleration", value: "50%", description: "Alignment through reusable playbooks and diagnostics." },
-      { label: "Stakeholder Adoption", value: "90%", description: "Structured change management and bilingual communications." },
-      { label: "Investment Confidence", value: "+30%", description: "Evidence-based business cases and KPI frameworks." },
-    ],
+      "By combining maturity assessments, process re-engineering, and emerging technology guidance, we help organizations automate, modernize, and adopt scalable platforms.",
+    stats: [],
     features: [
       {
-        title: "Strategy & Vision Workshops",
-        description: "Market scans, benchmarks, and opportunity framing with executive stakeholders.",
+        title: "Digital Transformation Strategy",
+        description: "Assess current state, set priorities, and publish an execution roadmap aligned to business goals.",
       },
       {
-        title: "Operating Model & Governance",
-        description: "Design PMOs, digital offices, and policy frameworks that keep execution on track.",
+        title: "Digital Maturity & Process Re-engineering",
+        description: "Evaluate readiness, redesign processes, and introduce automation to raise efficiency and service quality.",
       },
       {
-        title: "Portfolio & Value Management",
-        description: "Prioritize initiatives, track KPIs, and connect funding to measurable outcomes.",
+        title: "Technology Selection & Implementation",
+        description: "Support RFPs, vendor evaluations, and deployment of systems like ERP, CRM, and HRMS.",
       },
       {
-        title: "Change & Capability Uplift",
-        description: "Communications, training, and leadership coaching tailored to bilingual audiences.",
+        title: "Cloud & Infrastructure Transformation",
+        description: "Plan and manage secure migrations to cloud or hybrid environments without disrupting operations.",
+      },
+      {
+        title: "Innovation & Emerging Tech Advisory",
+        description: "Identify practical uses for AI, IoT, automation, and blockchain that build sustainable advantage.",
       },
     ],
-    useCases: [
-      {
-        title: "National Digital Programs",
-        description: "Blueprint smart city, healthcare, or industrial transformation journeys.",
-        bullets: ["Visioning labs", "Policy development", "Roadmap governance"],
-      },
-      {
-        title: "Enterprise Transformation Offices",
-        description: "Create digital PMOs with tooling, playbooks, and performance dashboards.",
-        bullets: ["ServiceNow / Planview setup", "Benefit tracking", "Risk management"],
-      },
-      {
-        title: "Capability & Innovation Labs",
-        description: "Launch labs that prototype emerging tech with repeatable guardrails.",
-        bullets: ["Innovation portfolios", "Partner ecosystems", "Upskilling academies"],
-      },
-    ],
-    techStack: [
-      { title: "Strategy & Collaboration", items: ["Miro", "Notion", "Jira Align", "Monday.com"] },
-      { title: "Analytics & Insight", items: ["Power BI", "Tableau", "Looker", "ThoughtSpot"] },
-      { title: "Portfolio & Automation", items: ["ServiceNow SPM", "Planview", "Smartsheet", "Jira"] },
-      { title: "Innovation Tooling", items: ["Azure OpenAI", "GitHub Copilot", "NVIDIA Omniverse", "Hugging Face"] },
-    ],
+    useCases: [],
+    techStack: [],
     engagement: [
-      { title: "Diagnostics & Vision", description: "Assess maturity, define north-star KPIs, and co-create the vision." },
-      { title: "Operating Model Design", description: "Establish governance, roles, and funding models." },
-      { title: "Execution Enablement", description: "Stand up PMOs, toolchains, and reporting rhythms." },
-      { title: "Value Realization", description: "Monitor KPIs, adjust portfolio mix, and embed capability." },
+      {
+        title: "Current State & Needs Analysis",
+        description: "Collect and analyze data on processes, systems, and organizational structures to find gaps.",
+      },
+      {
+        title: "Strategy & Program Design",
+        description: "Define initiatives, timelines, and resources that align with objectives and operational realities.",
+      },
+      {
+        title: "Execution Oversight",
+        description: "Guide implementation, manage risks, and ensure progress stays on plan and within technical standards.",
+      },
+      {
+        title: "Evaluation & Continuous Improvement",
+        description: "Track performance after go-live, capture lessons learned, and adjust roadmaps for sustained impact.",
+      },
     ],
-    differentiators: [
-      { title: "Cross-Sector Insight", description: "Experience with government, energy, healthcare, and finance programs." },
-      { title: "Bilingual Facilitation", description: "Arabic and English workshops, playbooks, and executive reporting." },
-      { title: "Delivery-to-Strategy Continuity", description: "Advisory team stays involved through build and operate phases." },
-    ],
+    differentiators: [],
     cta: {
       label: "Book a transformation workshop",
       href: "/contact?topic=consulting",
       description: "Align stakeholders on priorities and execution guardrails.",
+    },
+  },
+  {
+    slug: "institutional-building",
+    name: "Institutional Building & Governance",
+    category: "Organizational Excellence",
+    tagline: "Design governance, structures, and policies that clarify roles and boost performance.",
+    description:
+      "We establish operating models, policies, and job frameworks that strengthen organizational stability and readiness.",
+    overview:
+      "By developing organizational structures, governance systems, and clear procedures, we help institutions align responsibilities, improve efficiency, and sustain growth.",
+    stats: [],
+    features: [
+      {
+        title: "Organizational Structure Design",
+        description: "Develop integrated structures with clear reporting lines and scalable operating models.",
+      },
+      {
+        title: "Policies & Administrative Regulations",
+        description: "Draft policies and SOPs across operations, finance, and HR based on best practices.",
+      },
+      {
+        title: "Roles & Job Descriptions",
+        description: "Create detailed role profiles that define responsibilities and required competencies.",
+      },
+      {
+        title: "Governance & Performance Systems",
+        description: "Set governance frameworks and KPIs with monitoring mechanisms and periodic reviews.",
+      },
+      {
+        title: "Process Re-engineering (BPR)",
+        description: "Simplify and redesign processes to remove waste and raise efficiency.",
+      },
+    ],
+    useCases: [],
+    techStack: [],
+    engagement: [
+      { title: "Diagnostics & Analysis", description: "Assess current structures and processes to pinpoint gaps." },
+      { title: "Organizational Design", description: "Build target structures, operating models, and governance aligned to strategy." },
+      { title: "Policies & Guides", description: "Produce policy manuals, SOPs, job descriptions, and performance frameworks." },
+      { title: "Implementation & Enablement", description: "Roll out the new model, train teams, and activate oversight mechanisms." },
+      { title: "Review & Improvement", description: "Evaluate impact regularly and adjust structures as needs evolve." },
+    ],
+    differentiators: [],
+    cta: {
+      label: "Start your institutional build",
+      href: "/contact?topic=institutional-building",
+      description: "Let's design the governance and structures that fit your vision.",
     },
   },
 ]
