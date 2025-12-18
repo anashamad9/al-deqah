@@ -12,9 +12,6 @@ import type { Language } from "@/lib/i18n"
 import type { Solution } from "@/lib/solutions"
 import { getLocalizedSolution } from "@/lib/solutions-localized"
 
-const CYBER_VIDEO_SRC = "/new%20vid.mp4"
-const CYBER_VIDEO_POSTER = "/tech-company.jpg"
-
 type SolutionCopy = {
   backLabel: string
   heroLead: string
@@ -50,6 +47,17 @@ type SolutionCopy = {
     applyCta: string
   }
 }
+
+type HeroBackground =
+  | {
+      src: string
+      kind: "video"
+      poster?: string
+    }
+  | {
+      src: string
+      kind: "image"
+    }
 
 const GENERIC_LABELS: Record<
   Language,
@@ -389,6 +397,18 @@ const CYBER_COPY: Record<Language, SolutionCopy> = {
   },
 } as const
 
+const HERO_BACKGROUNDS: Record<string, HeroBackground> = {
+  "cybersecurity-risk": { src: "/3129671-uhd_3840_2160_30fps.mp4", kind: "video" },
+  "software-engineering": { src: "/3129957-uhd_3840_2160_25fps.mp4", kind: "video" },
+  "ai-data-science": { src: "/3129977-uhd_3840_2160_30fps.mp4", kind: "video" },
+  "xr-immersive": { src: "/3209829-uhd_3840_2160_25fps.mp4", kind: "video" },
+}
+
+const DEFAULT_HERO_BACKGROUND: HeroBackground = {
+  src: "/3129671-uhd_3840_2160_30fps.mp4",
+  kind: "video",
+}
+
 const SERVICE_IMAGES = [
   "/services/cyber.avif",
   "/services/ai.jpg",
@@ -420,6 +440,11 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
     solution.slug === "cybersecurity-risk"
       ? CYBER_COPY[language]
       : buildCopyFromSolution(solution, localizedSolution, language)
+  const heroBackground = useMemo(
+    () => HERO_BACKGROUNDS[solution.slug] ?? DEFAULT_HERO_BACKGROUND,
+    [solution.slug],
+  )
+  const isVideoBackground = heroBackground.kind === "video"
   const videoRef = useRef<HTMLVideoElement>(null)
   const [activeService, setActiveService] = useState(0)
   const [activeProcess, setActiveProcess] = useState(0)
@@ -452,6 +477,8 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
   }
 
   useEffect(() => {
+    if (!isVideoBackground) return
+
     const video = videoRef.current
     if (!video) return
 
@@ -477,7 +504,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
       video.removeEventListener("ended", ensurePlay)
       video.removeEventListener("canplaythrough", ensurePlay)
     }
-  }, [language, solution])
+  }, [heroBackground.kind, heroBackground.src, isVideoBackground, language, solution])
 
   return (
     <>
@@ -510,20 +537,30 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
             isArabic ? "text-right arabic" : ""
           }`}
         >
-          <video
-            key={CYBER_VIDEO_SRC}
-            className="absolute inset-0 h-full w-full object-cover"
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-            poster={CYBER_VIDEO_POSTER}
-          >
-            <source src={CYBER_VIDEO_SRC} type="video/mp4" />
-          </video>
+          {isVideoBackground ? (
+            <video
+              key={heroBackground.src}
+              className="absolute inset-0 h-full w-full object-cover"
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              poster={heroBackground.poster}
+            >
+              <source src={heroBackground.src} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              key={heroBackground.src}
+              src={heroBackground.src}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-[#1b0e0b]/55 to-[#120806]/60" />
           <div className="relative mx-auto flex min-h-[600px] w-full text-white">
             <h1
