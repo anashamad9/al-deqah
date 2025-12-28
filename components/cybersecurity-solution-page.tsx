@@ -434,67 +434,34 @@ const DEFAULT_HERO_BACKGROUND: HeroBackground = {
 }
 
 const SERVICE_IMAGES = [
-  "/services/cyber.avif",
-  "/services/ai.jpg",
-  "/services/iot.jpeg",
-  "/services/digital-twins.webp",
-  "/services/ar-vr.jpg",
-  "/services/metaverse.jpeg",
-  "/services/training.jpg",
-  "/tech-company.jpg",
+  "https://images.unsplash.com/photo-1644088379091-d574269d422f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D",
+  "https://www.mckinsey.com/~/media/mckinsey/business%20functions/mckinsey%20digital/our%20insights/the%20top%20trends%20in%20tech%202025/tech%20trends-hero-2180972981-thumb-1536x1536.jpg",
+  "https://www.mckinsey.com/spContent/bespoke/tech-trends-2024-hero-nav/techtrends-hero-desktop.jpg",
+  "https://www.mckinsey.com/spContent/bespoke/tech-trends-2023-hero-nav/techtrends-hero-desktop.jpg",
+  "https://dashboard.thefinanser.com/wp-content/uploads/2024/02/Technology.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJytgARO2FH5fciciQ-ItFGos3dgeY5Wo35g&s",
+  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
+  "https://img.freepik.com/free-vector/gradient-technology-futuristic-background_23-2149115304.jpg?semt=ais_hybrid&w=740&q=80",
+  "https://www.pwc.com/m1/en/services/consulting/technology/2024/image/tech-powered-hero-frame.jpeg",
+  "https://wallpapers.com/images/hd/tech-pictures-3840-x-2160-yfyjbz7mx5k6q6ig.jpg",
+  "https://cdn.prod.website-files.com/6420f704f2602a2ee7f79d26/646d4bb79ff76f75b218a08a_listicles-tech-image-large.jpg",
+  "https://www.cia.gov/static/b8f09865637db34e6d58a0303622c931/d0e8a/tech-at-cia-promo.png",
+  "https://images.stockcake.com/public/e/4/0/e4012fc6-cf44-44c3-a2c0-9deb9e287531_large/tech-driven-office-stockcake.jpg",
+  "https://img.freepik.com/premium-photo/glowing-hexagonal-cubes-background-hitech-cyberspace-3d-rendering_772449-3824.jpg?semt=ais_hybrid&w=740&q=80",
+  "https://www.epo.org/sites/default/files/styles/ratio_3_1/public/2024-04/Deep%20tech%20finder_1920x1080.jpg?h=27371658&itok=KqbBCYJP",
+  "https://img.freepik.com/free-photo/abstract-background-with-low-poly-design_1048-8478.jpg?semt=ais_hybrid&w=740&q=80",
+  "https://www.capgemini.com/wp-content/uploads/2021/09/Capgemini_Tech-Partners_SAP.jpg",
+  "https://www.infosys.com/content/dam/infosys-web/en/iki/images/home/tech-navigator-agentic-ai-industries-lead.jpg",
 ] as const
 
-const SERVICE_IMAGES_BY_SLUG: Record<string, string[]> = {
-  "iot-platforms": [
-    "https://dce.harvard.edu/wp-content/uploads/sites/8/2024/07/tech.jpg",
-    "/services/iot.jpeg",
-    "/services/digital-twins.webp",
-    "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
-    "/services/ai.jpg",
-  ],
-  "quality-assurance": [
-    "https://www.innovationnewsnetwork.com/wp-content/uploads/2021/06/%C2%A9-iStock-metamorworks-1.jpg",
-    "/services/training.jpg",
-    "/GettyImages-1383963898_1200x675.jpg",
-    "/services/cyber.avif",
-    "/services/ai.jpg",
-  ],
-  "digital-infrastructure": [
-    "https://www.tecnau.com/wp-content/uploads/2019/04/Tecnau-green-web.jpg",
-    "/services/iot.jpeg",
-    "/tech-company.jpg",
-    "/services/cyber.avif",
-    "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
-  ],
-  "enterprise-platforms": [
-    "https://www.eslabon.digital/wp-content/uploads/2021/02/diseno-web.jpg",
-    "/services/ai.jpg",
-    "/services/digital-twins.webp",
-    "/services/metaverse.jpeg",
-    "/tech-company.jpg",
-  ],
-  "digital-consulting": [
-    "https://www.datocms-assets.com/8576/1584733495-blog6future-of-smart-cities2.jpg?auto=format,compress&fit=crop&w=3840&q=75",
-    "/services/ai.jpg",
-    "/services/ar-vr.jpg",
-    "/services/training.jpg",
-    "/GettyImages-1383963898_1200x675.jpg",
-  ],
-  "institutional-building": [
-    "https://focusbari.gr/wp-content/uploads/%CE%94%CE%A4_Picture.jpg",
-    "/services/training.jpg",
-    "/services/metaverse.jpeg",
-    "/services/digital-twins.webp",
-    "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
-  ],
-}
-
 const getServiceImagesForSlug = (slug: string) => {
-  const explicitImages = SERVICE_IMAGES_BY_SLUG[slug]
-  if (explicitImages?.length) return explicitImages
-  const offset =
-    slug.split("").reduce((total, char) => total + char.charCodeAt(0), 0) % SERVICE_IMAGES.length
-  return SERVICE_IMAGES.map((_, index) => SERVICE_IMAGES[(index + offset) % SERVICE_IMAGES.length])
+  const seed = slug.split("").reduce((total, char) => total + char.charCodeAt(0), 0)
+  const shuffled = [...SERVICE_IMAGES]
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = (seed + i) % (i + 1)
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
 }
 
 const PROCESS_IMAGES = [
