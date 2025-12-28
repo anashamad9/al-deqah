@@ -398,14 +398,38 @@ const CYBER_COPY: Record<Language, SolutionCopy> = {
 } as const
 
 const HERO_BACKGROUNDS: Record<string, HeroBackground> = {
-  "cybersecurity-risk": { src: "/3129671-uhd_3840_2160_30fps.mp4", kind: "video" },
+  "cybersecurity-risk": { src: "/new vid.mp4", kind: "video" },
   "software-engineering": { src: "/3129957-uhd_3840_2160_25fps.mp4", kind: "video" },
   "ai-data-science": { src: "/3129977-uhd_3840_2160_30fps.mp4", kind: "video" },
   "xr-immersive": { src: "/3209829-uhd_3840_2160_25fps.mp4", kind: "video" },
+  "iot-platforms": {
+    src: "https://dce.harvard.edu/wp-content/uploads/sites/8/2024/07/tech.jpg",
+    kind: "image",
+  },
+  "quality-assurance": {
+    src: "https://www.innovationnewsnetwork.com/wp-content/uploads/2021/06/%C2%A9-iStock-metamorworks-1.jpg",
+    kind: "image",
+  },
+  "digital-infrastructure": {
+    src: "https://www.tecnau.com/wp-content/uploads/2019/04/Tecnau-green-web.jpg",
+    kind: "image",
+  },
+  "enterprise-platforms": {
+    src: "https://www.eslabon.digital/wp-content/uploads/2021/02/diseno-web.jpg",
+    kind: "image",
+  },
+  "digital-consulting": {
+    src: "https://www.datocms-assets.com/8576/1584733495-blog6future-of-smart-cities2.jpg?auto=format,compress&fit=crop&w=3840&q=75",
+    kind: "image",
+  },
+  "institutional-building": {
+    src: "https://focusbari.gr/wp-content/uploads/%CE%94%CE%A4_Picture.jpg",
+    kind: "image",
+  },
 }
 
 const DEFAULT_HERO_BACKGROUND: HeroBackground = {
-  src: "/3129671-uhd_3840_2160_30fps.mp4",
+  src: "/new vid.mp4",
   kind: "video",
 }
 
@@ -419,6 +443,59 @@ const SERVICE_IMAGES = [
   "/services/training.jpg",
   "/tech-company.jpg",
 ] as const
+
+const SERVICE_IMAGES_BY_SLUG: Record<string, string[]> = {
+  "iot-platforms": [
+    "https://dce.harvard.edu/wp-content/uploads/sites/8/2024/07/tech.jpg",
+    "/services/iot.jpeg",
+    "/services/digital-twins.webp",
+    "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
+    "/services/ai.jpg",
+  ],
+  "quality-assurance": [
+    "https://www.innovationnewsnetwork.com/wp-content/uploads/2021/06/%C2%A9-iStock-metamorworks-1.jpg",
+    "/services/training.jpg",
+    "/GettyImages-1383963898_1200x675.jpg",
+    "/services/cyber.avif",
+    "/services/ai.jpg",
+  ],
+  "digital-infrastructure": [
+    "https://www.tecnau.com/wp-content/uploads/2019/04/Tecnau-green-web.jpg",
+    "/services/iot.jpeg",
+    "/tech-company.jpg",
+    "/services/cyber.avif",
+    "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
+  ],
+  "enterprise-platforms": [
+    "https://www.eslabon.digital/wp-content/uploads/2021/02/diseno-web.jpg",
+    "/services/ai.jpg",
+    "/services/digital-twins.webp",
+    "/services/metaverse.jpeg",
+    "/tech-company.jpg",
+  ],
+  "digital-consulting": [
+    "https://www.datocms-assets.com/8576/1584733495-blog6future-of-smart-cities2.jpg?auto=format,compress&fit=crop&w=3840&q=75",
+    "/services/ai.jpg",
+    "/services/ar-vr.jpg",
+    "/services/training.jpg",
+    "/GettyImages-1383963898_1200x675.jpg",
+  ],
+  "institutional-building": [
+    "https://focusbari.gr/wp-content/uploads/%CE%94%CE%A4_Picture.jpg",
+    "/services/training.jpg",
+    "/services/metaverse.jpeg",
+    "/services/digital-twins.webp",
+    "/abstract-network-connection-brown-plexus-lines-nodes-white-background-ideal-technology-connectivity-communication-data-383687407.jpg.webp",
+  ],
+}
+
+const getServiceImagesForSlug = (slug: string) => {
+  const explicitImages = SERVICE_IMAGES_BY_SLUG[slug]
+  if (explicitImages?.length) return explicitImages
+  const offset =
+    slug.split("").reduce((total, char) => total + char.charCodeAt(0), 0) % SERVICE_IMAGES.length
+  return SERVICE_IMAGES.map((_, index) => SERVICE_IMAGES[(index + offset) % SERVICE_IMAGES.length])
+}
 
 const PROCESS_IMAGES = [
   "/services/cyber.avif",
@@ -444,6 +521,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
     () => HERO_BACKGROUNDS[solution.slug] ?? DEFAULT_HERO_BACKGROUND,
     [solution.slug],
   )
+  const serviceImages = useMemo(() => getServiceImagesForSlug(solution.slug), [solution.slug])
   const isVideoBackground = heroBackground.kind === "video"
   const videoRef = useRef<HTMLVideoElement>(null)
   const [activeService, setActiveService] = useState(0)
@@ -609,7 +687,7 @@ export default function CybersecuritySolutionPage({ solution }: CybersecuritySol
 
                 <div className="relative min-h-[520px] overflow-hidden rounded-[34px] border border-[#e6d8cb] bg-neutral-950 text-white shadow-[0_35px_120px_-70px_rgba(15,23,42,0.6)]">
                   {copy.services.items.map((service, index) => {
-                    const image = SERVICE_IMAGES[index % SERVICE_IMAGES.length]
+                    const image = serviceImages[index % serviceImages.length]
                     const isActive = activeService === index
                     return (
                       <div
