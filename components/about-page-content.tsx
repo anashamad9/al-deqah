@@ -86,14 +86,15 @@ const ABOUT_COPY: Record<
       quoteLabel: "Al-Deqah Leadership Charter",
       members: [
         {
-          name: "Malek Momani",
+          name: "Malik Momani",
           title: "General Manager",
           image: "/our%20team/Malik.jpeg",
         },
         {
-          name: "Hamza Momani",
-          title: "Technical Affairs Coordinator",
-          image: "/our%20team/Hamzah.jpeg",
+          name: "Dr. Laman Mohamed",
+          title:
+            "Head of sector XR, Mixed Reality, Digital Twin & Hologram Solutions\n(Spatial Computing & Immersive Training Architect for Industry 4.0, Energy, Healthcare & Institutional Systems)",
+          image: "/our%20team/Laman.jpeg",
         },
         {
           name: "Yazan Al-Ballah",
@@ -101,15 +102,15 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Yazan.jpeg",
         },
         {
-          name: "Lara Mohammad",
-          title: "Head of the Metaverse Department",
-          image: "/our%20team/Maen.jpeg",
-        },
-        {
           name: "Lara Nasser",
           title: "Training Programs Coordinator",
           image: "/our%20team/Lara.jpeg",
           imagePosition: "top",
+        },
+        {
+          name: "Hamza Momani",
+          title: "Technical Affairs Coordinator",
+          image: "/our%20team/Hamzah.jpeg",
         },
       ],
     },
@@ -189,20 +190,26 @@ const ABOUT_COPY: Record<
           image: "/our%20team/Malik.jpeg",
         },
         {
-          name: "حمزة مومني",
-          title: "منسق الشؤون الفنية",
-          image: "/our%20team/Hamzah.jpeg",
+          name: "د. لامان محمد",
+          title:
+            "مديرة قطاع XR(الواقع المختلط والتوأم الرقمي والهولوجرام)\nمعمارية حلول التدريب الغامر والتقنيات المكانية في مجالات الطاقة، الصحة، المصانع الذكية، والأنظمة المؤسسية",
+          image: "/our%20team/Laman.jpeg",
         },
         {
-          name: "لامان محمد",
-          title: "رئيس قسم الميتافيرس",
-          image: "/our%20team/Maen.jpeg",
+          name: "يزن البلاح",
+          title: "منسق عمليات الأمن السيبراني",
+          image: "/our%20team/Yazan.jpeg",
         },
         {
           name: "لارا ناصر",
           title: "منسق البرامج التدريبية",
           image: "/our%20team/Lara.jpeg",
           imagePosition: "top",
+        },
+        {
+          name: "حمزة مومني",
+          title: "منسق الشؤون الفنية",
+          image: "/our%20team/Hamzah.jpeg",
         },
       ],
     },
@@ -351,11 +358,7 @@ export default function AboutPageContent() {
                     )}
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">{member.name}</h3>
-                  <p
-                    className={`text-xs text-[#863730] ${isArabic ? "arabic" : "uppercase tracking-[0.3em]"}`}
-                  >
-                    {member.title}
-                  </p>
+                  <p className={`text-xs text-[#863730] ${isArabic ? "arabic" : ""}`}>{member.title}</p>
                 </div>
               ))}
             </div>
